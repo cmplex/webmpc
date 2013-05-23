@@ -9,7 +9,7 @@
 
 		<?php
 
-			include('mpd-class/mpd.class.php');
+			include('lib/mpd.class.php');
 			$myMpd = new mpd('tweety',6600);
 
 			if ( $myMpd->connected == FALSE ) {
