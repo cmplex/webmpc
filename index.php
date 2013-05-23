@@ -10,7 +10,7 @@
 		<?php
 
 			include('mpd-class/mpd.class.php');
-			$myMpd = new mpd('localhost',6600);
+			$myMpd = new mpd('tweety',6600);
 
 			if ( $myMpd->connected == FALSE ) {
 				echo "Error Connecting: " . $myMpd->errStr;	
@@ -39,7 +39,7 @@
 
 
 
-		<script type="text/javascript" src="jquery.min.js"></script>	<!-- JQuery -->
+		<script type="text/javascript" src="lib/jquery.js"></script>	<!-- JQuery -->
 		<script type="text/javascript" src="functions_js.php"></script><!-- Backend -->
 		<script type="text/javascript" src="frontend.js"></script>			<!-- Frontend behaviour -->
 
