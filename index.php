@@ -3,9 +3,9 @@
 
 	<head>
 		<title>WebMPC</title>
-		<link rel="stylesheet" type="text/css" href="stylesheet.css">	<!-- Main stylesheet -->
-		<link rel="stylesheet" type="text/css" href="playlist.css">		<!-- Playlist stylesheet -->
-		<link rel="stylesheet" type="text/css" href="songview.css">		<!-- Songview stylesheet -->
+		<link rel="stylesheet" type="text/css" href="style/stylesheet.css">		<!-- Main stylesheet -->
+		<link rel="stylesheet" type="text/css" href="style/playlist.css">		<!-- Playlist stylesheet -->
+		<link rel="stylesheet" type="text/css" href="style/songview.css">		<!-- Songview stylesheet -->
 
 		<?php
 
