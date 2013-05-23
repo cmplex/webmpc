@@ -1,0 +1,46 @@
+body {
+/*	background-color: #303C57;	*/
+	background-color: #000000;
+	font-family: Verdana;
+	color: #FFFFFF;
+}
+
+a				{text-decoration: none;}
+a:link 		{color: #FFFFFF;}
+a:visited 	{color: #FFFFFF;}
+
+#modeswitcher{
+	background-color: #151515;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.modebutton {
+	background-color: #303030;
+	border-radius: 6px;
+	font-family: Verdana;
+	font-size: 4.2em;
+	text-align: center;
+/*	font-variant: small-caps;*/
+	color: #FFFFFF;
+	opacity: 0.4;
+	height:1.5em;
+	width:5em;
+	display: inline-block;
+}
+
+#displayarea{
+	background-color: #151515;
+	border-radius: 5px;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+#albumart {
+	text-align: center;
+}
+
+#albumart img {
+	width: 35em;
+	height: 35em;
+}

@@ -1,0 +1,19 @@
+#songview #songdescr {
+	display: inline-block;
+	width: 35em;
+	text-align: center;
+}
+
+#songview #songdescr p {
+	font-family: Verdana;
+	text-align: left;
+	font-size: 1.75em;
+}
+
+#songview #songdescr p:first-child{
+	font-size: 3em;
+}
+
+#songview #controls{
+	font-size: 1.5em;
+}
