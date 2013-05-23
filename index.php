@@ -41,7 +41,7 @@
 
 		<script type="text/javascript" src="jquery.min.js"></script>	<!-- JQuery -->
 		<script type="text/javascript" src="functions_js.php"></script><!-- Backend -->
-		<script type="text/javascript" src="jquery.js"></script>			<!-- Frontend behaviour -->
+		<script type="text/javascript" src="frontend.js"></script>			<!-- Frontend behaviour -->
 
 	</head>
 
