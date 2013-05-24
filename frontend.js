@@ -17,7 +17,8 @@ $(document).ready(function (){
 				cur_title = response;
 				
 				if(cur_title != rec_title){
-					$('#title').html(response);
+					$('#title').hide();
+					$('#title').html(response).fadeIn();
 				}
 
 			});
@@ -29,7 +30,8 @@ $(document).ready(function (){
 				cur_artist = response;
 
 				if(cur_artist != rec_artist) {
-					$('#artist').html(response);
+					$('#artist').hide();
+					$('#artist').html(response).fadeIn();
 				}
 
 			});
@@ -42,8 +44,8 @@ $(document).ready(function (){
 				cur_album = response;
 
 				if(cur_album != rec_album) {
-
-					$('#album').html(response);
+					$('#album').hide();
+					$('#album').html(response).fadeIn();
 
 					var imgurl = "covers/"+response+".jpg";
 					
