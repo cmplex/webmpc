@@ -12,10 +12,10 @@ $(document).ready(function (){
 
 			// update title
 			$.get('mpd_client.php', {func: "getCurrentTitle"}, function(response) {
-				
+
 				rec_title = cur_title;
 				cur_title = response;
-				
+
 				if(cur_title != rec_title){
 					$('#title').hide();
 					$('#title').html(response).fadeIn();
@@ -48,7 +48,7 @@ $(document).ready(function (){
 					$('#album').html(response).fadeIn();
 
 					var imgurl = "covers/"+response+".jpg";
-					
+
 					// check if cover exists
 					$.ajax({
 						url:imgurl,
@@ -98,7 +98,7 @@ $(document).ready(function (){
 
 	$('#nextbutton').click(function(){
 		$(this).fadeTo('fast', 0.3);
-		
+
 		$.get('mpd_client.php', {func: "controlNext"}, function(response) {
 			if(response == 0)
 			{
