@@ -21,20 +21,6 @@
 
 			{
 
-				switch($_REQUEST[cmd])
-				{
-					case "prev":
-						$myMpd->Previous();
-						break;
-					case "toggle":
-						$myMpd->Pause();
-						break;
-					case "next":
-						$myMpd->Next();
-						break;
-					default:
-						break;
-				}
 		?>
 
 
@@ -66,11 +52,12 @@
 				<br/>
 
 				<div id="controls">
-					<a href='<?php echo $_SERVER[PHP_SELF]."?cmd=prev";?>'>prev</a> | 
-					<a href='<?php echo $_SERVER[PHP_SELF]."?cmd=toggle";?>'>toggle</a> | 
-					<a href='<?php echo $_SERVER[PHP_SELF]."?cmd=next";?>'>next</a>
+					<div class="controlbutton" id="prevbutton">prev</div>
+					<div class="controlbutton" id="togglebutton">toggle</div>
+					<div class="controlbutton" id="nextbutton">next	</div>
 				</div>
 
+				<br/>
 
 				<div id="songdescr">
 					<p id="title"></p>

@@ -23,5 +23,21 @@
 		case "getCurrentTitle":
 			echo $mpd->playlist[$mpd->current_track_id]['Title'];
 			break;
+
+		case "controlPrevious":
+			$mpd->Previous();
+			echo 0;
+			break;
+
+		case "controlNext":
+			$mpd->Next();
+			echo 0;
+			break;
+
+		case "controlToggle":
+			$mpd->Pause();
+			echo 0;
+			break;
+
 	}
 ?>

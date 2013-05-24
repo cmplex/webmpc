@@ -34,7 +34,7 @@ $(document).ready(function (){
 
 			});
 
-			// update album
+			// update album name & cover
 			$.get('mpd_client.php', {func: "getCurrentAlbum"}, function(response) {
 
 				// check if album name changed
@@ -78,6 +78,47 @@ $(document).ready(function (){
 		$('.modebutton').fadeTo('fast',0.4);
 		$(this).fadeTo('fast', 1);
 	});
+
+
+
+	// control behaviour
+	$('#prevbutton').click(function(){
+		$(this).fadeTo('fast', 0.3);
+
+		$.get('mpd_client.php', {func: "controlPrevious"}, function(response) {
+			if(response == 0)
+			{
+				$('#prevbutton').fadeTo('fast', 1.0);
+			}
+		});
+
+	});
+
+	$('#nextbutton').click(function(){
+		$(this).fadeTo('fast', 0.3);
+		
+		$.get('mpd_client.php', {func: "controlNext"}, function(response) {
+			if(response == 0)
+			{
+				$('#nextbutton').fadeTo('fast', 1.0);
+			}
+		});
+
+	});
+
+	$('#togglebutton').click(function(){
+		$(this).fadeTo('fast', 0.3);
+
+		$.get('mpd_client.php', {func: "controlToggle"}, function(response) {
+			if (response == 0)
+			{
+				$('#togglebutton').fadeTo('fast', 1.0);
+			}
+		});
+
+	});
+
+
 
 	// "song"-button specific behaviour
 	$('#songbutton').click(function(){
