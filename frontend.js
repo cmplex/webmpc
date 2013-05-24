@@ -46,8 +46,23 @@ $(document).ready(function (){
 		$('.playlist_elem #songdescr div:first-child').show();
 		$(this).children().children().fadeIn();
 		$(this).find('#button_container').fadeIn();
-
 	});
 
+	// setup timer that fetches current song information and updates the page
+	var songDescrUpdater = setInterval(function() {
+		// update title
+		$.get('mpd_client.php', {func: "getCurrentTitle"}, function(response) {
+			$('#title').html(response);
+		});
 
+		// update artist
+		$.get('mpd_client.php', {func: "getCurrentArtist"}, function(response) {
+			$('#artist').html(response);
+		});
+
+		// update album
+		$.get('mpd_client.php', {func: "getCurrentAlbum"}, function(response) {
+			$('#album').html(response);
+		});
+	}, 1000);
 });

@@ -79,17 +79,17 @@
 
 
 				<div id="songdescr">
-					<p>
+					<p id="title">
 						<?php
 							echo $myMpd->playlist[$myMpd->current_track_id]['Title'];
 						?>
 					</p>
-					<p>
+					<p id="artist">
 						<?php
 							echo $myMpd->playlist[$myMpd->current_track_id]['Artist'];
 						?>
 					</p>
-					<p>
+					<p id="album">
 						<?php
 							echo $myMpd->playlist[$myMpd->current_track_id]['Album'];
 						?>
