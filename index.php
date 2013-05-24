@@ -9,8 +9,9 @@
 
 		<?php
 
+			include('config.php');
 			include('lib/mpd.class.php');
-			$myMpd = new mpd('tweety',6600);
+			$myMpd = new mpd($mpd_host,$mpd_port);
 
 			if ( $myMpd->connected == FALSE ) {
 				echo "Error Connecting: " . $myMpd->errStr;	
@@ -39,8 +40,7 @@
 
 
 
-		<script type="text/javascript" src="lib/jquery.js"></script>	<!-- JQuery -->
-		<script type="text/javascript" src="functions_js.php"></script><!-- Backend -->
+		<script type="text/javascript" src="lib/jquery.js"></script>		<!-- JQuery -->
 		<script type="text/javascript" src="frontend.js"></script>			<!-- Frontend behaviour -->
 
 	</head>
@@ -62,11 +62,11 @@
 				<br/>
 
 				<p id="albumart">
-					<img src="<?php
+					<!--<img src="<?php
 
 						echo "covers/".$myMpd->playlist[$myMpd->current_track_id]['Album'].".jpg";
 
-					?>"/>
+					?>"/>-->
 				</p>
 
 				<br/>
@@ -79,21 +79,9 @@
 
 
 				<div id="songdescr">
-					<p id="title">
-						<?php
-							echo $myMpd->playlist[$myMpd->current_track_id]['Title'];
-						?>
-					</p>
-					<p id="artist">
-						<?php
-							echo $myMpd->playlist[$myMpd->current_track_id]['Artist'];
-						?>
-					</p>
-					<p id="album">
-						<?php
-							echo $myMpd->playlist[$myMpd->current_track_id]['Album'];
-						?>
-					</p>
+					<p id="title"></p>
+					<p id="artist"></p>
+					<p id="album"></p>
 				</div>
 
 				<br/><br/>

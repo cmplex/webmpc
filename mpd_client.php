@@ -1,8 +1,9 @@
 <?php
+	include('config.php');
 	include('lib/mpd.class.php');
 
 	// connect to mpd server
-	$mpd = new mpd('tweety',6600);
+	$mpd = new mpd($mpd_host,$mpd_port);
 
 	// check connection
 	if ( $mpd->connected == FALSE ) {

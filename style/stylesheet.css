@@ -35,12 +35,3 @@ a:visited 	{color: #FFFFFF;}
 	text-align: center;
 	color: #FFFFFF;
 }
-
-#albumart {
-	text-align: center;
-}
-
-#albumart img {
-	width: 35em;
-	height: 35em;
-}

@@ -17,3 +17,12 @@
 #songview #controls{
 	font-size: 1.5em;
 }
+
+#albumart {
+	text-align: center;
+}
+
+#albumart img {
+	width: 35em;
+	height: 35em;
+}
