@@ -3,14 +3,14 @@
 
 	<head>
 		<title>WebMPC</title>
-		<link rel="stylesheet" type="text/css" href="stylesheet.css">	<!-- Main stylesheet -->
-		<link rel="stylesheet" type="text/css" href="playlist.css">		<!-- Playlist stylesheet -->
-		<link rel="stylesheet" type="text/css" href="songview.css">		<!-- Songview stylesheet -->
+		<link rel="stylesheet" type="text/css" href="style/stylesheet.css">		<!-- Main stylesheet -->
+		<link rel="stylesheet" type="text/css" href="style/playlist.css">		<!-- Playlist stylesheet -->
+		<link rel="stylesheet" type="text/css" href="style/songview.css">		<!-- Songview stylesheet -->
 
 		<?php
 
-			include('mpd-class/mpd.class.php');
-			$myMpd = new mpd('localhost',6600);
+			include('lib/mpd.class.php');
+			$myMpd = new mpd('tweety',6600);
 
 			if ( $myMpd->connected == FALSE ) {
 				echo "Error Connecting: " . $myMpd->errStr;	
@@ -39,9 +39,9 @@
 
 
 
-		<script type="text/javascript" src="jquery.min.js"></script>	<!-- JQuery -->
+		<script type="text/javascript" src="lib/jquery.js"></script>	<!-- JQuery -->
 		<script type="text/javascript" src="functions_js.php"></script><!-- Backend -->
-		<script type="text/javascript" src="jquery.js"></script>			<!-- Frontend behaviour -->
+		<script type="text/javascript" src="frontend.js"></script>			<!-- Frontend behaviour -->
 
 	</head>
 
@@ -79,17 +79,17 @@
 
 
 				<div id="songdescr">
-					<p>
+					<p id="title">
 						<?php
 							echo $myMpd->playlist[$myMpd->current_track_id]['Title'];
 						?>
 					</p>
-					<p>
+					<p id="artist">
 						<?php
 							echo $myMpd->playlist[$myMpd->current_track_id]['Artist'];
 						?>
 					</p>
-					<p>
+					<p id="album">
 						<?php
 							echo $myMpd->playlist[$myMpd->current_track_id]['Album'];
 						?>
