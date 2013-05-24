@@ -61,13 +61,7 @@
 			<div class="modeview" id="songview">
 				<br/>
 
-				<p id="albumart">
-					<!--<img src="<?php
-
-						echo "covers/".$myMpd->playlist[$myMpd->current_track_id]['Album'].".jpg";
-
-					?>"/>-->
-				</p>
+				<p id="albumart"></p>
 
 				<br/>
 

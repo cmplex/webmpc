@@ -37,12 +37,31 @@ $(document).ready(function (){
 			// update album
 			$.get('mpd_client.php', {func: "getCurrentAlbum"}, function(response) {
 
+				// check if album name changed
 				rec_album = cur_album;
 				cur_album = response;
 
 				if(cur_album != rec_album) {
+
 					$('#album').html(response);
-					$('#albumart').html("<img src='covers/"+response+".jpg'></img>");
+
+					var imgurl = "covers/"+response+".jpg";
+					
+					// check if cover exists
+					$.ajax({
+						url:imgurl,
+						type:'HEAD',
+						error: function() {
+							// cover does not exist
+							albumimg.src = "covers/default.png";
+						}					
+					});
+
+					// create img tag with appropriate src
+					var albumimg = document.createElement("img");
+					albumimg.src = imgurl;
+					$('#albumart').html(albumimg);
+
 				}
 
 			});
