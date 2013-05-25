@@ -148,10 +148,7 @@ $(document).ready(function (){
 
 
 	$('.playlist_elem').click(function(){
-		// element highlighting
-
-		$(this).fadeTo('fast', 0.6);
-
+		
 		// hide other song descriptions, show specific song description
 		$('.playlist_elem #songdescr div').hide();
 		$('.playlist_elem #button_container').hide();
@@ -163,11 +160,9 @@ $(document).ready(function (){
 		// on second click
 		$(this).click(function(){
 			var songid = parseInt($(this).find('.songid').text());
+			$.get('mpd_client.php', {func: "playSong", song: songid}, function(response) {});
 
-			$.get('mpd_client.php', {func: "playSong", song: songid}, function(response) {
-
-			});
-
+			$('.playlist_elem').fadeTo('fast', 0.6);
 			$(this).fadeTo('fast', 1);
 		});
 	});
