@@ -7,6 +7,7 @@ $(document).ready(function (){
 	// source views and controllers
 	$.getScript("song_view.js", function(){});
 	$.getScript("song_controller.js", function(){});
+	$.getScript("playlist_controller.js", function(){});
 
 
 	// hide all views by default
@@ -39,31 +40,5 @@ $(document).ready(function (){
 	$('#searchbutton').click(function(){
 		$('.modeview').hide();
 		$('#searchview').fadeIn();
-	});
-
-
-	// playlist entry general behaviour
-	$('.playlist_elem #songdescr div').hide();
-	$('.playlist_elem #button_container').hide();
-	$('.playlist_elem #songdescr div:first-child').show();
-
-	$('.playlist_elem').click(function(){
-		
-		// hide other song descriptions, show specific song description
-		$('.playlist_elem #songdescr div').hide();
-		$('.playlist_elem #button_container').hide();
-		$('.playlist_elem #songdescr div:first-child').show();
-		$(this).children().children().fadeIn();
-		$('.songid').hide();
-		$(this).find('#button_container').fadeIn();
-
-		// on second click
-		$(this).click(function(){
-			var songid = parseInt($(this).find('.songid').text());
-			$.get('mpd_client.php', {func: "playSong", params: songid}, function(response) {});
-
-			$('.playlist_elem').fadeTo('fast', 0.6);
-			$(this).fadeTo('fast', 1);
-		});
 	});
 });
