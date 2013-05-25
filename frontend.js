@@ -1,49 +1,35 @@
+// vim: ts=4 sw=4 noet
 $(document).ready(function (){
+	// state variables
+	var album;
+	var artist;
+	var title;
 
-	var cur_title;
-	var rec_title;
-	var cur_artist;
-	var rec_artist;
-	var cur_album;
-	var rec_album;
-
-	// song description updater
-	var showSongDescr = function() {
-
+	// setup timer that fetches current song information and updates the page
+	setInterval(function() {
 			// update title
 			$.get('mpd_client.php', {func: "getCurrentTitle"}, function(response) {
-
-				rec_title = cur_title;
-				cur_title = response;
-
-				if(cur_title != rec_title){
+				if(response != title){
+					title = response;
 					$('#title').hide();
 					$('#title').html(response).fadeIn();
 				}
-
 			});
 
 			// update artist
 			$.get('mpd_client.php', {func: "getCurrentArtist"}, function(response) {
-
-				rec_artist = cur_artist;
-				cur_artist = response;
-
-				if(cur_artist != rec_artist) {
+				if(response != artist) {
+					artist = response;
 					$('#artist').hide();
 					$('#artist').html(response).fadeIn();
 				}
-
 			});
 
 			// update album name & cover
 			$.get('mpd_client.php', {func: "getCurrentAlbum"}, function(response) {
+				if(response != album) {
+					album = response;
 
-				// check if album name changed
-				rec_album = cur_album;
-				cur_album = response;
-
-				if(cur_album != rec_album) {
 					$('#album').hide();
 					$('#album').html(response).fadeIn();
 
@@ -63,17 +49,16 @@ $(document).ready(function (){
 					var albumimg = document.createElement("img");
 					albumimg.src = imgurl;
 					$('#albumart').html(albumimg);
-
 				}
-
 			});
-	}
+	}, 1000);
 
 
 
 	// hide all views by default
 	$('.modeview').hide();
 	$('#songview').show();
+
 
 	// general view button behaviour
 	$('.modebutton').click(function(){
@@ -82,14 +67,12 @@ $(document).ready(function (){
 	});
 
 
-
 	// control behaviour
 	$('#prevbutton').click(function(){
 		$(this).fadeTo('fast', 0.3);
 
 		$.get('mpd_client.php', {func: "controlPrevious"}, function(response) {
-			if(response == 0)
-			{
+			if(response == 0) {
 				$('#prevbutton').fadeTo('fast', 1.0);
 			}
 		});
@@ -100,8 +83,7 @@ $(document).ready(function (){
 		$(this).fadeTo('fast', 0.3);
 
 		$.get('mpd_client.php', {func: "controlNext"}, function(response) {
-			if(response == 0)
-			{
+			if(response == 0) {
 				$('#nextbutton').fadeTo('fast', 1.0);
 			}
 		});
@@ -112,8 +94,7 @@ $(document).ready(function (){
 		$(this).fadeTo('fast', 0.3);
 
 		$.get('mpd_client.php', {func: "controlToggle"}, function(response) {
-			if (response == 0)
-			{
+			if (response == 0) {
 				$('#togglebutton').fadeTo('fast', 1.0);
 			}
 		});
@@ -121,12 +102,12 @@ $(document).ready(function (){
 	});
 
 
-
 	// "song"-button specific behaviour
 	$('#songbutton').click(function(){
 		$('.modeview').hide();
 		$('#songview').fadeIn();
 	});
+
 
 	// "playlist"-button specific behaviour
 	$('#playlistbutton').click(function(){
@@ -141,11 +122,11 @@ $(document).ready(function (){
 		$('#searchview').fadeIn();
 	});
 
+
 	// playlist entry general behaviour
 	$('.playlist_elem #songdescr div').hide();
 	$('.playlist_elem #button_container').hide();
 	$('.playlist_elem #songdescr div:first-child').show();
-
 
 	$('.playlist_elem').click(function(){
 		
@@ -166,9 +147,4 @@ $(document).ready(function (){
 			$(this).fadeTo('fast', 1);
 		});
 	});
-
-
-	showSongDescr();
-	// setup timer that fetches current song information and updates the page
-	var songDescrUpdater = setInterval(showSongDescr, 1000);
 });
