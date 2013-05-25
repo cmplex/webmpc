@@ -10,8 +10,11 @@
 		echo "Error Connecting: " . $mpd->errStr;	
 	}
 
+	$func = $_GET["func"];
+	$song = $_GET["song"];
+
 	// fetch and echo queried data
-	switch($_GET["func"]) {
+	switch($func) {
 		case "getCurrentAlbum":
 			echo $mpd->playlist[$mpd->current_track_id]['Album'];
 			break;
@@ -36,6 +39,11 @@
 
 		case "controlToggle":
 			$mpd->Pause();
+			echo 0;
+			break;
+
+		case "playSong":
+			$mpd->SkipTo($song);
 			echo 0;
 			break;
 
