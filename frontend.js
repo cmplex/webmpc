@@ -160,7 +160,7 @@ $(document).ready(function (){
 		// on second click
 		$(this).click(function(){
 			var songid = parseInt($(this).find('.songid').text());
-			$.get('mpd_client.php', {func: "playSong", song: songid}, function(response) {});
+			$.get('mpd_client.php', {func: "playSong", params: songid}, function(response) {});
 
 			$('.playlist_elem').fadeTo('fast', 0.6);
 			$(this).fadeTo('fast', 1);
