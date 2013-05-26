@@ -48,6 +48,11 @@ Views:
 * Search view
 * Browse view
 
+Additional pages:
+
+* Login
+* Configuration Interface
+
 
 Song view:
 
