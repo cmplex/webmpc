@@ -36,22 +36,21 @@ function updateSongView() {
 			$('#album').hide();
 			$('#album').html(response).fadeIn();
 
-			var imgurl = "covers/"+response+".jpg";
+			// create img tag with appropriate src
+			var albumimg = document.createElement("img");
+			albumimg.src = "covers/default.png";
+			$('#albumart').html(albumimg);
 
 			// check if cover exists
+			var imgurl = "covers/"+response+".jpg";
 			$.ajax({
 				url:imgurl,
 				type:'HEAD',
-				error: function() {
-					// cover does not exist
-					albumimg.src = "covers/default.png";
+				success: function() {
+					// cover does exist
+					albumimg.src = imgurl;
 				}
 			});
-
-			// create img tag with appropriate src
-			var albumimg = document.createElement("img");
-			albumimg.src = imgurl;
-			$('#albumart').html(albumimg);
 		}
 	});
 }
@@ -60,4 +59,4 @@ function updateSongView() {
 updateSongView();
 
 // schedule update
-setTimeout(updateSongView(), 1000);
+setInterval(updateSongView, 1000);
