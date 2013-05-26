@@ -41,16 +41,77 @@ HTML directories), you can simply modify the related variables in the Makefile.
 
 #### Features to be added ####
 
+Views:
+
+* Song view
+* Playlist view
+* Search view
+* Browse view
+
+
 Song view:
-* volume control
-* song progress display
-* song progress control
+
+* admin functions:
+	+ start / stop
+	+ pause
+	+ previous / next
+	+ volume control (+ / -)
+	+ song progress control (progress bar)
+* privileged functions:
+	+ pause
+	+ volume control
+* guest functions:
+	+ wish (search/browse database & add to playlist, limit nr of additions)
+	+ dislike (next) / like
+
 
 Playlist view:
-* selective updating
+
+* admin functions:
+	+ skip to song
+	+ remove song
+* privileged functions:
+	+ skip to song
+	+ remove song
+* guest functions:
+	+ view title information
+
+
+Search view:
+
+* admin functions:
+	+ search for tracks and add to playlist
+* privileged functions:
+	+ search for tracks and add to playlist
+* guest functions:
+	+ search for track and add to playlist (1 per time interval)
+
+
+Browse view:
+
+* admin functions:
+	+ search for tracks and add to playlist
+* privileged functions:
+	+ search for tracks and add to playlist
+* guest functions:
+	+ search for tracks and add to playlist (1 per time interval)
+
+
+Configuration interface:
+
+* admin functions:
+	+ set shuffle / repeat
+	+ set guest wish timeout
+	+ set 'next'-vote trigger (relative)
+* privileged functions:
+	+ set shuffle / repeat
+
 
 Additional features:
-* Search view
+
 * user management (control permission assignment)
-	+ 
+	+ admin group
+	+ privileged group
+	+ guests 
 * enabling users to broadcast their local music to the server
+* vote statistics evaluation
