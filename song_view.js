@@ -60,4 +60,4 @@ function updateSongView() {
 updateSongView();
 
 // schedule update
-setTimeout(updateSongView(), 1000);
+setInterval(updateSongView, 1000);
