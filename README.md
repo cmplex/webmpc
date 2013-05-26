@@ -41,20 +41,20 @@ HTML directories), you can simply modify the related variables in the Makefile.
 
 #### Features to be added ####
 
-Views:
+**Views:**
 
 * Song view
 * Playlist view
 * Search view
 * Browse view
 
-Additional pages:
+**Additional pages:**
 
 * Login
 * Configuration Interface
 
 
-Song view:
+**Song view:**
 
 * admin functions:
 	+ start / stop
@@ -70,7 +70,7 @@ Song view:
 	+ dislike (next) / like
 
 
-Playlist view:
+**Playlist view:**
 
 * admin functions:
 	+ skip to song
@@ -82,7 +82,7 @@ Playlist view:
 	+ view title information
 
 
-Search view:
+**Search view:**
 
 * admin functions:
 	+ search for tracks and add to playlist
@@ -92,7 +92,7 @@ Search view:
 	+ search for track and add to playlist (1 per time interval)
 
 
-Browse view:
+*Browse view:*
 
 * admin functions:
 	+ search for tracks and add to playlist
@@ -102,7 +102,7 @@ Browse view:
 	+ search for tracks and add to playlist (1 per time interval)
 
 
-Configuration interface:
+**Configuration interface:**
 
 * admin functions:
 	+ set shuffle / repeat
@@ -112,7 +112,7 @@ Configuration interface:
 	+ set shuffle / repeat
 
 
-Additional features:
+**Additional features:**
 
 * user management (control permission assignment)
 	+ admin group
