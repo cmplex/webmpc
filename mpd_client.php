@@ -1,51 +1,69 @@
 <?php
-	include('config.php');
-	include('lib/mpd.class.php');
+// vim: ts=4 sw=4 noet
 
-	// connect to mpd server
-	$mpd = new mpd($mpd_host,$mpd_port);
+include('config.php');
+include('lib/mpd.class.php');
 
-	// check connection
-	if ( $mpd->connected == FALSE ) {
-		echo "Error Connecting: " . $mpd->errStr;	
-	}
 
-	$func = $_GET["func"];
-	$song = $_GET["song"];
 
-	// fetch and echo queried data
-	switch($func) {
-		case "getCurrentAlbum":
-			echo $mpd->playlist[$mpd->current_track_id]['Album'];
-			break;
+///////////////////////////////////////
+//         C A L L B A C K S         //
+///////////////////////////////////////
 
-		case "getCurrentArtist":
-			echo $mpd->playlist[$mpd->current_track_id]['Artist'];
-			break;
 
-		case "getCurrentTitle":
-			echo $mpd->playlist[$mpd->current_track_id]['Title'];
-			break;
+function controlNext($mpd) {
+	$mpd->Next();
+}
 
-		case "controlPrevious":
-			$mpd->Previous();
-			echo 0;
-			break;
+function controlPrevious($mpd) {
+	$mpd->Previous();
+}
 
-		case "controlNext":
-			$mpd->Next();
-			echo 0;
-			break;
+function controlToggle($mpd) {
+	$mpd->Pause();
+}
 
-		case "controlToggle":
-			$mpd->Pause();
-			echo 0;
-			break;
+function getCurrentAlbum($mpd) {
+	echo $mpd->playlist[$mpd->current_track_id]['Album'];
+}
 
-		case "playSong":
-			$mpd->SkipTo($song);
-			echo 0;
-			break;
+function getCurrentArtist($mpd) {
+	echo $mpd->playlist[$mpd->current_track_id]['Artist'];
+}
 
-	}
+function getCurrentTitle($mpd) {
+	echo $mpd->playlist[$mpd->current_track_id]['Title'];
+}
+
+function getPlaylistItem($mpd, $index) {
+	$result = array( $index,
+					 $mpd->playlist[$index]['Title'],
+					 $mpd->playlist[$index]['Album'],
+					 $mpd->playlist[$index]['Artist']);
+	echo json_encode($result);
+}
+
+function getPlaylistSize($mpd) {
+	echo $mpd->playlist_count;
+}
+
+function playSong($mpd, $song) {
+	$mpd->SkipTo($song);
+}
+
+
+
+///////////////////////////////////////
+//             L O G I C             //
+///////////////////////////////////////
+
+// connect to server
+$mpd = new mpd($mpd_host, $mpd_port);
+
+// check connection
+if ( $mpd->connected == FALSE )
+	echo "Connection error: " . $mpd->errStr;   
+
+// invoke the requested function
+call_user_func($_GET["func"], $mpd, $_GET["params"]);
 ?>
