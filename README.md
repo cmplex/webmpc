@@ -92,7 +92,7 @@ HTML directories), you can simply modify the related variables in the Makefile.
 	+ search for track and add to playlist (1 per time interval)
 
 
-*Browse view:*
+**Browse view:**
 
 * admin functions:
 	+ search for tracks and add to playlist
