@@ -34,4 +34,4 @@ function updatePlaylistView() {
 updatePlaylistView();
 
 // schedule updates
-setTimeout(updatePlaylistView, 10000);
+setTimeout(updatePlaylistView, 1000);
