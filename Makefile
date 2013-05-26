@@ -57,6 +57,8 @@ _deploy:
 	install --mode=644 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/lib $(wildcard lib/*)
 	install --mode=755 -d $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/style
 	install --mode=644 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/style $(wildcard style/*)
+	install --mode=755 -d $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/frontend
+	install --mode=644 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/frontend $(wildcard frontend/*)
 
 # target: bundle an archive of the webapp
 package: _hello _package _bye
