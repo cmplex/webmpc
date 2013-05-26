@@ -7,6 +7,7 @@ $(document).ready(function (){
 	// source views and controllers
 	$.getScript("song_view.js", function(){});
 	$.getScript("song_controller.js", function(){});
+	$.getScript("playlist_view.js", function(){});
 	$.getScript("playlist_controller.js", function(){});
 
 

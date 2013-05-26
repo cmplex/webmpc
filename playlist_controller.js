@@ -15,19 +15,12 @@ var OPACITY = 0.6;
 //         B E H A V I O U R          //
 ////////////////////////////////////////
 
-// playlist entry general behaviour
-$('.playlist_elem #songdescr div').hide();
-$('.playlist_elem #button_container').hide();
-$('.playlist_elem #songdescr div:first-child').show();
-
+setInterval(function() {
 $('.playlist_elem').click(function(){
 	// hide other song descriptions, show specific song description
-	$('.playlist_elem #songdescr div').hide();
-	$('.playlist_elem #button_container').hide();
-	$('.playlist_elem #songdescr div:first-child').show();
-	$(this).children().children().fadeIn();
-	$('.songid').hide();
-	$(this).find('#button_container').fadeIn();
+	$('.playlist_elem div').hide();
+	$('.playlist_elem div:first-child').show();
+	$(this).children('.songinfo').fadeIn();
 
 	// on second click
 	$(this).click(function(){
@@ -38,3 +31,4 @@ $('.playlist_elem').click(function(){
 		$(this).fadeTo('fast', 1);
 	});
 });
+}, 1000);

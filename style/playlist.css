@@ -38,11 +38,11 @@
 	margin-bottom: auto;
 }
 
-.playlist_elem #songdescr div {
+.playlist_elem div {
 	font-size: 1em;	
 }
 
-.playlist_elem #songdescr div:first-child {
+.playlist_elem div:first-child {
 	font-size: 1.5em;
 	display: inline-block;
 }

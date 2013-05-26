@@ -35,6 +35,18 @@ function getCurrentTitle($mpd) {
 	echo $mpd->playlist[$mpd->current_track_id]['Title'];
 }
 
+function getPlaylistItem($mpd, $index) {
+	$result = array( $index,
+					 $mpd->playlist[$index]['Title'],
+					 $mpd->playlist[$index]['Album'],
+					 $mpd->playlist[$index]['Artist']);
+	echo json_encode($result);
+}
+
+function getPlaylistSize($mpd) {
+	echo $mpd->playlist_count;
+}
+
 function playSong($mpd, $song) {
 	$mpd->SkipTo($song);
 }
