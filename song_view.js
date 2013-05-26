@@ -9,6 +9,7 @@ var title;
 
 // setup timer that fetches current song information and updates the page
 function updateSongView() {
+
 	// update title
 	$.get('mpd_client.php', {func: "getCurrentTitle"}, function(response) {
 		if(response != title){
@@ -58,5 +59,5 @@ function updateSongView() {
 // initialize view
 updateSongView();
 
-// schedule updates
+// schedule update
 setTimeout(updateSongView(), 1000);

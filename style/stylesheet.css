@@ -2,6 +2,7 @@ body {
 /*	background-color: #303C57;	*/
 	background-color: #000000;
 	font-family: Verdana;
+	text-align: center;
 	color: #FFFFFF;
 }
 
@@ -10,9 +11,12 @@ a:link 		{color: #FFFFFF;}
 a:visited 	{color: #FFFFFF;}
 
 #modeswitcher{
-	background-color: #151515;
+	background-color: #131313;
 	border-radius: 5px;
+	display: inline-block;
 	text-align: center;
+
+	width: 50em;
 }
 
 .modebutton {
@@ -30,8 +34,11 @@ a:visited 	{color: #FFFFFF;}
 }
 
 #displayarea{
-	background-color: #151515;
+	background-color: #131313;
 	border-radius: 5px;
+	display: inline-block;
 	text-align: center;
 	color: #FFFFFF;
+
+	width: 50em;
 }
