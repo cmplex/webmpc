@@ -18,28 +18,23 @@
 			<div class="modebutton" id="playlistbutton">playlist</div>
 		</div>
 
-		<br/>
 
 		<!-- Display Area -->
 		<div id="displayarea">
 
 			<!-- Song view -->
 			<div class="modeview" id="songview">
-				<br/>
 				<p id="albumart"></p>
-				<br/>
 				<div id="controls">
 					<div class="controlbutton" id="prevbutton">prev</div>
 					<div class="controlbutton" id="togglebutton">toggle</div>
 					<div class="controlbutton" id="nextbutton">next	</div>
 				</div>
-				<br/>
 				<div id="songdescr">
 					<p id="title"></p>
 					<p id="artist"></p>
 					<p id="album"></p>
 				</div>
-				<br/><br/>
 			</div>
 			
 			<!-- Playlist view -->
