@@ -96,27 +96,43 @@ $(document).ready(function (){
 
 
 	function updatePlaylistView() {
-		$.get('mpd_client.php', {func: "getPlaylistSize"}, function(size) {
-			// empty playlist
-			$('#playlist').empty();
+		$.get('mpd_client.php', {func: "getPlaylist"}, function(playlist) {
+			for (index=0; index < Math.max(playlist.length, old_playlist.length); index++) {
+				// add items if the new playlist is longer
+				if (index >= old_playlist.length || index == 0 && old_playlist.length == 0) {
+					// create playlist entry
+					$('#playlist').append('<div id="song' + index + '" class="playlist_elem">');
 
-			// fill playlist
-			for (i=0; i<size; i++) {
-				// create playlist entry
-				$('#playlist').append('<div id="song' + i + '" class="playlist_elem">');
-
-				$.get('mpd_client.php', {func:"getPlaylistItem", params:i}, function(result) {
-					$('#song'+result[0]).append('<div class="songinfo">' + result[1] + '</div>');
-					$('#song'+result[0]).append('<div class="songinfo">' + result[2] + '</div>');
-					$('#song'+result[0]).append('<div class="songinfo">' + result[3] + '</div>');
-					$('#song'+result[0]).append('<div class="songid">'   + result[0] + '</div>');
+					// fill in song information
+					$('#song'+index).append('<div class="songinfo title">'  + playlist[index][0] + '</div>');
+					$('#song'+index).append('<div class="songinfo artist">' + playlist[index][2] + '</div>');
+					$('#song'+index).append('<div class="songinfo album">'  + playlist[index][1] + '</div>');
+					$('#song'+index).append('<div class="songid">'          + index              + '</div>');
 
 					// show only the song title
-					$('#song'+result[0]+' div').hide();
-					$('#song'+result[0]+' div:first-child').show();
-				}, 'json');
+					$('#song'+index+' div').hide();
+					$('#song'+index+' div:first-child').show();
+
+					continue;
+				}
+
+				// remove items if the new playlist is shorter
+				if (index >= playlist.length) {
+					$('#song'+index).remove();
+					continue;
+				}
+
+				if (playlist[index] < old_playlist[index]
+				||  playlist[index] > old_playlist[index]) {
+					// update song information
+					$('#song'+index+' .title').contents().replaceWith(playlist[index][0]);
+					$('#song'+index+' .artist').contents().replaceWith(playlist[index][2]);
+					$('#song'+index+' .album').contents().replaceWith(playlist[index][1]);
+					$('#song'+index+' .songid').contents().replaceWith(index);
+				}
 			}
-		});
+			old_playlist = playlist;
+		}, 'json');
 
 
 		// enable playlist controls after a slight delay
