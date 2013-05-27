@@ -7,11 +7,12 @@ $(document).ready(function (){
 	// hide all views by default
 	$('.modeview').hide();
 	$('#songview').show();
+	$('#songbutton').css({ opacity: 1.0 });
 
 
 	// general view button behaviour
 	$('.modebutton').click(function(){
-		$('.modebutton').fadeTo('fast',0.4);
+		$('.modebutton').fadeTo('fast', 0.4);
 		$(this).fadeTo('fast', 1);
 	});
 
