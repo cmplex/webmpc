@@ -93,7 +93,6 @@ HTML directories), you can simply modify the related variables in the Makefile.
 
 
 **Browse view:**
-
 * admin functions:
 	+ search for tracks and add to playlist
 * privileged functions:
@@ -103,7 +102,6 @@ HTML directories), you can simply modify the related variables in the Makefile.
 
 
 **Configuration interface:**
-
 * admin functions:
 	+ set shuffle / repeat
 	+ set guest wish timeout
@@ -113,7 +111,6 @@ HTML directories), you can simply modify the related variables in the Makefile.
 
 
 **Additional features:**
-
 * user management (control permission assignment)
 	+ admin group
 	+ privileged group
