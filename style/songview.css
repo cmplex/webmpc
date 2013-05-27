@@ -1,3 +1,8 @@
+#songview {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
 #songview #songdescr {
 	display: inline-block;
 	
@@ -70,8 +75,8 @@
 	display: inline-block;
 	border-radius: 5px;
 
-	font-size: 2em;
+	font-size: 3em;
 
-	width: 9.2em;
+	width: 6em;
 	height: auto;
 }
