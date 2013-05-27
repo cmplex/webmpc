@@ -1,10 +1,8 @@
 #playlist {
-	background-color: #131313;
+	background-color: #181818;
 	border-radius: 5px;
 	display: inline-block;
 	text-align: center;
-
-	margin: 10px;
 
 	color: #FFFFFF;
 }
@@ -17,11 +15,10 @@
 	display: block;
 	opacity: 0.6;
 
-	margin:10px;
+	margin: 10px;
 }
 
 .playlist_elem #songdescr {
-/*	background-color: purple;*/
 	text-align: left;
 	font-size: 1em;
 
@@ -44,7 +41,6 @@
 }
 
 .playlist_elem #songdescr #button_container {
-/*	background-color: red;*/
 	display: inline-block;
 
 	text-align: right;

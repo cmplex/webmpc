@@ -1,13 +1,16 @@
 #songview #songdescr {
 	display: inline-block;
-	width: 35em;
+	
 	text-align: center;
+
+	width: 35em;
 }
 
 #songview #songdescr p {
 	font-family: Verdana;
-	text-align: left;
 	font-size: 1.75em;
+
+	text-align: left;
 }
 
 #songview #songdescr p:first-child{
@@ -20,13 +23,16 @@
 
 #albumart {
 	background-color: #000000;
-	display: inline-block;
+	display: block;
 	text-align: center;
 	border-radius: 5px;
 
-	width: 35em;
-
 	padding: 10px;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	width: 35em;
 }
 
 #albumart img {
@@ -35,9 +41,11 @@
 }
 
 #controls {
-	display: inline-block;
-	border-radius: 5px;
+	display: block;
+	
 	text-align: center;
+
+	margin: 5px;
 }
 
 .controlbutton {
@@ -49,4 +57,21 @@
 
 	width: 4em;
 	height: 1.5em;
+}
+
+#volumecontrols {
+	display: block;
+
+	margin: 5px;
+}
+
+.volumebutton {
+	background-color: #212121;
+	display: inline-block;
+	border-radius: 5px;
+
+	font-size: 2em;
+
+	width: 9.2em;
+	height: auto;
 }
