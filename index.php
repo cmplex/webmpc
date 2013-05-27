@@ -18,7 +18,6 @@
 			<div class="modebutton" id="playlistbutton">playlist</div>
 		</div>
 
-
 		<!-- Display Area -->
 		<div id="displayarea">
 
@@ -29,6 +28,10 @@
 					<div class="controlbutton" id="prevbutton">prev</div>
 					<div class="controlbutton" id="togglebutton">toggle</div>
 					<div class="controlbutton" id="nextbutton">next	</div>
+				</div>
+				<div id="volumecontrols">
+					<div class="volumebutton" id="minusbutton">-</div>
+					<div class="volumebutton" id="plusbutton">+</div>
 				</div>
 				<div id="songdescr">
 					<p id="title"></p>
@@ -44,9 +47,13 @@
 
 			<!-- Search view
 			<div class="modeview" id="searchview">
-				<br/>
 			</div>
             -->
+
+			<!-- Browse view
+			<div class="modeview" id="browseview">
+			</div>
+			-->
 		</div>
 	</body>
 </html>

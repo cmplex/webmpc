@@ -10,6 +10,13 @@ include('lib/mpd.class.php');
 //         C A L L B A C K S         //
 ///////////////////////////////////////
 
+function controlVolumeUp($mpd) {
+	$mpd->AdjustVolume(5);
+}
+
+function controlVolumeDown($mpd) {
+	$mpd->AdjustVolume(-5);
+}
 
 function controlNext($mpd) {
 	$mpd->Next();

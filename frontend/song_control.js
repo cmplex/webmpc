@@ -16,6 +16,8 @@ $(document).ready(function(){
 	//         B E H A V I O U R          //
 	////////////////////////////////////////
 
+	// song controls
+	
 	$('#prevbutton').click(function(){
 		// fade out
 		$(this).fadeTo('fast', OPACITY);
@@ -45,6 +47,31 @@ $(document).ready(function(){
 		$.get('mpd_client.php', {func: "controlToggle"}, function() {
 			// fade in
 			$('#togglebutton').fadeTo('fast', 1.0);
+		});
+	});
+
+
+
+	// volume controls
+
+	$('#minusbutton').click(function(){
+		//fade out
+		$(this).fadeTo('fast', OPACITY);
+
+		$.get('mpd_client.php', {func: "controlVolumeDown"}, function() {
+			// fade in
+			$('#minusbutton').fadeTo('fast', 1.0);
+		});
+	});
+
+	
+	$('#plusbutton').click(function(){
+		//fade out
+		$(this).fadeTo('fast', OPACITY);
+
+		$.get('mpd_client.php', {func: "controlVolumeUp"}, function() {
+			// fade in
+			$('#plusbutton').fadeTo('fast', 1.0);
 		});
 	});
 
