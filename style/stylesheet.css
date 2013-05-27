@@ -12,16 +12,20 @@ a:visited 	{color: #FFFFFF;}
 
 #modeswitcher{
 	background-color: #131313;
-	border-radius: 5px;
+	border-radius: 10px;
 	display: inline-block;
 	text-align: center;
+
+	padding: 0.5em;
+
+	margin-bottom: 0.5em;
 
 	width: 50em;
 }
 
 .modebutton {
 	background-color: #303030;
-	border-radius: 6px;
+	border-radius: 10px;
 	font-family: Verdana;
 	font-size: 4.2em;
 	text-align: center;
@@ -35,10 +39,10 @@ a:visited 	{color: #FFFFFF;}
 
 #displayarea{
 	background-color: #131313;
-	border-radius: 5px;
+	border-radius: 10px;
 	display: inline-block;
 	text-align: center;
 	color: #FFFFFF;
 
-	width: 50em;
+	width: 51em;
 }

@@ -9,13 +9,11 @@ $(document).ready(function(){
 		$.get('mpd_client.php', {func: "getPlaylistSize"}, function(size) {
 			// empty playlist
 			$('#playlist').empty();
-			$('#playlist').append('<br />');
 
 			// fill playlist
 			for (i=0; i<size; i++) {
 				// create playlist entry
 				$('#playlist').append('<div id="song' + i + '" class="playlist_elem">');
-				$('#playlist').append('<br />');
 
 				$.get('mpd_client.php', {func:"getPlaylistItem", params:i}, function(result) {
 					$('#song'+result[0]).append('<div class="songinfo">' + result[1] + '</div>');
