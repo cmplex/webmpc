@@ -21,6 +21,7 @@ $(document).ready(function (){
 	var album;
 	var artist;
 	var title;
+	var progress;
 
 	// setup timer that fetches current song information and updates the page
 	function updateSongView() {
@@ -66,6 +67,15 @@ $(document).ready(function (){
 						albumimg.src = imgurl;
 					}
 				});
+			}
+		});
+
+		// update progress bar
+		$.get('mpd_client.php', {func: "getTrackProgress"}, function(response) {
+			response = parseInt(response);
+			if(response != progress) {
+				progress = response;
+				$('#progressbar').width(response+"%");
 			}
 		});
 	}

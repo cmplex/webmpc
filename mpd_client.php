@@ -10,6 +10,12 @@ include('lib/mpd.class.php');
 //         C A L L B A C K S         //
 ///////////////////////////////////////
 
+function getTrackProgress($mpd) {
+	$progress = ($mpd->current_track_position / $mpd->current_track_length) * 100;
+	echo $progress;
+	//echo $mpd->current_track_position;
+}
+
 function controlVolumeUp($mpd) {
 	$mpd->AdjustVolume(5);
 }

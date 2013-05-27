@@ -23,6 +23,9 @@
 			<!-- Song view -->
 			<div class="modeview" id="songview">
 				<p id="albumart"></p>
+				<div id="progressbar-container">
+					<div id="progressbar"></div>
+				</div>
 				<div id="controls">
 					<div class="controlbutton" id="prevbutton">prev</div>
 					<div class="controlbutton" id="togglebutton">toggle</div>
