@@ -5,6 +5,13 @@
 
 $(document).ready(function (){
 
+	////////////////////////////////////////
+	//         C O N S T A N T S          //
+	////////////////////////////////////////
+
+	var OPACITY = 0.6;
+
+
 	
 	//////////////////////////////
 	///		SONG VIEW		//////
@@ -72,7 +79,7 @@ $(document).ready(function (){
 
 
 	///////////////////////////
-	/////	PLAYLIST VIEW 	///
+	/////	PLAYLIST VIEW	 	///
 	///////////////////////////
 
 
@@ -99,6 +106,40 @@ $(document).ready(function (){
 				}, 'json');
 			}
 		});
+
+
+		// enable playlist controls after a slight delay
+		setTimeout(function(){
+			$('.playlist_elem').click(function(){
+
+			var clicked = $(this).data('clicked');
+
+			if(clicked == 'true')
+			{
+				// entry has been clicked before
+				$(this).removeData('clicked');
+
+				var songid = parseInt($(this).find('.songid').text());
+				$.get('mpd_client.php', {func: "playSong", params: songid}, function(response) {});
+
+				$('.playlist_elem').fadeTo('fast', OPACITY);
+				$(this).fadeTo('fast', 1.0);
+				
+			}
+			else
+			{
+				// entry has not been clicked before
+				$(this).data('clicked', 'true');
+
+				// hide other song descriptions, show specific song description
+				$('.playlist_elem div').hide();
+				$('.playlist_elem div:first-child').show();
+				$(this).children('.songinfo').fadeIn();
+			}		
+
+		});
+		},500);
+
 	}
 
 	// initialize view
@@ -109,9 +150,9 @@ $(document).ready(function (){
 
 
 
-	///////////////////////////////////
-	//////	Frontend Behaviour	///////
-	///////////////////////////////////
+	/////////////////////////////////
+	///		MODESWITCHER 			///
+	/////////////////////////////////
 
 
 	// hide all views by default

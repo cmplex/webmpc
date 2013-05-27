@@ -9,7 +9,6 @@
 		<script type="text/javascript" src="lib/jquery.js"></script>		<!-- JQuery -->
 		<script type="text/javascript" src="frontend/frontend.js"></script>			<!-- Frontend behaviour -->
 		<script type="text/javascript" src="frontend/song_control.js"></script>
-		<script type="text/javascript" src="frontend/playlist_control.js"></script>
 	</head>
 
 	<body>
@@ -29,14 +28,14 @@
 					<div class="controlbutton" id="togglebutton">toggle</div>
 					<div class="controlbutton" id="nextbutton">next	</div>
 				</div>
-				<div id="volumecontrols">
-					<div class="volumebutton" id="minusbutton">-</div>
-					<div class="volumebutton" id="plusbutton">+</div>
-				</div>
 				<div id="songdescr">
 					<p id="title"></p>
 					<p id="artist"></p>
 					<p id="album"></p>
+				</div>
+				<div id="volumecontrols">
+					<div class="volumebutton" id="minusbutton">-</div>
+					<div class="volumebutton" id="plusbutton">+</div>
 				</div>
 			</div>
 			
