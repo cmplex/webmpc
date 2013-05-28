@@ -84,7 +84,7 @@ $(document).ready(function (){
 	updateSongView();
 
 	// schedule update
-	var songview_updater = setInterval(updateSongView, 1000);
+	var songview_updater = setInterval(updateSongView, 200);
 
 
 
@@ -157,7 +157,7 @@ $(document).ready(function (){
 	updatePlaylistView();
 
 	// schedule updates
-	var playlistview_updater = setInterval(updatePlaylistView, 10000);
+	var playlistview_updater;
 
 
 
@@ -184,7 +184,7 @@ $(document).ready(function (){
 	$('#songbutton').click(function(){
 		$('.modeview').hide();
 		$('#songview').fadeIn();
-		songview_updater = setInterval(updateSongView, 1000);
+		songview_updater = setInterval(updateSongView, 200);
 		if(playlistview_updater){clearInterval(playlistview_updater);}
 	});
 
@@ -193,7 +193,7 @@ $(document).ready(function (){
 	$('#playlistbutton').click(function(){
 		$('.modeview').hide();
 		$('#playlistview').show();
-		playlistview_updater = setInterval(updatePlaylistView, 10000);
+		playlistview_updater = setInterval(updatePlaylistView, 200);
 		if(songview_updater){clearInterval(songview_updater);}
 
 	});
