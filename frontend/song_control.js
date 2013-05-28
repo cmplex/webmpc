@@ -75,4 +75,14 @@ $(document).ready(function(){
 		});
 	});
 
+	$('#progressbar-container').click(function(e){
+		// get x-position relative to progressbar-container
+		var xpos = e.pageX - this.offsetLeft;
+		// x-pos / max-x - ratio
+		var seek_factor = xpos / $(this).width();
+
+		$.get('mpd_client.php', {func: "setTrackProgress", params: seek_factor}, function(response) {
+		});
+	});
+
 });

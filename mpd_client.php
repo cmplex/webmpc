@@ -10,6 +10,10 @@ include('lib/mpd.class.php');
 //         C A L L B A C K S         //
 ///////////////////////////////////////
 
+function setTrackProgress($mpd, $seek_factor) {
+	$mpd->seekTo(intval($mpd->current_track_length * $seek_factor));
+}
+
 function getTrackProgress($mpd) {
 	$progress = ($mpd->current_track_position / $mpd->current_track_length) * 100;
 	echo $progress;
