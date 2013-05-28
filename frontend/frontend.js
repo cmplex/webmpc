@@ -93,10 +93,16 @@ $(document).ready(function (){
 	///////////////////////////
 
 	var old_playlist = [];
+	var old_currentSongId = -1;
 
 
 	function updatePlaylistView() {
-		$.get('mpd_client.php', {func: "getPlaylist"}, function(playlist) {
+		$.get('mpd_client.php', {func: "getPlaylist"}, function(response) {
+			// parse response
+			var currentSongId = response[0];
+			var playlist = response[1];
+
+			// update playlist items
 			for (index=0; index < Math.max(playlist.length, old_playlist.length); index++) {
 				// add items if the new playlist is longer
 				if (index >= old_playlist.length || index == 0 && old_playlist.length == 0) {
@@ -134,6 +140,15 @@ $(document).ready(function (){
 					$('#song'+index+' .songid').contents().replaceWith(''+index);
 				}
 			}
+
+			// highlight currently playing song if it changed
+			if (old_currentSongId != currentSongId) {
+				$('.playlist_elem').fadeTo('fast', OPACITY);
+				$('#song'+currentSongId).fadeTo('fast', 1.0);
+				old_currentSongId = currentSongId;
+			}
+
+			// update playlist state variable
 			old_playlist = playlist;
 		}, 'json');
 	}
@@ -145,10 +160,6 @@ $(document).ready(function (){
 			// read songid from the hidden element and start playback
 			var songid = parseInt($(this).find('.songid').text());
 			$.get('mpd_client.php', {func: "playSong", params: songid}, function(response) {});
-
-			// highlight currently song
-			$('.playlist_elem').fadeTo('fast', OPACITY);
-			$(this).fadeTo('fast', 1.0);
 		}
 		else
 		{
