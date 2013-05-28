@@ -12,11 +12,11 @@ $(document).ready(function (){
 	var OPACITY = 0.6;
 
 
-	
+
 	//////////////////////////////
-	///		SONG VIEW		//////
+	//        SONG VIEW         //
 	//////////////////////////////
-	
+
 	// state variables
 	var album;
 	var artist;
@@ -84,38 +84,55 @@ $(document).ready(function (){
 	updateSongView();
 
 	// schedule update
-	var songview_updater = setInterval(updateSongView, 1000);
+	var songview_updater = setInterval(updateSongView, 200);
 
 
 
 	///////////////////////////
-	/////	PLAYLIST VIEW	 	///
+	//     PLAYLIST VIEW     //
 	///////////////////////////
 
+	var old_playlist = [];
 
-	// TODO replacing instead of deleting and adding again
+
 	function updatePlaylistView() {
-		$.get('mpd_client.php', {func: "getPlaylistSize"}, function(size) {
-			// empty playlist
-			$('#playlist').empty();
+		$.get('mpd_client.php', {func: "getPlaylist"}, function(playlist) {
+			for (index=0; index < Math.max(playlist.length, old_playlist.length); index++) {
+				// add items if the new playlist is longer
+				if (index >= old_playlist.length || index == 0 && old_playlist.length == 0) {
+					// create playlist entry
+					$('#playlist').append('<div id="song' + index + '" class="playlist_elem">');
 
-			// fill playlist
-			for (i=0; i<size; i++) {
-				// create playlist entry
-				$('#playlist').append('<div id="song' + i + '" class="playlist_elem">');
-
-				$.get('mpd_client.php', {func:"getPlaylistItem", params:i}, function(result) {
-					$('#song'+result[0]).append('<div class="songinfo">' + result[1] + '</div>');
-					$('#song'+result[0]).append('<div class="songinfo">' + result[2] + '</div>');
-					$('#song'+result[0]).append('<div class="songinfo">' + result[3] + '</div>');
-					$('#song'+result[0]).append('<div class="songid">'   + result[0] + '</div>');
+					// fill in song information
+					$('#song'+index).append('<div class="songinfo title">'  + playlist[index][0] + '</div>');
+					$('#song'+index).append('<div class="songinfo artist">' + playlist[index][2] + '</div>');
+					$('#song'+index).append('<div class="songinfo album">'  + playlist[index][1] + '</div>');
+					$('#song'+index).append('<div class="songid">'          + index              + '</div>');
 
 					// show only the song title
-					$('#song'+result[0]+' div').hide();
-					$('#song'+result[0]+' div:first-child').show();
-				}, 'json');
+					$('#song'+index+' div').hide();
+					$('#song'+index+' div:first-child').show();
+
+					continue;
+				}
+
+				// remove items if the new playlist is shorter
+				if (index >= playlist.length) {
+					$('#song'+index).remove();
+					continue;
+				}
+
+				if (playlist[index] < old_playlist[index]
+				||  playlist[index] > old_playlist[index]) {
+					// update song information
+					$('#song'+index+' .title').contents().replaceWith(playlist[index][0]);
+					$('#song'+index+' .artist').contents().replaceWith(playlist[index][2]);
+					$('#song'+index+' .album').contents().replaceWith(playlist[index][1]);
+					$('#song'+index+' .songid').contents().replaceWith(index);
+				}
 			}
-		});
+			old_playlist = playlist;
+		}, 'json');
 
 
 		// enable playlist controls after a slight delay
@@ -134,7 +151,7 @@ $(document).ready(function (){
 
 				$('.playlist_elem').fadeTo('fast', OPACITY);
 				$(this).fadeTo('fast', 1.0);
-				
+
 			}
 			else
 			{
@@ -145,7 +162,7 @@ $(document).ready(function (){
 				$('.playlist_elem div').hide();
 				$('.playlist_elem div:first-child').show();
 				$(this).children('.songinfo').fadeIn();
-			}		
+			}
 
 		});
 		},500);
@@ -156,12 +173,12 @@ $(document).ready(function (){
 	updatePlaylistView();
 
 	// schedule updates
-	var playlistview_updater = setInterval(updatePlaylistView, 10000);
+	var playlistview_updater;
 
 
 
 	/////////////////////////////////
-	///		MODESWITCHER 			///
+	//        MODE SWITCHER        //
 	/////////////////////////////////
 
 
@@ -183,7 +200,7 @@ $(document).ready(function (){
 	$('#songbutton').click(function(){
 		$('.modeview').hide();
 		$('#songview').fadeIn();
-		songview_updater = setInterval(updateSongView, 1000);
+		songview_updater = setInterval(updateSongView, 200);
 		if(playlistview_updater){clearInterval(playlistview_updater);}
 	});
 
@@ -192,7 +209,7 @@ $(document).ready(function (){
 	$('#playlistbutton').click(function(){
 		$('.modeview').hide();
 		$('#playlistview').show();
-		playlistview_updater = setInterval(updatePlaylistView, 10000);
+		playlistview_updater = setInterval(updatePlaylistView, 200);
 		if(songview_updater){clearInterval(songview_updater);}
 
 	});
