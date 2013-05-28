@@ -12,11 +12,11 @@ $(document).ready(function (){
 	var OPACITY = 0.6;
 
 
-	
+
 	//////////////////////////////
-	///		SONG VIEW		//////
+	//        SONG VIEW         //
 	//////////////////////////////
-	
+
 	// state variables
 	var album;
 	var artist;
@@ -89,11 +89,12 @@ $(document).ready(function (){
 
 
 	///////////////////////////
-	/////	PLAYLIST VIEW	 	///
+	//     PLAYLIST VIEW     //
 	///////////////////////////
 
+	var old_playlist = [];
 
-	// TODO replacing instead of deleting and adding again
+
 	function updatePlaylistView() {
 		$.get('mpd_client.php', {func: "getPlaylistSize"}, function(size) {
 			// empty playlist
@@ -134,7 +135,7 @@ $(document).ready(function (){
 
 				$('.playlist_elem').fadeTo('fast', OPACITY);
 				$(this).fadeTo('fast', 1.0);
-				
+
 			}
 			else
 			{
@@ -145,7 +146,7 @@ $(document).ready(function (){
 				$('.playlist_elem div').hide();
 				$('.playlist_elem div:first-child').show();
 				$(this).children('.songinfo').fadeIn();
-			}		
+			}
 
 		});
 		},500);
@@ -161,7 +162,7 @@ $(document).ready(function (){
 
 
 	/////////////////////////////////
-	///		MODESWITCHER 			///
+	//        MODE SWITCHER        //
 	/////////////////////////////////
 
 
