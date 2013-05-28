@@ -113,6 +113,9 @@ $(document).ready(function (){
 					$('#song'+index+' div').hide();
 					$('#song'+index+' div:first-child').show();
 
+					// set onClick event handler
+					$('#song'+index).mouseup(onPlaylistItemClick);
+
 					continue;
 				}
 
@@ -128,45 +131,36 @@ $(document).ready(function (){
 					$('#song'+index+' .title').contents().replaceWith(playlist[index][0]);
 					$('#song'+index+' .artist').contents().replaceWith(playlist[index][2]);
 					$('#song'+index+' .album').contents().replaceWith(playlist[index][1]);
-					$('#song'+index+' .songid').contents().replaceWith(index);
+					$('#song'+index+' .songid').contents().replaceWith(''+index);
 				}
 			}
 			old_playlist = playlist;
 		}, 'json');
+	}
 
+	// onClick event handler for playlist items
+	function onPlaylistItemClick() {
+		if($(this).data('clicked') == 'true')
+		{
+			// read songid from the hidden element and start playback
+			var songid = parseInt($(this).find('.songid').text());
+			$.get('mpd_client.php', {func: "playSong", params: songid}, function(response) {});
 
-		// enable playlist controls after a slight delay
-		setTimeout(function(){
-			$('.playlist_elem').click(function(){
+			// highlight currently song
+			$('.playlist_elem').fadeTo('fast', OPACITY);
+			$(this).fadeTo('fast', 1.0);
+		}
+		else
+		{
+			// remove "clicked" flag of other items, set it on the clicked one
+			$('.playlist_elem').removeData('clicked');
+			$(this).data('clicked', 'true');
 
-			var clicked = $(this).data('clicked');
-
-			if(clicked == 'true')
-			{
-				// entry has been clicked before
-				$(this).removeData('clicked');
-
-				var songid = parseInt($(this).find('.songid').text());
-				$.get('mpd_client.php', {func: "playSong", params: songid}, function(response) {});
-
-				$('.playlist_elem').fadeTo('fast', OPACITY);
-				$(this).fadeTo('fast', 1.0);
-
-			}
-			else
-			{
-				// entry has not been clicked before
-				$(this).data('clicked', 'true');
-
-				// hide other song descriptions, show specific song description
-				$('.playlist_elem div').hide();
-				$('.playlist_elem div:first-child').show();
-				$(this).children('.songinfo').fadeIn();
-			}
-
-		});
-		},500);
-
+			// hide other song descriptions, show specific song description
+			$('.playlist_elem div').hide();
+			$('.playlist_elem div:first-child').show();
+			$(this).children('.songinfo').fadeIn();
+		}
 	}
 
 	// initialize view
