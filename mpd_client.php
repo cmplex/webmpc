@@ -48,11 +48,13 @@ function getCurrentTitle($mpd) {
 	echo $mpd->playlist[$mpd->current_track_id]['Title'];
 }
 
-function getPlaylistItem($mpd, $index) {
-	$result = array( $index,
-					 $mpd->playlist[$index]['Title'],
-					 $mpd->playlist[$index]['Album'],
-					 $mpd->playlist[$index]['Artist']);
+function getPlaylist($mpd) {
+	$result = array();
+	for ($index=0; $index < $mpd->playlist_count; $index++) {
+		$result[] = array( $mpd->playlist[$index]['Title'],
+		                   $mpd->playlist[$index]['Album'],
+		                   $mpd->playlist[$index]['Artist']);
+	}
 	echo json_encode($result);
 }
 
