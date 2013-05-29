@@ -53,13 +53,15 @@ function getCurrentTitle($mpd) {
 }
 
 function getPlaylist($mpd) {
-	$result = array();
+	// copy relevant song information
 	for ($index=0; $index < $mpd->playlist_count; $index++) {
-		$result[] = array( $mpd->playlist[$index]['Title'],
-		                   $mpd->playlist[$index]['Album'],
-		                   $mpd->playlist[$index]['Artist']);
+		$playlist[] = array( $mpd->playlist[$index]['Title'],
+		                     $mpd->playlist[$index]['Album'],
+		                     $mpd->playlist[$index]['Artist']);
 	}
-	echo json_encode($result);
+
+	// add current playing track id and encode everything as a JSON string
+	echo json_encode(array($mpd->current_track_id, $playlist));
 }
 
 function getPlaylistSize($mpd) {
