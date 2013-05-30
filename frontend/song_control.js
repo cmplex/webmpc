@@ -22,7 +22,7 @@ $(document).ready(function(){
 		// fade out
 		$(this).fadeTo('fast', OPACITY);
 
-		$.get('mpd_client.php', {func: "controlPrevious"}, function() {
+		$.get('mpd_client.py/prev', function() {
 			// fade in
 			$('#prevbutton').fadeTo('fast', 1.0);
 		});
@@ -33,7 +33,7 @@ $(document).ready(function(){
 		// fade out
 		$(this).fadeTo('fast', OPACITY);
 
-		$.get('mpd_client.php', {func: "controlNext"}, function() {
+		$.get('mpd_client.py/next', function() {
 			// fade in
 			$('#nextbutton').fadeTo('fast', 1.0);
 		});
@@ -44,7 +44,7 @@ $(document).ready(function(){
 		// fade out
 		$(this).fadeTo('fast', OPACITY);
 
-		$.get('mpd_client.php', {func: "controlToggle"}, function() {
+		$.get('mpd_client.py/toggle', function() {
 			// fade in
 			$('#togglebutton').fadeTo('fast', 1.0);
 		});
@@ -58,7 +58,7 @@ $(document).ready(function(){
 		//fade out
 		$(this).fadeTo('fast', OPACITY);
 
-		$.get('mpd_client.php', {func: "controlVolumeDown"}, function() {
+		$.get('mpd_client.py/lowerVolume', function() {
 			// fade in
 			$('#minusbutton').fadeTo('fast', 1.0);
 		});
@@ -69,7 +69,7 @@ $(document).ready(function(){
 		//fade out
 		$(this).fadeTo('fast', OPACITY);
 
-		$.get('mpd_client.php', {func: "controlVolumeUp"}, function() {
+		$.get('mpd_client.py/raiseVolume', function() {
 			// fade in
 			$('#plusbutton').fadeTo('fast', 1.0);
 		});
@@ -81,8 +81,7 @@ $(document).ready(function(){
 		// x-pos / max-x - ratio
 		var seek_factor = xpos / $(this).width();
 
-		$.get('mpd_client.php', {func: "setTrackProgress", params: seek_factor}, function(response) {
-		});
+		$.post('mpd_client.py/setTrackProgress', {factor: seek_factor});
 	});
 
 });

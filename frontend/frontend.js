@@ -27,7 +27,7 @@ $(document).ready(function (){
 	function updateSongView() {
 
 		// update title
-		$.get('mpd_client.php', {func: "getCurrentTitle"}, function(response) {
+		$.get('mpd_client.py/getCurrentTitle', function(response) {
 			if(response != title){
 				title = response;
 				$('#title').hide();
@@ -36,7 +36,7 @@ $(document).ready(function (){
 		});
 
 		// update artist
-		$.get('mpd_client.php', {func: "getCurrentArtist"}, function(response) {
+		$.get('mpd_client.py/getCurrentArtist', function(response) {
 			if(response != artist) {
 				artist = response;
 				$('#artist').hide();
@@ -45,7 +45,7 @@ $(document).ready(function (){
 		});
 
 		// update album name & cover
-		$.get('mpd_client.php', {func: "getCurrentAlbum"}, function(response) {
+		$.get('mpd_client.py/getCurrentAlbum', function(response) {
 			if(response != album) {
 				album = response;
 
@@ -71,7 +71,7 @@ $(document).ready(function (){
 		});
 
 		// update progress bar
-		$.get('mpd_client.php', {func: "getTrackProgress"}, function(response) {
+		$.get('mpd_client.py/getTrackProgress', function(response) {
 			response = parseInt(response);
 			if(response != progress) {
 				progress = response;
@@ -97,7 +97,7 @@ $(document).ready(function (){
 
 
 	function updatePlaylistView() {
-		$.get('mpd_client.php', {func: "getPlaylist"}, function(response) {
+		$.get('mpd_client.py/fetchPlaylist', function(response) {
 			// parse response
 			var currentSongId = response[0];
 			var playlist = response[1];
@@ -159,7 +159,7 @@ $(document).ready(function (){
 		{
 			// read songid from the hidden element and start playback
 			var songid = parseInt($(this).find('.songid').text());
-			$.get('mpd_client.php', {func: "playSong", params: songid}, function(response) {});
+			$.post('mpd_client.py/playSong', {number: songid});
 		}
 		else
 		{
