@@ -10,7 +10,7 @@ $(document).ready(function (){
 	////////////////////////////////////////
 
 	var OPACITY = 0.6;
-
+	var UPDATE_INTERVAL = 500;
 
 
 	//////////////////////////////
@@ -84,7 +84,7 @@ $(document).ready(function (){
 	updateSongView();
 
 	// schedule update
-	var songview_updater = setInterval(updateSongView, 200);
+	var songview_updater = setInterval(updateSongView, UPDATE_INTERVAL);
 
 
 
@@ -191,7 +191,6 @@ $(document).ready(function (){
 	$('.modeview').hide();
 	$('#songview').show();
 	$('#songbutton').css({ opacity: 1.0 });
-	clearInterval(playlistview_updater);
 
 
 	// general view button behaviour
@@ -205,7 +204,7 @@ $(document).ready(function (){
 	$('#songbutton').click(function(){
 		$('.modeview').hide();
 		$('#songview').fadeIn();
-		songview_updater = setInterval(updateSongView, 200);
+		songview_updater = setInterval(updateSongView, UPDATE_INTERVAL);
 		if(playlistview_updater){clearInterval(playlistview_updater);}
 	});
 
@@ -214,7 +213,7 @@ $(document).ready(function (){
 	$('#playlistbutton').click(function(){
 		$('.modeview').hide();
 		$('#playlistview').show();
-		playlistview_updater = setInterval(updatePlaylistView, 200);
+		playlistview_updater = setInterval(updatePlaylistView, UPDATE_INTERVAL);
 		if(songview_updater){clearInterval(songview_updater);}
 
 	});
