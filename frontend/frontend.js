@@ -219,7 +219,7 @@ $(document).ready(function (){
 	});
 
 
-	// "library"-button specific behaviour
+	// "search"-button specific behaviour
 	$('#searchbutton').click(function(){
 		$('.modeview').hide();
 		$('#searchview').fadeIn();
