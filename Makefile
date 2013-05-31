@@ -75,7 +75,7 @@ _package:
 undeploy: _hello _undeploy _bye
 _undeploy:
 	$(info $(MSG_UNDEPLOY))
-	rm -fr $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)
+	ls $(PUBLIC_HTTP_DIRECTORY)/$(TARGET) | egrep -v covers | rm -rf
 
 
 # phony targets.
