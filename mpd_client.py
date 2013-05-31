@@ -28,7 +28,26 @@ def fetchPlaylist():
 	client.connect(HOST, PORT)
 	playlist = [client.status()['songid'], []]
 	for song in client.playlistinfo():
-		songinfo = [ song['title'], song['album'], song['artist'] ]
+
+		try:
+			title = song['title']
+		except KeyError:
+			title = "None"
+			pass
+
+		try:
+			album = song['album']
+		except KeyError:
+			album = "None"
+			pass
+
+		try:
+			artist = song['artist']
+		except KeyError:
+			artist = "None"
+			pass
+
+		songinfo = [ title, album, artist ]
 		playlist[1].append(songinfo)
 
 	# clean up and return result
@@ -37,10 +56,16 @@ def fetchPlaylist():
 	import json
 	return json.JSONEncoder().encode(playlist)
 
+
 def getCurrentAlbum():
 	# connect and fetch data
 	client.connect(HOST, PORT)
-	album = client.currentsong()['album']
+
+	try:
+		album = client.currentsong()['album']
+	except KeyError:
+		album = "None"
+		pass
 
 	# clean up and return result
 	client.close()
@@ -50,7 +75,12 @@ def getCurrentAlbum():
 def getCurrentArtist():
 	# connect and fetch data
 	client.connect(HOST, PORT)
-	artist = client.currentsong()['artist']
+	
+	try:
+		artist = client.currentsong()['artist']
+	except KeyError:
+		artist = "None"
+		pass
 
 	# clean up and return result
 	client.close()
@@ -60,7 +90,12 @@ def getCurrentArtist():
 def getCurrentTitle():
 	# connect and fetch data
 	client.connect(HOST, PORT)
-	title = client.currentsong()['title']
+	
+	try:
+		title = client.currentsong()['title']
+	except KeyError:
+		title = "None"
+		pass
 
 	# clean up and return result
 	client.close()
