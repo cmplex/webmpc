@@ -24,17 +24,17 @@ a:visited 	{color: #FFFFFF;}
 .modebutton {
 	background-color: #303030;
 	display: inline-block;
-	border-radius: 10px;
+	border-radius: 5px;
 	opacity: 0.4;
 	
-	font-family: Verdana;
-	font-size: 4.2em;
+	font-size: 2em;
 	color: #FFFFFF;
 	
 	text-align: center;
 	
-	width:auto;
-	height:1.5em;
+	width: 6em;
+	height: 1.5em;
+
 }
 
 #displayarea{
@@ -50,5 +50,4 @@ a:visited 	{color: #FFFFFF;}
 .modeview {
 	background-color: #131313;
 	border-radius: 10px;
-		
 }
