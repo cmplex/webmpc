@@ -1,0 +1,54 @@
+body {
+	background-color: #000000;
+	font-family: Verdana;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+a				{text-decoration: none;}
+a:link 		{color: #FFFFFF;}
+a:visited 	{color: #FFFFFF;}
+
+#modeswitcher{
+	background-color: #131313;
+	border-radius: 10px;
+	display: block;
+	text-align: center;
+
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+
+	margin-bottom: 0.5em;
+}
+
+.modebutton {
+	background-color: #303030;
+	display: inline-block;
+	border-radius: 10px;
+	opacity: 0.4;
+	
+	font-family: Verdana;
+	font-size: 4.2em;
+	color: #FFFFFF;
+	
+	text-align: center;
+	
+	width:auto;
+	height:1.5em;
+}
+
+#displayarea{
+	background-color: #000000;
+	display: block;
+	border-radius: 10px;
+	
+	color: #FFFFFF;
+
+	text-align: center;
+}
+
+.modeview {
+	background-color: #131313;
+	border-radius: 10px;
+		
+}

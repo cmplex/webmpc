@@ -7,6 +7,7 @@ TARGET = webmpc
 
 # your public HTTP directory
 PUBLIC_HTTP_DIRECTORY = $(HOME)/public_html
+#PUBLIC_HTTP_DIRECTORY = /var/www
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
@@ -57,7 +58,10 @@ _deploy:
 	install --mode=755 -d $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/lib
 	install --mode=644 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/lib $(wildcard lib/*)
 	install --mode=755 -d $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/style
-	install --mode=644 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/style $(wildcard style/*)
+	install --mode=755 -d $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/style/desktop
+	install --mode=755 -d $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/style/mobile
+	install --mode=644 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/style/desktop $(wildcard style/desktop/*)
+	install --mode=644 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/style/mobile $(wildcard style/mobile/*)
 	install --mode=755 -d $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/frontend
 	install --mode=644 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/frontend $(wildcard frontend/*)
 

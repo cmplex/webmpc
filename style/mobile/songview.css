@@ -1,0 +1,105 @@
+#songview {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+#songview #songdescr {
+	display: inline-block;
+	
+	text-align: center;
+
+	width: 35em;
+}
+
+#songview #songdescr p {
+	font-family: Verdana;
+	font-size: 1.75em;
+
+	text-align: left;
+}
+
+#songview #songdescr p:first-child{
+	font-size: 3em;
+}
+
+#songview #controls{
+	font-size: 1.5em;
+}
+
+#albumart {
+	background-color: #000000;
+	display: block;
+	text-align: center;
+	border-radius: 5px;
+
+	padding: 10px;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	width: 35em;
+}
+
+#albumart img {
+	width: 35em;
+	height: 35em;
+}
+
+#controls {
+	display: block;
+	
+	text-align: center;
+
+	margin: 5px;
+}
+
+.controlbutton {
+	background-color: #212121;
+	display: inline-block;
+	border-radius: 5px;
+
+	font-size: 2em;
+
+	width: 4em;
+	height: 1.5em;
+}
+
+#volumecontrols {
+	display: block;
+
+	margin: 5px;
+}
+
+.volumebutton {
+	background-color: #212121;
+	display: inline-block;
+	border-radius: 5px;
+
+	font-size: 3em;
+
+	width: 6em;
+	height: auto;
+}
+
+
+#progressbar-container {
+	background-color: #000000;
+	display: block;
+	border-radius: 5px;
+
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 15px;
+
+	width: 36.5em;
+	height: 1em;
+}
+
+#progressbar {
+	background-color: #FFFFFF;
+	display: block;
+	border-radius: 5px;
+
+	width: 1%;
+	height: 100%;
+}
