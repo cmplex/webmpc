@@ -50,7 +50,8 @@ deploy: _hello _undeploy _deploy _bye
 _deploy:
 	$(info $(MSG_DEPLOY))
 	install --mode=755 -d $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)
-	install --mode=644 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET) $(wildcard *.php) $(wildcard *.js)
+	install --mode=644 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET) $(wildcard *.html)
+	install --mode=755 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET) $(wildcard *.py)
 	install --mode=755 -d $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/covers
 	install --mode=644 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/covers $(wildcard covers/*)
 	install --mode=755 -d $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/lib
