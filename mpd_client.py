@@ -1,5 +1,6 @@
 # vim: tabstop=4 shiftwidth=4 noexpandtab
 # @author Sebastian Neuser
+# @author Cedric Haase
 
 ########################################
 #          C O N S T A N T S           #
@@ -22,6 +23,55 @@ client = mpd.MPDClient();
 ###
 ### information retrieval
 ###
+
+def addSearchResult(query, number):
+	# connect and fetch data
+	client.connect(HOST, PORT)
+
+	number = int(number)
+
+	result = client.search('any', query)[number]
+
+	client.add(result['file'])
+
+	client.close()
+	client.disconnect()
+
+
+def fetchSearchResults(query):
+	# connect and fetch data
+	client.connect(HOST, PORT)
+
+	results = client.search('any', query)
+	postlist = list()
+
+	for song in results:
+		try:
+			title = song['title']
+		except KeyError:
+			title = "None"
+			pass
+
+		try:
+			album = song['album']
+		except KeyError:
+			album = "None"
+			pass
+
+		try:
+			artist = song['artist']
+		except KeyError:
+			artist = "None"
+		
+		songinfo = [ title, album, artist ]
+		postlist.append(songinfo)
+
+	# clean up and return result
+	client.close()
+	client.disconnect()
+	import json
+	return json.JSONEncoder().encode(postlist)
+	
 
 def fetchPlaylist():
 	# connect and fetch data
@@ -90,7 +140,7 @@ def getCurrentArtist():
 def getCurrentTitle():
 	# connect and fetch data
 	client.connect(HOST, PORT)
-	
+		
 	try:
 		title = client.currentsong()['title']
 	except KeyError:

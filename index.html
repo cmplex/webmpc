@@ -58,6 +58,13 @@
 		href="style/mobile/songview.css"
 		media="(max-width: 1000px)">
 
+		<!-- mobile client search view stylesheet -->
+		<link
+		rel="stylesheet"
+		type="text/css"
+		href="style/mobile/search.css"
+		media="(max-width: 1000px)">
+
 		
 		
 		<!-- JavaScript includes -->
@@ -79,13 +86,19 @@
 		src="frontend/song_control.js">
 		</script>
 
+		<!-- Search View -->
+		<script
+		type="text/javascript"
+		src="frontend/searchview.js">
+		</script>
+
 	</head>
 
 	<body>
 		<div id="modeswitcher">
 			<div class="modebutton" id="songbutton">song</div>
 			<div class="modebutton" id="playlistbutton">playlist</div>
-<!--		<div class="modebutton" id="searchbutton">search</div>	-->
+			<div class="modebutton" id="searchbutton">search</div>
 		</div>
 
 		<!-- Display Area -->
