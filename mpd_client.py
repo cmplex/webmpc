@@ -165,6 +165,75 @@ def getTrackProgress():
 	return percentage
 
 
+def listAlbums(artist):
+	# connect and fetch data
+	client.connect(HOST, PORT)
+
+	albums = list()
+	for element in client.lsinfo(artist):
+		try:
+			albums.append(element['directory'])
+		except KeyError:
+			pass
+
+	# clean up and return result
+	client.close()
+	client.disconnect()
+	import json
+	return json.JSONEncoder().encode(albums)
+
+
+def listArtists():
+	# connect and fetch data
+	client.connect(HOST, PORT)
+
+	artists = list()
+	for element in client.lsinfo():
+		try:
+			artists.append(element['directory'])
+		except KeyError:
+			pass
+
+	# clean up and return result
+	client.close()
+	client.disconnect()
+	import json
+	return json.JSONEncoder().encode(artists)
+
+
+def listSongs(album):
+	# connect and fetch data
+	client.connect(HOST, PORT)
+
+	songs = list()
+	for song in client.lsinfo(album):
+		try:
+			title = song['title']
+		except KeyError:
+			title = "None"
+			pass
+
+		try:
+			album = song['album']
+		except KeyError:
+			album = "None"
+			pass
+
+		try:
+			artist = song['artist']
+		except KeyError:
+			artist = "None"
+			pass
+		songinfo = [title, album, artist]
+		songs.append(songinfo)
+
+	# clean up and return result
+	client.close()
+	client.disconnect()
+	import json
+	return json.JSONEncoder().encode(songs)
+
+
 ###
 ### controls / actions
 ###
@@ -241,5 +310,17 @@ def toggle():
 ########################################
 
 if __name__ == "__main__":
+	import json
 	print 'fetchPlaylist():'
 	print fetchPlaylist()
+	print
+	print 'listArtists():'
+	artists = listArtists()
+	print artists
+	print
+	print 'listAlbums(\'' + json.JSONDecoder().decode(artists)[0] + '\'):'
+	albums = listAlbums(json.JSONDecoder().decode(artists)[0])
+	print albums
+	print
+	print 'listSongs(\'' + json.JSONDecoder().decode(albums)[0] + '\'):'
+	print listSongs(json.JSONDecoder().decode(albums)[0])
