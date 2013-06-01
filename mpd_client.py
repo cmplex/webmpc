@@ -76,7 +76,7 @@ def fetchSearchResults(query):
 def fetchPlaylist():
 	# connect and fetch data
 	client.connect(HOST, PORT)
-	playlist = [client.status()['songid'], []]
+	playlist = [client.status()['song'], []]
 	for song in client.playlistinfo():
 
 		try:
