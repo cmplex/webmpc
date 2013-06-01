@@ -212,7 +212,7 @@ $(document).ready(function (){
 	// "playlist"-button specific behaviour
 	$('#playlistbutton').click(function(){
 		$('.modeview').hide();
-		$('#playlistview').show();
+		$('#playlistview').fadeIn();
 		playlistview_updater = setInterval(updatePlaylistView, UPDATE_INTERVAL);
 		if(songview_updater){clearInterval(songview_updater);}
 
