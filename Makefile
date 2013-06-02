@@ -17,7 +17,6 @@ PUBLIC_HTTP_DIRECTORY = $(HOME)/public_html
 # define Messages
 MSG_BYE           = make: *** have a nice day!
 MSG_CLEANING      = make: *** cleaning project...
-MSG_CONFIG_APACHE = make: *** enabling apache2 userdir module...
 MSG_HELLO         = make: *** hi there!
 MSG_DEPLOY        = make: *** deploying the app to your public HTML directory...
 MSG_PACKAGE       = make: *** packaging...
@@ -33,9 +32,9 @@ help:
 	@echo "tasks, nothing is actually being compiled in here (yet)."
 	@echo
 	@echo "Here are the available targets:"
-	@echo "\tdeploy           = delete the webapp from your public HTTP directory"
+	@echo "\tdeploy           = (re-)deploy the webapp to your public HTTP directory"
 	@echo "\tpackage          = bundle a .tar.bz2 archive of the webapp"
-	@echo "\tundeploy         = (re-)deploy the webapp to your public HTTP directory"
+	@echo "\tundeploy         = delete the webapp from your public HTTP directory"
 	@echo
 	@echo "#------------------------------------------------------------------------------#"
 
