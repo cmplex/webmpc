@@ -1,0 +1,30 @@
+#browseview {
+	background-color: #181818;
+	border-radius: 5px;
+	display: inline-block;
+	text-align: center;
+
+	width: 80%;
+
+	color: #FFFFFF;
+}
+
+.browselist_elem {
+	background-color: #303030;
+	font-size: 2em;
+	text-align: left;
+	border-radius: 5px;
+	display: block;
+	opacity: 0.6;
+
+	margin: 6px;
+}
+
+.browselist_elem div {
+	font-size: 0.5em;	
+}
+
+.browselist_elem div:first-child {
+	font-size: 1em;
+	display: inline-block;
+}
