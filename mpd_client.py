@@ -76,7 +76,11 @@ def fetchSearchResults(query):
 def fetchPlaylist():
 	# connect and fetch data
 	client.connect(HOST, PORT)
-	playlist = [client.status()['song'], []]
+	try:
+		playlist = [client.status()['song'], []]
+	except KeyError:
+		playlist = [-1, []]
+
 	for song in client.playlistinfo():
 
 		try:
