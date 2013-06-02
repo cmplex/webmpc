@@ -38,12 +38,13 @@ def addSearchResult(query, number):
 	client.disconnect()
 
 
-def addSong(title):
+def addSong(title, album, artist):
 	# connect and fetch data
 	client.connect(HOST, PORT)
 
-	#result = client.search('any', query)[number]
-	client.findadd('title', title)
+	for song in client.find('title', title):
+		if song['album'] == album and song['artist'] == artist:
+			client.add(song['file'])
 
 	client.close()
 	client.disconnect()

@@ -92,7 +92,10 @@ $(document).ready(function(){
 		if($(this).data('clicked') == 'true')
 		{
 			// read songid from the hidden element and start playback
-			$.post('mpd_client.py/addSong', {title: $(this).find('.title').text()});
+			clickedTitle = $(this).find('.title').text();
+			clickedArtist = $(this).find('.artist').text();
+			clickedAlbum = $(this).find('.album').text();
+			$.post('mpd_client.py/addSong', {title: clickedTitle, album: clickedAlbum, artist: clickedArtist});
 			$(this).fadeTo('fast', 0.4);
 			$(this).fadeTo('fast', 0.6);
 		}
