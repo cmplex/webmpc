@@ -5,6 +5,7 @@
 var songbutton_text 			= "song";
 var playlistbutton_text 	= "playlist";
 var searchbutton_text 		= "search";
+var browsebutton_text 		= "browse";
 
 var prevbutton_text			= "prev";
 var togglebutton_text		= "toggle";
@@ -31,6 +32,7 @@ $(document).ready(function() {
 	$('#modeswitcher')	.append('<div class="modebutton" 	id="songbutton">			' + songbutton_text	+ '			</div>');
 	$('#modeswitcher')	.append('<div class="modebutton"		id="playlistbutton">		' + playlistbutton_text + '		</div>');
 	$('#modeswitcher')	.append('<div class="modebutton"		id="searchbutton">		' + searchbutton_text + '			</div>');
+	$('#modeswitcher')	.append('<div class="modebutton"		id="browsebutton">		' + browsebutton_text + '			</div>');
 
 
 	// add modeviews
@@ -69,4 +71,8 @@ $(document).ready(function() {
 
 	$('#inputcontainer')	.append('<input type="text"			id="searchbox">														</input>');
 	$('#inputcontainer')	.append('<div								id="submitbutton">		' + submitbutton_text + '			</div>');
+
+
+	// add browse view members
+	$('#browseview')		.append('<div 								id="browselist">														</div>');
 });

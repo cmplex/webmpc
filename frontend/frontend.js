@@ -224,4 +224,11 @@ $(document).ready(function (){
 		$('.modeview').hide();
 		$('#searchview').fadeIn();
 	});
+
+
+	// "browse"-button specific behaviour
+	$('#browsebutton').click(function(){
+		$('.modeview').hide();
+		$('#browseview').fadeIn();
+	});
 });
