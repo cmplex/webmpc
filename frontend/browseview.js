@@ -57,6 +57,56 @@ $(document).ready(function(){
 	}
 
 	function displaySongs() {
+		$.get('mpd_client/listSongs', {album : $(this).find('div').text()}, function(songs) {
+			// fade out and clear old list
+			$('#browselist').fadeOut('fast');
+			$('#browselist').empty();
+
+			// add back button
+			$('#browselist').append('<div id="back_button" class="browselist_elem">');
+			$('#back_button').append('<div>&larr;</div></div>');
+			$('#back_button').mouseup(displayArtists);
+
+			// add songs to the list and setup onClick event handlers
+			for (index=0; index < songs.length; index++) {
+				$('#browselist').append('<div id="browse_song' + index + '" class="browselist_elem">');
+				$('#browse_song'+index).append('<div class="songinfo title">'  + songs[index][0] + '</div>');
+				$('#browse_song'+index).append('<div class="songinfo artist">' + songs[index][2] + '</div>');
+				$('#browse_song'+index).append('<div class="songinfo album">'  + songs[index][1] + '</div>');
+
+				// show only the song title
+				$('#browse_song'+index+' div').hide();
+				$('#browse_song'+index+' div:first-child').show();
+
+				// setup onClick event handler
+				$('#browse_song'+index).mouseup(onSongItemClick);
+			}
+
+			// fade in the new list
+			$('#browselist').fadeIn('fast');
+		}, 'json');
+	}
+
+	// onClick event handler for song items
+	function onSongItemClick() {
+		if($(this).data('clicked') == 'true')
+		{
+			// read songid from the hidden element and start playback
+			$.post('mpd_client.py/addSong', {title: $(this).find('.title').text()});
+			$(this).fadeTo('fast', 0.4);
+			$(this).fadeTo('fast', 0.6);
+		}
+		else
+		{
+			// remove "clicked" flag of other items, set it on the clicked one
+			$('.playlist_elem').removeData('clicked');
+			$(this).data('clicked', 'true');
+
+			// hide other song descriptions, show specific song description
+			$('.playlist_elem div').hide();
+			$('.playlist_elem div:first-child').show();
+			$(this).children('.songinfo').fadeIn();
+		}
 	}
 
 

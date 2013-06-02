@@ -38,6 +38,17 @@ def addSearchResult(query, number):
 	client.disconnect()
 
 
+def addSong(title):
+	# connect and fetch data
+	client.connect(HOST, PORT)
+
+	#result = client.search('any', query)[number]
+	client.findadd('title', title)
+
+	client.close()
+	client.disconnect()
+
+
 def fetchSearchResults(query):
 	# connect and fetch data
 	client.connect(HOST, PORT)
