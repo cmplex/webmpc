@@ -13,54 +13,6 @@
 	position: relative;
 }
 
-#songview #songdescr {
-	position: absolute;
-	display: inline-block;
-
-	top: 50%;
-	
-	margin-top: -5em;
-	margin-left: 6%;
-
-	height: 8em;
-}
-
-#songview #songdescr p {
-	font-family: Verdana;
-	font-size: 1em;
-
-	text-align: left;
-}
-
-#songview #songdescr p:first-child{
-	font-size: 2em;
-}
-
-#albumart {
-	background-color: #131313;
-
-	background: -moz-linear-gradient(-45deg, rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(69,72,77,1)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(-45deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(-45deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
-
-	display: inline-block;
-	text-align: center;
-	border-radius: 5px;
-
-	padding: 6px;
-
-	margin-left: 25%;
-	margin-right: auto;
-
-	width: 25em;
-}
-
-#albumart img {
-	width: 25em;
-	height: 25em;
-}
-
 .controlbutton {
 	background-color: #808080;
 	display: inline-block;
@@ -104,4 +56,82 @@
 
 	width: 1%;
 	height: 100%;
+}
+
+#songview #songdescr {
+	position: absolute;
+	display: inline-block;
+
+	top: 16em;
+	left: 53%;
+
+	height: 8em;
+}
+
+#songview #songdescr p {
+	font-family: Verdana;
+	font-size: 1em;
+
+	text-align: left;
+}
+
+#songview #songdescr p:first-child{
+	font-size: 2em;
+}
+
+#albumart {
+	position: absolute;
+
+	/*
+	top: 8em;
+	left: 12em;
+	*/
+
+	top: 8em;
+	right: 53%;
+	
+	background-color: #131313;
+	background: -moz-linear-gradient(-45deg, rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(69,72,77,1)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+
+	display: inline-block;
+	text-align: center;
+	border-radius: 5px;
+
+	padding: 0.5%;
+
+	margin-right: auto;
+
+	width: 25em;
+}
+
+#albumart img {
+	width: 25em;
+	height: 25em;
+}
+
+
+#albumart-overlay {
+	position: absolute;
+	display: block;
+
+/*
+	top: 9.5em;
+	left: 12.5em;
+*/
+
+	top: 9.5em;
+	right: 53.5%;
+
+	background: -moz-linear-gradient(-45deg, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 12%, rgba(102,102,102,1) 25%, rgba(71,71,71,1) 39%, rgba(44,44,44,1) 50%, rgba(0,0,0,1) 51%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(76,76,76,1)), color-stop(12%,rgba(89,89,89,1)), color-stop(25%,rgba(102,102,102,1)), color-stop(39%,rgba(71,71,71,1)), color-stop(50%,rgba(44,44,44,1)), color-stop(51%,rgba(0,0,0,1)), color-stop(60%,rgba(17,17,17,1)), color-stop(76%,rgba(43,43,43,1)), color-stop(91%,rgba(28,28,28,1)), color-stop(100%,rgba(19,19,19,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg, rgba(76,76,76,1) 0%,rgba(89,89,89,1) 12%,rgba(102,102,102,1) 25%,rgba(71,71,71,1) 39%,rgba(44,44,44,1) 50%,rgba(0,0,0,1) 51%,rgba(17,17,17,1) 60%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg, rgba(76,76,76,1) 0%,rgba(89,89,89,1) 12%,rgba(102,102,102,1) 25%,rgba(71,71,71,1) 39%,rgba(44,44,44,1) 50%,rgba(0,0,0,1) 51%,rgba(17,17,17,1) 60%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 100%); /* Opera 11.10+ */
+
+	opacity: 0.15;
+
+	height: 25em;
+	width: 25em;
 }

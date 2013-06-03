@@ -51,8 +51,8 @@ $(document).ready(function() {
 	$('#songview')			.append('<div class="controlbar"		id="songcontrols">													</div>');
 	$('#songview')			.append('<div class="viewsection"	id="songviewsection">												</div>');
 
-	$('#songviewsection').append('<div								id="songdisplay">														</div>');
 	$('#songviewsection').append('<div								id="progressbar-container">										</div>');
+	$('#songviewsection').append('<div								id="songdisplay">														</div>');
 
 	$('#songcontrols')	.append('<div class="controlbutton"	id="prevbutton">			' + prevbutton_text + '				</div>');
 	$('#songcontrols')	.append('<div class="controlbutton" id="togglebutton">		' + togglebutton_text + '			</div>');
@@ -61,6 +61,7 @@ $(document).ready(function() {
 	$('#songcontrols')	.append('<div class="controlbutton"	id="plusbutton">			' + plusbutton_text + '				</div>');
 	
 	$('#songdisplay')		.append('<p									id="albumart">															</p>');
+	$('#songdisplay')		.append('<div								id="albumart-overlay">												</div>');
 	$('#songdisplay')		.append('<div								id="songdescr">														</div>');
 	
 	$('#songdescr')		.append('<p									id="title">																</div>');
