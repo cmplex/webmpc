@@ -43,36 +43,50 @@ $(document).ready(function() {
 
 
 	// add songview-constituents
-	$('#songview')			.append('<p									id="albumart">															</p>');
-	$('#songview')			.append('<div								id="progressbar_container">										</div>');
-	$('#songview')			.append('<div								id="controls">															</div>');
-	$('#songview')			.append('<div								id="songdescr">														</div>');
-	$('#songview')			.append('<div								id="volumecontrols">													</div>');
+	$('#songview')			.append('<div class="controlbar"		id="songcontrols">													</div>');
+	$('#songview')			.append('<div class="viewsection"	id="songviewsection">												</div>');
 
-	$('#controls')			.append('<div class="controlbutton"	id="prevbutton">			' + prevbutton_text + '				</div>');
-	$('#controls')			.append('<div class="controlbutton" id="togglebutton">		' + togglebutton_text + '			</div>');
-	$('#controls')			.append('<div class="controlbutton" id="nextbutton">			' + nextbutton_text + '				</div>');
+	$('#songviewsection').append('<div								id="songdisplay">														</div>');
+	$('#songviewsection').append('<div								id="progressbar-container">										</div>');
 
+	$('#songcontrols')	.append('<div class="controlbutton"	id="prevbutton">			' + prevbutton_text + '				</div>');
+	$('#songcontrols')	.append('<div class="controlbutton" id="togglebutton">		' + togglebutton_text + '			</div>');
+	$('#songcontrols')	.append('<div class="controlbutton" id="nextbutton">			' + nextbutton_text + '				</div>');
+	$('#songcontrols')	.append('<div class="controlbutton"	id="minusbutton">			' + minusbutton_text + '			</div>');
+	$('#songcontrols')	.append('<div class="controlbutton"	id="plusbutton">			' + plusbutton_text + '				</div>');
+	
+	$('#songdisplay')		.append('<p									id="albumart">															</p>');
+	$('#songdisplay')		.append('<div								id="songdescr">														</div>');
+	
 	$('#songdescr')		.append('<p									id="title">																</div>');
 	$('#songdescr')		.append('<p									id="artist">															</div>');
 	$('#songdescr')		.append('<p									id="album">																</div>');
 
-	$('#volumecontrols')	.append('<div class="volumebutton"	id="minusbutton">		' + minusbutton_text + '				</div>');
-	$('#volumecontrols')	.append('<div class="volumebutton"	id="plusbutton">		' + plusbutton_text + '					</div>');
+	$('#progressbar-container').append('<div 						id="progressbar">														</div>');
+
 
 
 	// add playlistview-constituents
-	$('#playlistview')	.append('<div								id="playlist">															</div>');
+	$('#playlistview')	.append('<div class="controlbar"		id="playlistcontrols">												</div>');
+	$('#playlistview')	.append('<div class="viewsection"	id="playlistviewsection">											</div>');
+
+	$('#playlistviewsection').append('<div							id="playlist">															</div>');
 
 
 	// add searchview-constituents
-	$('#searchview')		.append('<div								id="inputcontainer">													</div>');
-	$('#searchview')		.append('<div								id="searchresults">													</div>');
+	$('#searchview')		.append('<div class="controlbar"		id="searchcontrols">													</div>');
+	$('#searchview')		.append('<div class="viewsection"	id="searchviewsection">												</div>');
+
+	$('#searchcontrols')	.append('<div								id="inputcontainer">													</div>');
+	$('#searchviewsection').append('<div							id="searchresults">													</div>');
 
 	$('#inputcontainer')	.append('<input type="text"			id="searchbox">														</input>');
 	$('#inputcontainer')	.append('<div								id="submitbutton">		' + submitbutton_text + '			</div>');
 
 
 	// add browse view members
-	$('#browseview')		.append('<div 								id="browselist">														</div>');
+	$('#browseview')		.append('<div class="controlbar"		id="browsecontrols">													</div>');
+	$('#browseview')		.append('<div class="viewsection"	id="browseviewsection">												</div>');
+
+	$('#browseviewsection').append('<div 							id="browselist">														</div>');
 });

@@ -1,16 +1,22 @@
 #browseview {
-	background-color: #181818;
 	border-radius: 5px;
-	display: inline-block;
+	display: block;
 	text-align: center;
+
+	margin-left: auto;
+	margin-right: auto;
 
 	width: 80%;
 
 	color: #FFFFFF;
 }
 
+#browseviewsection {
+
+}
+
 .browselist_elem {
-	background-color: #303030;
+	background-color: #606060;
 	font-size: 2em;
 	text-align: left;
 	border-radius: 5px;

@@ -1,14 +1,25 @@
 #songview {
-	padding-top: 1em;
-	padding-bottom: 1em;
+
+}
+
+#songviewsection {
+	text-align: left;
+}
+
+#songdisplay {
+	position: relative;
 }
 
 #songview #songdescr {
+	position: absolute;
 	display: inline-block;
-	
-	text-align: center;
 
-	width: 35em;
+	top: 50%;
+	
+	margin-top: -5em;
+	margin-left: 6%;
+
+	height: 8em;
 }
 
 #songview #songdescr p {
@@ -22,19 +33,21 @@
 	font-size: 2em;
 }
 
-#songview #controls{
-	font-size: 1.5em;
-}
-
 #albumart {
-	background-color: #000000;
-	display: block;
+	background-color: #131313;
+
+	background: -moz-linear-gradient(-45deg, rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(69,72,77,1)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+
+	display: inline-block;
 	text-align: center;
 	border-radius: 5px;
 
 	padding: 6px;
 
-	margin-left: auto;
+	margin-left: 25%;
 	margin-right: auto;
 
 	width: 25em;
@@ -45,53 +58,34 @@
 	height: 25em;
 }
 
-#controls {
-	display: block;
-	
-	text-align: center;
-
-	margin: 5px;
-}
-
 .controlbutton {
-	background-color: #212121;
-	display: inline-block;
-	border-radius: 5px;
-
-	font-size: 1em;
-
-	width: 4em;
-	height: 1.5em;
-}
-
-#volumecontrols {
-	display: block;
-
-	margin: 5px;
-}
-
-.volumebutton {
-	background-color: #212121;
+	background-color: #808080;
 	display: inline-block;
 	border-radius: 5px;
 
 	font-size: 1.5em;
 
-	width: 2em;
-	height: auto;
+	margin: 0.05em;
+
+	width: 4em;
+	height: 1.5em;
 }
 
+#minusbutton {
+	margin-left: 0.5em;
+}
 
 #progressbar-container {
-	background-color: #000000;
+	background-color: #131313;
 	display: block;
 	border-radius: 5px;
 
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 15px;
 
-	width: 30em;
+	margin-top: 1em;
+
+	width: 50%;
 	height: 0.6em;
 }
 
@@ -99,6 +93,11 @@
 	background-color: #FFFFFF;
 	display: block;
 	border-radius: 5px;
+	
+	background: -moz-linear-gradient(top, rgba(245,246,246,1) 0%, rgba(219,220,226,1) 21%, rgba(184,186,198,1) 49%, rgba(221,223,227,1) 80%, rgba(245,246,246,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(245,246,246,1)), color-stop(21%,rgba(219,220,226,1)), color-stop(49%,rgba(184,186,198,1)), color-stop(80%,rgba(221,223,227,1)), color-stop(100%,rgba(245,246,246,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(245,246,246,1) 0%,rgba(219,220,226,1) 21%,rgba(184,186,198,1) 49%,rgba(221,223,227,1) 80%,rgba(245,246,246,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(245,246,246,1) 0%,rgba(219,220,226,1) 21%,rgba(184,186,198,1) 49%,rgba(221,223,227,1) 80%,rgba(245,246,246,1) 100%); /* Opera 11.10+ */
 
 	width: 1%;
 	height: 100%;

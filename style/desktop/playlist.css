@@ -1,5 +1,4 @@
 #playlist {
-	background-color: #181818;
 	border-radius: 5px;
 	display: inline-block;
 	text-align: center;
@@ -10,7 +9,7 @@
 }
 
 .playlist_elem {
-	background-color:	#303030;
+	background-color:	#606060;
 	font-size: 2em;
 	text-align: left;
 	border-radius: 5px;
