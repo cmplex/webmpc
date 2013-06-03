@@ -24,18 +24,7 @@ client = mpd.MPDClient();
 ### information retrieval
 ###
 
-def addSearchResult(query, number):
-	# connect and fetch data
-	client.connect(HOST, PORT)
 
-	number = int(number)
-
-	result = client.search('any', query)[number]
-
-	client.add(result['file'])
-
-	client.close()
-	client.disconnect()
 
 
 def addSong(title, album, artist):
@@ -253,6 +242,41 @@ def listSongs(album):
 ###
 ### controls / actions
 ###
+
+def addAllSearchResults(query):
+	# connect and fetch data
+	client.connect(HOST, PORT)
+
+	# find matches
+	results = client.search('any', query)
+
+	# add all matches
+	for result in results:
+		client.add(result['file'])
+
+	client.close()
+	client.disconnect()
+
+def addSearchResult(query, number):
+	# connect and fetch data
+	client.connect(HOST, PORT)
+
+	number = int(number)
+
+	result = client.search('any', query)[number]
+
+	client.add(result['file'])
+
+	client.close()
+	client.disconnect()
+
+def clearPlaylist():
+	client.connect(HOST, PORT)
+
+	client.clear()
+
+	client.close()
+	client.disconnect()
 
 def lowerVolume():
 	client.connect(HOST, PORT)

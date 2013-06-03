@@ -8,6 +8,9 @@
 
 #inputcontainer {
 	text-align: center;
+	display: inline-block;
+
+	width: 60%;
 }
 
 #submitbutton {
@@ -32,7 +35,7 @@
 
 	border-style: none;
 
-	width: 40%;
+	width: 50%;
 	height: 1.5em;
 
 }

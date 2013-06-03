@@ -4,6 +4,8 @@ $(document).ready(function() {
 
 	// receives the value of query input
 	var query_value;
+	
+	var OPACITY = 0.4;
 
 
 	function onSearchResultClick() {
@@ -29,7 +31,7 @@ $(document).ready(function() {
 	}
 
 	$('#submitbutton').click(function() {
-		$(this).fadeTo('fast', 0.4);
+		$(this).fadeTo('fast', OPACITY);
 		$('#searchresults').empty();
 
 		query_value = document.getElementById("searchbox").value;
@@ -62,5 +64,17 @@ $(document).ready(function() {
 			$('#submitbutton').fadeTo('fast', 1.0);
 		}, 'json');
 	});
+
+	$('#addallbutton').click(function(){
+		
+		// fade out
+		$('#addallbutton').fadeTo('fast', OPACITY);
+
+		$.get('mpd_client.py/addAllSearchResults', {query: query_value}, function(response) {
+			// fade in
+			$('#addallbutton').fadeTo('fast', 1.0);
+		});
+	});
+	
 	
 });

@@ -16,6 +16,10 @@ var minusbutton_text			= "-";
 
 var submitbutton_text		= "submit";
 
+var clearbutton_text			= "clear";
+
+var addallbutton_text		= "add all";
+
 
 
 $(document).ready(function() {
@@ -70,6 +74,8 @@ $(document).ready(function() {
 	$('#playlistview')	.append('<div class="controlbar"		id="playlistcontrols">												</div>');
 	$('#playlistview')	.append('<div class="viewsection"	id="playlistviewsection">											</div>');
 
+	$('#playlistcontrols').append('<div class="controlbutton" id="clearbutton">	' + clearbutton_text + '				</div>');
+
 	$('#playlistviewsection').append('<div							id="playlist">															</div>');
 
 
@@ -78,6 +84,7 @@ $(document).ready(function() {
 	$('#searchview')		.append('<div class="viewsection"	id="searchviewsection">												</div>');
 
 	$('#searchcontrols')	.append('<div								id="inputcontainer">													</div>');
+	$('#searchcontrols')	.append('<div class="controlbutton"	id="addallbutton">	' + addallbutton_text + '				</div>');
 	$('#searchviewsection').append('<div							id="searchresults">													</div>');
 
 	$('#inputcontainer')	.append('<input type="text"			id="searchbox">														</input>');
