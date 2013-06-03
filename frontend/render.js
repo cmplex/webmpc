@@ -1,3 +1,4 @@
+// vim: tabstop=3 shiftwidth=3 noexpandtab
 // @author Cedric Haase
 
 
