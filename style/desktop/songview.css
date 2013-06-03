@@ -31,6 +31,10 @@
 }
 
 #progressbar-container {
+	position: absolute;
+	left: 25%;
+	right: 25%;
+
 	background-color: #131313;
 	display: block;
 	border-radius: 5px;
@@ -38,9 +42,9 @@
 	margin-left: auto;
 	margin-right: auto;
 
-	margin-top: 1em;
+	margin-top: 2.5em;
 
-	width: 50%;
+/*	width: 50%;*/
 	height: 0.6em;
 }
 
@@ -48,6 +52,7 @@
 	background-color: #FFFFFF;
 	display: block;
 	border-radius: 5px;
+
 	
 	background: -moz-linear-gradient(top, rgba(245,246,246,1) 0%, rgba(219,220,226,1) 21%, rgba(184,186,198,1) 49%, rgba(221,223,227,1) 80%, rgba(245,246,246,1) 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(245,246,246,1)), color-stop(21%,rgba(219,220,226,1)), color-stop(49%,rgba(184,186,198,1)), color-stop(80%,rgba(221,223,227,1)), color-stop(100%,rgba(245,246,246,1))); /* Chrome,Safari4+ */
@@ -62,7 +67,7 @@
 	position: absolute;
 	display: inline-block;
 
-	top: 16em;
+	top: 15em;
 	left: 53%;
 
 	height: 8em;
@@ -82,12 +87,7 @@
 #albumart {
 	position: absolute;
 
-	/*
-	top: 8em;
-	left: 12em;
-	*/
-
-	top: 8em;
+	top: 7em;
 	right: 53%;
 	
 	background-color: #131313;
@@ -122,7 +122,7 @@
 	left: 12.5em;
 */
 
-	top: 9.5em;
+	top: 8.5em;
 	right: 53.5%;
 
 	background: -moz-linear-gradient(-45deg, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 12%, rgba(102,102,102,1) 25%, rgba(71,71,71,1) 39%, rgba(44,44,44,1) 50%, rgba(0,0,0,1) 51%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%); /* FF3.6+ */
