@@ -1,4 +1,4 @@
-// vim: ts=4 sw=4 noet
+// vim: tabstop=3 shiftwidth=3 noexpandtab
 // @author Cedric Haase
 // @author Sebastian Neuser
 
