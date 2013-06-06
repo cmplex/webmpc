@@ -2,8 +2,14 @@
     vim: tabstop=3 shiftwidth=3 noexpandtab
 */
 body {
-	background-color: #000000;
-	background-image: url(bg.jpg);
+	
+	background: #757575; /* Old browsers */
+	background: -moz-linear-gradient(left, #757575 0%, #b5b5b5 32%, #cacaca 52%, #b5b5b5 72%, #757575 100%); /* FF3.6+ */
+	background: -webkit-linear-gradient(left, #757575 0%,#b5b5b5 32%,#cacaca 52%,#b5b5b5 72%,#757575 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #757575 0%,#b5b5b5 32%,#cccccc 52%,#cacaca 72%,#757575 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #757575 0%,#b5b5b5 32%,#cccccc 52%,#cacaca 72%,#757575 100%); /* IE10+ */
+	
+	
 	font-family: Verdana;
 	text-align: center;
 	color: #FFFFFF;
@@ -20,7 +26,7 @@ a:visited 	{color: #FFFFFF;}
 
 #modeswitcher{
 	position: fixed;
-	z-index: 1;
+	z-index: 10;
 
 	left: 1em;
 	right: 1em;

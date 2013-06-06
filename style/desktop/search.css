@@ -9,27 +9,9 @@
 
 }
 
-#inputcontainer {
-	text-align: center;
-	display: inline-block;
-
-	width: 60%;
-}
-
-#submitbutton {
-	background-color: #808080;
-	display: inline-block;
-	border-radius: 5px;
-	text-align: center;
-
-	font-size: 1.5em;
-
-	width: 4em;
-	height: 1.5em;
-}
-
 #searchbox {
 	background-color: #404040;
+	display: inline-block;
 	border-radius: 5px;
 	color: #FFFFFF;
 
@@ -37,6 +19,8 @@
 	font-family: Verdana;
 
 	border-style: none;
+
+	margin: 0.2em;
 
 	width: 50%;
 	height: 1.5em;

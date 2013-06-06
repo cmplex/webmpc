@@ -1,25 +1,51 @@
 // vim: tabstop=3 shiftwidth=3 noexpandtab
 // @author Cedric Haase
 
+// media query
+
+var mq = window.matchMedia( "only screen and (min-width: 1224px)" );
 
 // content constants
-var songbutton_text 			= "song";
-var playlistbutton_text 	= "playlist";
-var searchbutton_text 		= "search";
-var browsebutton_text 		= "browse";
 
-var prevbutton_text			= "prev";
-var togglebutton_text		= "toggle";
-var nextbutton_text			= "next";
+// for desktops
+if(mq.matches) {
+	var songbutton_text 			= "song";
+	var playlistbutton_text 	= "playlist";
+	var searchbutton_text 		= "search";
+	var browsebutton_text 		= "browse";
 
-var plusbutton_text			= "+";
-var minusbutton_text			= "-";
+	var prevbutton_text			= "prev";
+	var togglebutton_text		= "toggle";
+	var nextbutton_text			= "next";
 
-var submitbutton_text		= "submit";
+	var plusbutton_text			= "+";
+	var minusbutton_text			= "-";
 
-var clearbutton_text			= "clear";
+	var submitbutton_text		= "submit";
 
-var addallbutton_text		= "add all";
+	var clearbutton_text			= "clear";
+
+	var addallbutton_text		= "add all";
+}
+else {
+	var songbutton_text			= "sng";
+	var playlistbutton_text		= "pl";
+	var searchbutton_text		= "sr";
+	var browsebutton_text		= "brs";
+
+	var prevbutton_text			= "pv";
+	var togglebutton_text		= "tgl";
+	var nextbutton_text			= "nxt";
+
+	var plusbutton_text			= "+";
+	var minusbutton_text			= "-";
+
+	var submitbutton_text		= "go";
+	
+	var clearbutton_text			= "-";
+
+	var addallbutton_text		= "+";
+}
 
 
 
@@ -85,12 +111,11 @@ $(document).ready(function() {
 	$('#searchview')		.append('<div class="controlbar"		id="searchcontrols">													</div>');
 	$('#searchview')		.append('<div class="viewsection"	id="searchviewsection">												</div>');
 
-	$('#searchcontrols')	.append('<div								id="inputcontainer">													</div>');
+	$('#searchcontrols')	.append('<input							id="searchbox">														</div>');
+	$('#searchcontrols')	.append('<div class="controlbutton"	id="submitbutton">		' + submitbutton_text + '			</div>');
 	$('#searchcontrols')	.append('<div class="controlbutton"	id="addallbutton">	' + addallbutton_text + '				</div>');
-	$('#searchviewsection').append('<div							id="searchresults">													</div>');
 
-	$('#inputcontainer')	.append('<input type="text"			id="searchbox">														</input>');
-	$('#inputcontainer')	.append('<div								id="submitbutton">		' + submitbutton_text + '			</div>');
+	$('#searchviewsection').append('<div							id="searchresults">													</div>');
 
 
 	// add browse view members
