@@ -291,6 +291,8 @@ def lowerVolume():
 def next():
 	client.connect(HOST, PORT)
 
+	path = client.currentsong()['file']
+	client.sticker_delete("song", path)
 	client.next()
 
 	client.close()
@@ -299,6 +301,8 @@ def next():
 def playSong(number):
 	client.connect(HOST, PORT)
 
+	path = client.currentsong()['file']
+	client.sticker_delete("song", path)
 	client.play(number)
 
 	client.close()
@@ -307,6 +311,8 @@ def playSong(number):
 def prev():
 	client.connect(HOST, PORT)
 
+	path = client.currentsong()['file']
+	client.sticker_delete("song", path)
 	client.previous()
 
 	client.close()
