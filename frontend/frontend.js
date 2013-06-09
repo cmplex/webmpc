@@ -205,7 +205,7 @@ $(document).ready(function (){
 		$('.modeview').hide();
 		$('#songview').fadeIn();
 		songview_updater = setInterval(updateSongView, UPDATE_INTERVAL);
-		if(playlistview_updater){clearInterval(playlistview_updater);}
+		clearInterval(playlistview_updater);
 	});
 
 
@@ -214,8 +214,7 @@ $(document).ready(function (){
 		$('.modeview').hide();
 		$('#playlistview').fadeIn();
 		playlistview_updater = setInterval(updatePlaylistView, UPDATE_INTERVAL);
-		if(songview_updater){clearInterval(songview_updater);}
-
+		clearInterval(songview_updater);
 	});
 
 
@@ -223,6 +222,8 @@ $(document).ready(function (){
 	$('#searchbutton').click(function(){
 		$('.modeview').hide();
 		$('#searchview').fadeIn();
+		clearInterval(songview_updater);
+		clearInterval(playlistview_updater);
 	});
 
 
@@ -230,5 +231,23 @@ $(document).ready(function (){
 	$('#browsebutton').click(function(){
 		$('.modeview').hide();
 		$('#browseview').fadeIn();
+		clearInterval(songview_updater);
+		clearInterval(playlistview_updater);
 	});
+
+
+	// "login"-button specific behaviour
+	$('#loginbutton').click(function(){
+		$('.modeview').hide();
+		$('#loginview').fadeIn();
+		clearInterval(songview_updater);
+		clearInterval(playlistview_updater);
+	});
+
+	// initialize database if it is not already present
+	$.get('database_assistant/getDatabaseVersion', function(response) {
+		if (response == null) {
+			$.get('database_assistant/initializeDatabase');
+		}
+	}, 'json');
 });
