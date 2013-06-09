@@ -234,4 +234,20 @@ $(document).ready(function (){
 		clearInterval(songview_updater);
 		clearInterval(playlistview_updater);
 	});
+
+
+	// "login"-button specific behaviour
+	$('#loginbutton').click(function(){
+		$('.modeview').hide();
+		$('#loginview').fadeIn();
+		clearInterval(songview_updater);
+		clearInterval(playlistview_updater);
+	});
+
+	// initialize database if it is not already present
+	$.get('database_assistant/getDatabaseVersion', function(response) {
+		if (response == null) {
+			$.get('database_assistant/initializeDatabase');
+		}
+	}, 'json');
 });
