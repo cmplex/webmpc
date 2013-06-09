@@ -17,8 +17,9 @@ PUBLIC_HTTP_DIRECTORY = $(HOME)/public_html
 # define Messages
 MSG_BYE           = make: *** have a nice day!
 MSG_CLEANING      = make: *** cleaning project...
-MSG_HELLO         = make: *** hi there!
 MSG_DEPLOY        = make: *** deploying the app to your public HTML directory...
+MSG_HELLO         = make: *** hi there!
+MSG_INITDB        = make: *** initializing database...
 MSG_PACKAGE       = make: *** packaging...
 MSG_UNDEPLOY      = make: *** deleting the app from your public HTML directory...
 
@@ -64,6 +65,14 @@ _deploy:
 	install --mode=755 -d $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/frontend
 	install --mode=644 -t $(PUBLIC_HTTP_DIRECTORY)/$(TARGET)/frontend $(wildcard frontend/*)
 
+# target: initialize PostgreSQL user and database for webmpc
+initdb: _hello _initdb _bye
+_initdb:
+	$(info $(MSG_INITDB))
+	$(info Please set the password for the new PostgreSQL user to 'webmpc')
+	sudo -u postgres createuser -DEPRS webmpc
+	sudo -u postgres createdb -O webmpc webmpc
+
 # target: bundle an archive of the webapp
 package: _hello _package _bye
 _package:
@@ -78,5 +87,5 @@ _undeploy:
 
 
 # phony targets.
-.PHONY: deploy package undeploy _bye _deploy _hello _package _undeploy
+.PHONY: deploy initdb package undeploy _bye _deploy _hello _initdb _package _undeploy
 .NOTPARALLEL:
