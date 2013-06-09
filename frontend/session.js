@@ -85,7 +85,7 @@ $(document).ready(function(){
 			localStorage.userid = d_obj.getTime();
 			
 			// Determine user status
-			var userstatus = prompt("Please enter your user status: ");
+			var userstatus = "guest";
 
 			var statusid = 0;
 
