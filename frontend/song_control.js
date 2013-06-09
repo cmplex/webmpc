@@ -87,16 +87,14 @@ $(document).ready(function(){
 
 	$('#nextvotebutton').click(function() {
 		$('#nextvotebutton').fadeTo('fast', OPACITY);
-		$.get('vote.py/voteNext', {clientid: localStorage.userid}, function(response) {
-			//alert(response);
+		$.get('vote.py/voteNext', {clientid: localStorage.userid}, function() {
 			$('#nextvotebutton').fadeTo('fast', 1.0);
 		});
 	});
 
 	$('#hypebutton').click(function() {
 		$('#hypebutton').fadeTo('fast', OPACITY);
-		$.get('vote.py/voteHype', {clientid: localStorage.userid}, function(response) {
-			//alert(response);
+		$.get('vote.py/voteHype', {clientid: localStorage.userid}, function() {
 			$('#hypebutton').fadeTo('fast', 1.0);			
 		});		
 	});
