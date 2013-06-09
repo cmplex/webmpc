@@ -9,10 +9,10 @@ var mq = window.matchMedia( "only screen and (min-width: 1224px)" );
 
 // for desktops
 if(mq.matches) {
-	var songbutton_text 			= "song";
-	var playlistbutton_text 	= "playlist";
-	var searchbutton_text 		= "search";
-	var browsebutton_text 		= "browse";
+	var songbutton_text			= "song";
+	var playlistbutton_text		= "playlist";
+	var searchbutton_text		= "search";
+	var browsebutton_text		= "browse";
 
 	var prevbutton_text			= "prev";
 	var togglebutton_text		= "toggle";
@@ -41,7 +41,7 @@ else {
 	var minusbutton_text			= "-";
 
 	var submitbutton_text		= "go";
-	
+
 	var clearbutton_text			= "-";
 
 	var addallbutton_text		= "+";
@@ -85,16 +85,16 @@ $(document).ready(function() {
 	$('#songcontrols')	.append('<div class="controlbutton" id="nextbutton">			' + nextbutton_text + '				</div>');
 	$('#songcontrols')	.append('<div class="controlbutton"	id="minusbutton">			' + minusbutton_text + '			</div>');
 	$('#songcontrols')	.append('<div class="controlbutton"	id="plusbutton">			' + plusbutton_text + '				</div>');
-	
+
 	$('#songdisplay')		.append('<p									id="albumart">															</p>');
 	$('#songdisplay')		.append('<div								id="albumart-overlay">												</div>');
 	$('#songdisplay')		.append('<div								id="songdescr">														</div>');
-	
+
 	$('#songdescr')		.append('<p									id="title">																</div>');
 	$('#songdescr')		.append('<p									id="artist">															</div>');
 	$('#songdescr')		.append('<p									id="album">																</div>');
 
-	$('#progressbar-container').append('<div 						id="progressbar">														</div>');
+	$('#progressbar-container').append('<div						id="progressbar">														</div>');
 
 
 
@@ -102,7 +102,7 @@ $(document).ready(function() {
 	$('#playlistview')	.append('<div class="controlbar"		id="playlistcontrols">												</div>');
 	$('#playlistview')	.append('<div class="viewsection"	id="playlistviewsection">											</div>');
 
-	$('#playlistcontrols').append('<div class="controlbutton" id="clearbutton">	' + clearbutton_text + '				</div>');
+	$('#playlistcontrols').append('<div class="controlbutton" id="clearbutton">		' + clearbutton_text + '				</div>');
 
 	$('#playlistviewsection').append('<div							id="playlist">															</div>');
 
@@ -113,7 +113,7 @@ $(document).ready(function() {
 
 	$('#searchcontrols')	.append('<input							id="searchbox">														</div>');
 	$('#searchcontrols')	.append('<div class="controlbutton"	id="submitbutton">		' + submitbutton_text + '			</div>');
-	$('#searchcontrols')	.append('<div class="controlbutton"	id="addallbutton">	' + addallbutton_text + '				</div>');
+	$('#searchcontrols')	.append('<div class="controlbutton"	id="addallbutton">		' + addallbutton_text + '				</div>');
 
 	$('#searchviewsection').append('<div							id="searchresults">													</div>');
 
@@ -122,5 +122,5 @@ $(document).ready(function() {
 	$('#browseview')		.append('<div class="controlbar"		id="browsecontrols">													</div>');
 	$('#browseview')		.append('<div class="viewsection"	id="browseviewsection">												</div>');
 
-	$('#browseviewsection').append('<div 							id="browselist">														</div>');
+	$('#browseviewsection').append('<div							id="browselist">														</div>');
 });
