@@ -13,6 +13,7 @@ if(mq.matches) {
 	var playlistbutton_text		= "playlist";
 	var searchbutton_text		= "search";
 	var browsebutton_text		= "browse";
+	var loginbutton_text			= "login";
 
 	var prevbutton_text			= "prev";
 	var togglebutton_text		= "toggle";
@@ -26,12 +27,16 @@ if(mq.matches) {
 	var clearbutton_text			= "clear";
 
 	var addallbutton_text		= "add all";
+
+	var gobutton_text				= "go";
 }
 else {
 	var songbutton_text			= "sng";
 	var playlistbutton_text		= "pl";
 	var searchbutton_text		= "sr";
 	var browsebutton_text		= "brs";
+	var loginbutton_text			= "log";
+
 
 	var prevbutton_text			= "pv";
 	var togglebutton_text		= "tgl";
@@ -45,6 +50,8 @@ else {
 	var clearbutton_text			= "-";
 
 	var addallbutton_text		= "+";
+
+	var gobutton_text				= "go";
 }
 
 
@@ -64,6 +71,7 @@ $(document).ready(function() {
 	$('#modeswitcher')	.append('<div class="modebutton"		id="playlistbutton">		' + playlistbutton_text + '		</div>');
 	$('#modeswitcher')	.append('<div class="modebutton"		id="searchbutton">		' + searchbutton_text + '			</div>');
 	$('#modeswitcher')	.append('<div class="modebutton"		id="browsebutton">		' + browsebutton_text + '			</div>');
+	$('#modeswitcher')	.append('<div class="modebutton"		id="loginbutton">			' + loginbutton_text + '			</div>');
 
 
 	// add modeviews
@@ -71,6 +79,7 @@ $(document).ready(function() {
 	$('#displayarea')		.append('<div class="modeview"		id="playlistview">													</div>');
 	$('#displayarea')		.append('<div class="modeview"		id="searchview">														</div>');
 	$('#displayarea')		.append('<div class="modeview"		id="browseview">														</div>');
+	$('#displayarea')		.append('<div class="modeview"		id="loginview">														</div>');
 
 
 	// add songview-constituents
@@ -123,4 +132,11 @@ $(document).ready(function() {
 	$('#browseview')		.append('<div class="viewsection"	id="browseviewsection">												</div>');
 
 	$('#browseviewsection').append('<div							id="browselist">														</div>');
+
+
+	// add login view members
+	$('#loginview')		.append('<div class="controlbar"		id="logincontrols">													</div>');
+	$('#logincontrols')	.append('<input							id="nameinput">														</div>');
+	$('#logincontrols')	.append('<input type="password"		id="passwordinput">													</div>');
+	$('#logincontrols')	.append('<div class="controlbutton"	id="gobutton">	'			+ gobutton_text + '					</div>');
 });

@@ -1,0 +1,17 @@
+/*
+    vim: tabstop=3 shiftwidth=3 noexpandtab
+*/
+
+input {
+	background-color: #212121;
+	display: inline-block;
+	border-radius: 5px;
+	text-align: center;
+
+	font-size: 2em;
+
+	margin-bottom: 5px;
+
+	width: 4em;
+	height: 1.5em;
+}
