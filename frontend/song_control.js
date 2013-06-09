@@ -84,4 +84,21 @@ $(document).ready(function(){
 		$.post('mpd_client.py/setTrackProgress', {factor: seek_factor});
 	});
 
+
+	$('#nextvotebutton').click(function() {
+		$('#nextvotebutton').fadeTo('fast', OPACITY);
+		$.get('vote.py/voteNext', {clientid: localStorage.userid}, function(response) {
+			//alert(response);
+			$('#nextvotebutton').fadeTo('fast', 1.0);
+		});
+	});
+
+	$('#hypebutton').click(function() {
+		$('#hypebutton').fadeTo('fast', OPACITY);
+		$.get('vote.py/voteHype', {clientid: localStorage.userid}, function(response) {
+			//alert(response);
+			$('#hypebutton').fadeTo('fast', 1.0);			
+		});		
+	});
+
 });
