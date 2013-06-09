@@ -11,9 +11,11 @@
 		rel="icon"
 		type="image/ico"
 		href="cj.ico">
-		
+
+		<!-- -------------------------- -->
 		<!-- desktop client stylesheets -->
-	
+		<!-- -------------------------- -->
+
 		<!-- desktop client main stylesheet -->
 		<link
 		rel="stylesheet"
@@ -49,9 +51,18 @@
 		href="style/desktop/browseview.css"
 		media="only screen and (min-width: 1224px)">
 
+		<!-- desktop client login view stylesheet -->
+		<link
+		rel="stylesheet"
+		type="text/css"
+		href="style/desktop/loginview.css"
+		media="only screen and (min-width: 1224px)">
 
+
+		<!-- ------------------------- -->
 		<!-- mobile client stylesheets -->
-		
+		<!-- ------------------------- -->
+
 		<!-- mobile client main stylesheet -->
 		<link
 		rel="stylesheet"
@@ -87,12 +98,21 @@
 		href="style/mobile/browseview.css"
 		media="only screen and (max-width: 1224px)">
 
-		
-		
+		<!-- mobile client login view stylesheet -->
+		<link
+		rel="stylesheet"
+		type="text/css"
+		href="style/mobile/loginview.css"
+		media="only screen and (max-width: 1224px)">
+
+
+		<!-- ---------------------->
 		<!-- JavaScript includes -->
+		<!-- ---------------------->
+
 		<!-- JQuery Library -->
 		<script
-		type="text/javascript" 
+		type="text/javascript"
 		src="lib/jquery.js">
 		</script>
 		
@@ -138,59 +158,11 @@
 		src="frontend/browseview.js">
 		</script>
 
+		<!-- Login View -->
+		<script
+		type="text/javascript"
+		src="frontend/loginview.js">
+		</script>
+
 	</head>
-
-
-	<!--
-
-	<body>
-		<div id="modeswitcher">
-			<div class="modebutton" id="songbutton">song</div>
-			<div class="modebutton" id="playlistbutton">playlist</div>
-			<div class="modebutton" id="searchbutton">search</div>
-		</div>
-
-		<div id="displayarea">
-
-			<div class="modeview" id="songview">
-				<p id="albumart"></p>
-				<div id="progressbar-container">
-					<div id="progressbar"></div>
-				</div>
-				<div id="controls">
-					<div class="controlbutton" id="prevbutton">prev</div>
-					<div class="controlbutton" id="togglebutton">toggle</div>
-					<div class="controlbutton" id="nextbutton">next	</div>
-				</div>
-				<div id="songdescr">
-					<p id="title"></p>
-					<p id="artist"></p>
-					<p id="album"></p>
-				</div>
-				<div id="volumecontrols">
-					<div class="volumebutton" id="minusbutton">-</div>
-					<div class="volumebutton" id="plusbutton">+</div>
-				</div>
-			</div>
-			<div class="modeview" id="playlistview">
-				<div id="playlist"></div>
-			</div>
-
-			<div class="modeview" id="searchview">
-				<div id="inputcontainer">
-					<input type="text" id="searchbox"/>
-					<div id="submitbutton">submit</div>
-				</div>
-				<div id="searchresults">
-				</div>
-			</div>
-
-			<div class="modeview" id="browseview">
-			</div>
-
-		</div>
-	</body>
-
-	-->
-
 </html>

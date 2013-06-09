@@ -51,10 +51,11 @@ var mq = window.matchMedia( "only screen and (min-width: 1224px)" );
 
 // for desktops
 if(mq.matches) {
-	var songbutton_text 			= "song";
-	var playlistbutton_text 	= "playlist";
-	var searchbutton_text 		= "search";
-	var browsebutton_text 		= "browse";
+	var songbutton_text			= "song";
+	var playlistbutton_text		= "playlist";
+	var searchbutton_text		= "search";
+	var browsebutton_text		= "browse";
+	var loginbutton_text			= "login";
 
 	var prevbutton_text			= "prev";
 	var togglebutton_text		= "toggle";
@@ -69,6 +70,8 @@ if(mq.matches) {
 
 	var hypebutton_text			= "hype";
 	var nextvotebutton_text		= "next";
+
+	var gobutton_text				= "go";
 }
 
 // for mobile devices
@@ -77,6 +80,8 @@ else {
 	var playlistbutton_text		= "pl";
 	var searchbutton_text		= "sr";
 	var browsebutton_text		= "brs";
+	var loginbutton_text			= "log";
+
 
 	var prevbutton_text			= "pv";
 	var togglebutton_text		= "tgl";
@@ -86,11 +91,14 @@ else {
 	var minusbutton_text			= "-";
 
 	var submitbutton_text		= "go";
+
 	var clearbutton_text			= "-";
 	var addallbutton_text		= "+";
 
 	var hypebutton_text			= "hyp";
 	var nextvotebutton_text		= "nxt";
+	
+	var gobutton_text				= "go";
 }
 
 
@@ -131,16 +139,16 @@ function renderAdmin() {
 	$('#songcontrols')	.append('<div class="controlbutton" id="nextbutton">			' + nextbutton_text + '				</div>');
 	$('#songcontrols')	.append('<div class="controlbutton"	id="minusbutton">			' + minusbutton_text + '			</div>');
 	$('#songcontrols')	.append('<div class="controlbutton"	id="plusbutton">			' + plusbutton_text + '				</div>');
-	
+
 	$('#songdisplay')		.append('<p									id="albumart">															</p>');
 	$('#songdisplay')		.append('<div								id="albumart-overlay">												</div>');
 	$('#songdisplay')		.append('<div								id="songdescr">														</div>');
-	
+
 	$('#songdescr')		.append('<p									id="title">																</div>');
 	$('#songdescr')		.append('<p									id="artist">															</div>');
 	$('#songdescr')		.append('<p									id="album">																</div>');
 
-	$('#progressbar-container').append('<div 						id="progressbar">														</div>');
+	$('#progressbar-container').append('<div						id="progressbar">														</div>');
 
 
 
@@ -148,7 +156,7 @@ function renderAdmin() {
 	$('#playlistview')	.append('<div class="controlbar"		id="playlistcontrols">												</div>');
 	$('#playlistview')	.append('<div class="viewsection"	id="playlistviewsection">											</div>');
 
-	$('#playlistcontrols').append('<div class="controlbutton" id="clearbutton">	' + clearbutton_text + '				</div>');
+	$('#playlistcontrols').append('<div class="controlbutton" id="clearbutton">		' + clearbutton_text + '				</div>');
 
 	$('#playlistviewsection').append('<div							id="playlist">															</div>');
 
@@ -159,7 +167,7 @@ function renderAdmin() {
 
 	$('#searchcontrols')	.append('<input							id="searchbox">														</div>');
 	$('#searchcontrols')	.append('<div class="controlbutton"	id="submitbutton">		' + submitbutton_text + '			</div>');
-	$('#searchcontrols')	.append('<div class="controlbutton"	id="addallbutton">	' + addallbutton_text + '				</div>');
+	$('#searchcontrols')	.append('<div class="controlbutton"	id="addallbutton">		' + addallbutton_text + '				</div>');
 
 	$('#searchviewsection').append('<div							id="searchresults">													</div>');
 
@@ -168,7 +176,11 @@ function renderAdmin() {
 	$('#browseview')		.append('<div class="controlbar"		id="browsecontrols">													</div>');
 	$('#browseview')		.append('<div class="viewsection"	id="browseviewsection">												</div>');
 
-	$('#browseviewsection').append('<div 							id="browselist">														</div>');
+	$('#browseviewsection').append('<div							id="browselist">														</div>');
+
+
+
+	
 }
 
 
@@ -187,6 +199,7 @@ function renderGuest() {
 	$('#modeswitcher')	.append('<div class="modebutton"		id="playlistbutton">		' + playlistbutton_text + '		</div>');
 	$('#modeswitcher')	.append('<div class="modebutton"		id="searchbutton">		' + searchbutton_text + '			</div>');
 	$('#modeswitcher')	.append('<div class="modebutton"		id="browsebutton">		' + browsebutton_text + '			</div>');
+	$('#modeswitcher')	.append('<div class="modebutton"		id="loginbutton">			' + loginbutton_text + '			</div>');
 
 
 	// add modeviews
@@ -194,6 +207,7 @@ function renderGuest() {
 	$('#displayarea')		.append('<div class="modeview"		id="playlistview">													</div>');
 	$('#displayarea')		.append('<div class="modeview"		id="searchview">														</div>');
 	$('#displayarea')		.append('<div class="modeview"		id="browseview">														</div>');
+	$('#displayarea')		.append('<div class="modeview"		id="loginview">														</div>');
 
 
 	// add songview-constituents
@@ -240,6 +254,13 @@ function renderGuest() {
 	$('#browseview')		.append('<div class="viewsection"	id="browseviewsection">												</div>');
 
 	$('#browseviewsection').append('<div 							id="browselist">														</div>');
+
+
+	// add login view members
+	$('#loginview')		.append('<div class="controlbar"		id="logincontrols">													</div>');
+	$('#logincontrols')	.append('<input							id="nameinput">														</div>');
+	$('#logincontrols')	.append('<input type="password"		id="passwordinput">													</div>');
+	$('#logincontrols')	.append('<div class="controlbutton"	id="gobutton">	'			+ gobutton_text + '					</div>');
 }
 
 
@@ -326,7 +347,7 @@ $(document).ready(function() {
 			renderPrivileged();
 			break;
 		case 1:
-			renderAdmin();
+			renderGuest();
 			break;
 		case 0:
 			renderGuest();
