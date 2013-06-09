@@ -102,12 +102,12 @@ $(document).ready(function(){
 		else
 		{
 			// remove "clicked" flag of other items, set it on the clicked one
-			$('.playlist_elem').removeData('clicked');
+			$('.browselist_elem').removeData('clicked');
 			$(this).data('clicked', 'true');
 
 			// hide other song descriptions, show specific song description
-			$('.playlist_elem div').hide();
-			$('.playlist_elem div:first-child').show();
+			$('.browselist_elem div').hide();
+			$('.browselist_elem div:first-child').show();
 			$(this).children('.songinfo').fadeIn();
 		}
 	}
