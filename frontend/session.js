@@ -13,18 +13,18 @@ var PERM_SKIPTO		= false;
 
 
 $(document).ready(function(){
-	
+
 	/////////////////////////////////////////////////////////
 	// C O O K I E  B A S E D  I M P L E M E N T A T I O N //
 	/////////////////////////////////////////////////////////
-	
-	
+
+
 	function setCookie(c_name, value, exdays) {
 		var exdate = new Date();
 		exdate.setDate(exdate.getDate() + exdays);
-		
+
 		var c_value = escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
-		
+
 		document.cookie = c_name + "=" + c_value;
 	}
 
@@ -83,7 +83,7 @@ $(document).ready(function(){
 			// Use number of milliseconds since 1970/01/01 as User ID
 			var d_obj = new Date();
 			localStorage.userid = d_obj.getTime();
-			
+
 			// Determine user status
 			var userstatus = "guest";
 
@@ -109,7 +109,7 @@ $(document).ready(function(){
 
 				case "privileged":
 					statusid = 2;
-				
+
 					PERM_ENQUEUE_LTD = true;
 					PERM_DEQUEUE_LTD = true;
 					PERM_ENQUEUE		= false;
@@ -120,7 +120,7 @@ $(document).ready(function(){
 					PERM_SKIPTO		= true;
 
 					break;
-				
+
 
 				case "user":
 					statusid = 1;
@@ -169,7 +169,7 @@ $(document).ready(function(){
 			localStorage.userstatus = statusid;
 
 			// convert permission flags to binary permission map
-			var permissions = 
+			var permissions =
 			String(+PERM_ENQUEUE_LTD)+
 			String(+PERM_DEQUEUE_LTD)+
 			String(+PERM_ENQUEUE		)+
