@@ -1,0 +1,2 @@
+class NowPlayingController < ApplicationController
+end
