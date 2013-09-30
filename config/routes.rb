@@ -1,5 +1,11 @@
+# vim: tabstop=2 shiftwidth=2 expandtab
 Webmpc::Application.routes.draw do
   devise_for :users
+  get     'users',          to: 'users#index',  as: 'users'
+  get     'users/:id/edit', to: 'users#edit',   as: 'edit_user'
+  patch   'users/:id',      to: 'users#update', as: 'user'
+  delete  'users/:id',      to: 'users#destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
