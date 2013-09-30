@@ -1,3 +1,4 @@
+# vim: tabstop=2 shiftwidth=2 expandtab
 Webmpc::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -12,6 +13,9 @@ Webmpc::Application.configure do
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
+
+  # Set mailer default URL.
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

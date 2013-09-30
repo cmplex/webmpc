@@ -1,3 +1,6 @@
+<!--
+  vim: tabstop=2 shiftwidth=2 expandtab
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +10,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String) %>
+  <% end %>
 
-<%= yield %>
-
+  <%= yield %>
 </body>
 </html>
