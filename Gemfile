@@ -24,6 +24,9 @@ gem 'jquery-rails'
 # Use devise for user management.
 gem 'devise'
 
+# Use cancan for authorization.
+gem 'cancan'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
