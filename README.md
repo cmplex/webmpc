@@ -85,11 +85,7 @@
 #### Requirements ####
 
 ###### Server ######
-The WebMPC server-side runs on top of the following daemons and libraries:
-*	MPD (&ge; 0.16.7)
-*	python-mpd (&ge; 0.3.0)
-*	Apache (&ge; 2.2.22)
-*	libapache2-mod-python (&ge; 3.3.1)
+The only requirement for the server is Ruby (&ge; 1.9.3).
 
 ###### Client ######
 WebMPC is optimized for Firefox (&ge; 10.0.12) and Android (&ge; 4.0) browsers. Other browsers should
@@ -98,50 +94,23 @@ work as well, but you may have to be ready for some weird behaviour / looks.
 
 
 #### Deployment ####
-The service Makefile has a target `deploy`, which installs all necessary files to a destination
-that is configured within the Makefile by two variables:
-*	`PUBLIC_HTML_DIRECTORY` is the root directory of your HTTP server's web content
-*	`TARGET` is the target directory for the app within the `PUBLIC_HTML_DIRECTORY`
-The default configuration is suitable for the default configuration of the Apache webserver's
-userdir module.
+* Clone the repository:
 
-
-
-#### Apache configuration ####
-
-###### Userdir module #######
-If you are using the Apache HTTP server and you want to use the `make deploy` target to install the
-app, you can use Apache's userdir module.
-
-As root:
-*	enable the module: `a2enmod userdir`
-*	restart the server: `service apache2 restart`
-
-As normal user:
-*	ensure the required permissions on your $HOME directory: `chmod +x $HOME`
-*	create your public HTML folder: `install --mode=755 -d $HOME/public_html`
-
-You should now be able to reach your public HTML directory via `http://localhost/~username`.
-
-If you have the username module set up differently (e.g. you use a different name for users' pulic
-HTML directories), you can simply modify the related variables in the Makefile.
-
-###### Python module #######
-WebMPC needs Apache's Python module to work. You can set it up in a few simple steps (as root):
-*	install the module (on Debian GNU/Linux: `aptitude install libapache2-mod-python`)
-*	enable the module: `a2enmod python`
-*	add the following two lines to your `/etc/apache2/sites-enabled/000-default.conf` (or whatever
-	site you want your WebMPC to run on):
-
-    ```xml
-    <Directory />
-		<!-- [...] -->
-
-        AddHandler mod_python .py
-		PythonHandler mod_python.publisher
-
-		<!-- [...] -->
-    </Directory>
+    ```
+    git clone https://github.com/cmplex/webmpc.git
     ```
 
-*	restart the server: `service apache2 restart`
+* Install necessary gems (requires root priviledges):
+
+    ```
+    gem install rails
+    bundle install
+    ```
+
+* Initialize the database and run the server:
+
+    ```
+    cd webmpc
+    rake db:migrate
+    rails server
+    ```
