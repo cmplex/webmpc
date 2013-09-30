@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930230039) do
+ActiveRecord::Schema.define(version: 20130930230514) do
 
   create_table "hate_votes", force: true do |t|
     t.integer  "user_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20130930230039) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role",                   default: "user"
+    t.datetime "last_wish"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
