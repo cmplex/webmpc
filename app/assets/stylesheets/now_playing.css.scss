@@ -1,3 +1,153 @@
-// Place all the styles related to the NowPlaying controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+ * vim: tabstop=2 shiftwidth=2 expandtab
+ *
+ * Place all the styles related to the NowPlaying controller here.
+ * They will automatically be included in application.css.
+ * You can use Sass (SCSS) here: http://sass-lang.com/
+ */
+
+#albumart {
+  /* layout parameters */
+  margin-right: auto;
+  position: absolute;
+  right: 53%;
+  top: 7em;
+  width: 25em;
+
+  /* display parameters */
+  background-color: #131313;
+  background: -moz-linear-gradient(-45deg, rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+  background: -o-linear-gradient(-45deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(69,72,77,1)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(-45deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+  border-radius: 5px;
+  display: inline-block;
+  padding: 0.5%;
+
+  /* text parameters */
+  text-align: center;
+
+  /* nested elements */
+  img {
+    height: 25em;
+    width: 25em;
+  }
+}
+
+#albumart-overlay {
+  /* layout parameters */
+  display: block;
+  height: 25em;
+  position: absolute;
+  right: 53.5%;
+  top: 8.5em;
+  width: 25em;
+
+  /* display parameters */
+  background: -moz-linear-gradient(-45deg, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 12%, rgba(102,102,102,1) 25%, rgba(71,71,71,1) 39%, rgba(44,44,44,1) 50%, rgba(0,0,0,1) 51%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%); /* FF3.6+ */
+  background: -o-linear-gradient(-45deg, rgba(76,76,76,1) 0%,rgba(89,89,89,1) 12%,rgba(102,102,102,1) 25%,rgba(71,71,71,1) 39%,rgba(44,44,44,1) 50%,rgba(0,0,0,1) 51%,rgba(17,17,17,1) 60%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 100%); /* Opera 11.10+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(76,76,76,1)), color-stop(12%,rgba(89,89,89,1)), color-stop(25%,rgba(102,102,102,1)), color-stop(39%,rgba(71,71,71,1)), color-stop(50%,rgba(44,44,44,1)), color-stop(51%,rgba(0,0,0,1)), color-stop(60%,rgba(17,17,17,1)), color-stop(76%,rgba(43,43,43,1)), color-stop(91%,rgba(28,28,28,1)), color-stop(100%,rgba(19,19,19,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(-45deg, rgba(76,76,76,1) 0%,rgba(89,89,89,1) 12%,rgba(102,102,102,1) 25%,rgba(71,71,71,1) 39%,rgba(44,44,44,1) 50%,rgba(0,0,0,1) 51%,rgba(17,17,17,1) 60%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 100%); /* Chrome10+,Safari5.1+ */
+  opacity: 0.15;
+}
+
+#minusbutton {
+  margin-left: 0.5em;
+}
+
+#progressbar {
+  /* layout parameters */
+  height: 100%;
+  width: 1%;
+
+  /* display parameters */
+  background-color: #FFFFFF;
+  background: -moz-linear-gradient(top, rgba(245,246,246,1) 0%, rgba(219,220,226,1) 21%, rgba(184,186,198,1) 49%, rgba(221,223,227,1) 80%, rgba(245,246,246,1) 100%); /* FF3.6+ */
+  background: -o-linear-gradient(top, rgba(245,246,246,1) 0%,rgba(219,220,226,1) 21%,rgba(184,186,198,1) 49%,rgba(221,223,227,1) 80%,rgba(245,246,246,1) 100%); /* Opera 11.10+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(245,246,246,1)), color-stop(21%,rgba(219,220,226,1)), color-stop(49%,rgba(184,186,198,1)), color-stop(80%,rgba(221,223,227,1)), color-stop(100%,rgba(245,246,246,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(245,246,246,1) 0%,rgba(219,220,226,1) 21%,rgba(184,186,198,1) 49%,rgba(221,223,227,1) 80%,rgba(245,246,246,1) 100%); /* Chrome10+,Safari5.1+ */
+  border-radius: 5px;
+  display: block;
+}
+
+#progressbar-container {
+  /* layout parameters */
+  height: 0.6em;
+  left: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2.5em;
+  position: absolute;
+  right: 25%;
+
+  /* display parameters */
+  background-color: #131313;
+  border-radius: 5px;
+  display: block;
+}
+
+#songcontrols {
+  /* layout parameters */
+  height: 2.5em;
+  left: 0.5em;
+  margin: 0.5em;
+  position: fixed;
+  right: 0.5em;
+  top: 4.5em;
+  z-index: 1;
+
+  /* display parameters */
+  background-color: #606060;
+  border-radius: 5px;
+  display: block;
+  opacity: 0.8;
+  padding: 0.5em;
+
+  /* text parameters */
+  text-align: center;
+}
+
+#songdisplay {
+  position: relative;
+}
+
+#songinfo {
+  /* layout parameters */
+  height: 8em;
+  left: 53%;
+  position: absolute;
+  top: 15em;
+
+  /* display parameters */
+  display: inline-block;
+
+  /* nested elements */
+  p:first-child{
+    font-size: 2em;
+  }
+
+  p {
+    font-family: Verdana;
+    font-size: 1em;
+    text-align: left;
+  }
+}
+
+#songviewsection {
+  text-align: left;
+}
+
+.controlbutton {
+  /* layout parameters */
+  height: 1.5em;
+  margin: 0.05em;
+  width: 4em;
+
+  /* display parameters */
+  background-color: #808080;
+  border-radius: 5px;
+  display: inline-block;
+
+  /* text parameters */
+  font-size: 1.5em;
+}
