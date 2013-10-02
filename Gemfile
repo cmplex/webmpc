@@ -27,6 +27,9 @@ gem 'devise'
 # Use cancan for authorization.
 gem 'cancan'
 
+# Use ruby-mpd as MPD client library.
+gem 'ruby-mpd'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
