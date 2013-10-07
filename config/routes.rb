@@ -6,6 +6,17 @@ Webmpc::Application.routes.draw do
   patch   'users/:id',      to: 'users#update', as: 'user'
   delete  'users/:id',      to: 'users#destroy'
 
+  post    'mpc/prev',             to: 'now_playing#prev'
+  post    'mpc/next',             to: 'now_playing#next'
+  post    'mpc/toggle',           to: 'now_playing#toggle'
+  post    'mpc/volUp',            to: 'now_playing#volUp'
+  post    'mpc/volDown',          to: 'now_playing#volDown'
+  post    'mpc/seek',             to: 'now_playing#seek'
+  get     'mpc/currentArtist',    to: 'now_playing#currentArtist'
+  get     'mpc/currentAlbum',     to: 'now_playing#currentAlbum'
+  get     'mpc/currentTitle',     to: 'now_playing#currentTitle'
+  get     'mpc/currentProgress',  to: 'now_playing#currentProgress'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
