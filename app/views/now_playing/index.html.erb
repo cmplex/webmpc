@@ -1,69 +1,29 @@
 <!--
-    tabstop=4 shiftwidth=4 expandtab
+  vim: tabstop=2 shiftwidth=2 expandtab
 -->
-<div id="modeswitcher">
-    <div id="songbutton"        class="modebutton">song     </div>
-    <div id="playlistbutton"    class="modebutton">playlist </div>
-    <div id="searchbutton"      class="modebutton">search   </div>
-    <div id="browsebutton"      class="modebutton">browse   </div>
+<div id="songview">
+  <div id="songcontrols"      class="controlbar">
+    <div id="prevbutton"    class="controlbutton">prev</div>
+    <div id="togglebutton"  class="controlbutton">toggle</div>
+    <div id="nextbutton"    class="controlbutton">next</div>
+    <div id="minusbutton"   class="controlbutton">-</div>
+    <div id="plusbutton"    class="controlbutton">+</div>
+  </div>
+  <div id="songviewsection"   class="viewsection">
+    <div id="progressbar-container">
+      <div id="progressbar"></div>
+    </div>
+    <div id="songdisplay">
+      <p id="albumart"></p>
+      <div id="albumart-overlay"></div>
+      <div id="songinfo">
+        <p id="title">
+        </p>
+        <p id="artist">
+        </p>
+        <p id="album">
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
-<div id="displayarea">
-    <div id="songview">
-        <div id="songcontrols"      class="controlbar">
-            <div id="prevbutton"    class="controlbutton">prev</div>
-            <div id="togglebutton"  class="controlbutton">toggle</div>
-            <div id="nextbutton"    class="controlbutton">next</div>
-            <div id="minusbutton"   class="controlbutton">-</div>
-            <div id="plusbutton"    class="controlbutton">+</div>
-        </div>
-        <div id="songviewsection"   class="viewsection">
-            <div id="progressbar-container">
-                <div id="progressbar"></div>
-            </div>
-            <div id="songdisplay">
-                <p id="albumart"></p>
-                <div id="albumart-overlay"></div>
-                <div id="songinfo">
-                    <p id="title">
-                    </p>
-                    <p id="artist">
-                    </p>
-                    <p id="album">
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-<!--
-    <div id="playlistview">
-        <div id="playlistcontrols"      class="controlbar"></div>
-        <div id="playlistviewsection"   class="viewsection">
-            <div id="playlist"></div>
-        </div>
-    </div>
-    <div id="searchview">
-        <div id="searchcontrols"        class="controlbar">
-            <input id="searchbox"></input>
-            <div id="submitbutton"      class="controlbutton"></div>
-        </div>
-        <div id="searchviewsection"     class="viewsection">
-            <div id="searchresults"></div>
-        </div>
-    </div>
-    <div id="browseview">
-        <div id="browsecontrols"      class="controlbar"></div>
-        <div id="browseviewsection"   class="viewsection">
-            <div id="browselist"></div>
-        </div>
-    </div>
--->
-</div>
-<!--
-<div>
-<% if user_signed_in? %>
-    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-<% else %>
-    <%= link_to('Login', new_user_session_path) %>
-<% end %>
-</div>
--->
