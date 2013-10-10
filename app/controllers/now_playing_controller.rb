@@ -1,7 +1,5 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
 class NowPlayingController < ApplicationController
-  before_filter :get_current_song, only: [:index, :seek, :currentArtist, :currentAlbum, :currentTitle]
-
   def index
   end
 
@@ -41,6 +39,7 @@ class NowPlayingController < ApplicationController
 
   def seek
     # compute new playback position in seconds
+    @song = @mpc.current_song
     position = params[:factor].to_f * @song.time
     position = position.round
 
@@ -50,27 +49,14 @@ class NowPlayingController < ApplicationController
     render text: command
   end
 
-  def currentArtist
-    render text: @song.artist
-  end
-
-  def currentAlbum
-    render text: @song.album
-  end
-
-  def currentTitle
-    render text: @song.title
-  end
-
-  def currentProgress
-    times = @mpc.status[:time]
-    progress = times[0].to_f / times[1].to_f * 100
-    puts progress
-    render text: progress
-  end
-
-  private
-    def get_current_song
-      @song = @mpc.current_song
+  def notifications
+    @mpc.on :song do |song|
+      R4S.push_data('now_playing', {artist: song.artist, album: song.album, title: song.title}, event: "song")
     end
+    @mpc.on :time do |elapsed, total|
+      progress = elapsed.to_f / total.to_f * 100
+      R4S.push_data('now_playing', {progress: progress}, event: "progress")
+    end
+    R4S.add_stream(response, session, "now_playing").start
+  end
 end

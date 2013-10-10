@@ -9,7 +9,7 @@ $(document).ready ->
   $("#prevbutton").click ->
     # fade out
     $(this).fadeTo "fast", OPACITY
-    $.post "mpc/prev", ->
+    $.post "mpd/prev", ->
       # fade in
       $("#prevbutton").fadeTo "fast", 1.0
 
@@ -17,7 +17,7 @@ $(document).ready ->
   $("#nextbutton").click ->
     # fade out
     $(this).fadeTo "fast", OPACITY
-    $.post "mpc/next", ->
+    $.post "mpd/next", ->
       # fade in
       $("#nextbutton").fadeTo "fast", 1.0
 
@@ -25,14 +25,14 @@ $(document).ready ->
   $("#togglebutton").click ->
     # fade out
     $(this).fadeTo "fast", OPACITY
-    $.post "mpc/toggle", ->
+    $.post "mpd/toggle", ->
       # fade in
       $("#togglebutton").fadeTo "fast", 1.0
 
   $("#minusbutton").click ->
       # fade out
     $(this).fadeTo "fast", OPACITY
-    $.post "mpc/volDown", ->
+    $.post "mpd/volDown", ->
         # fade in
       $("#minusbutton").fadeTo "fast", 1.0
 
@@ -40,7 +40,7 @@ $(document).ready ->
   $("#plusbutton").click ->
     # fade out
     $(this).fadeTo "fast", OPACITY
-    $.post "mpc/volUp", ->
+    $.post "mpd/volUp", ->
       # fade in
       $("#plusbutton").fadeTo "fast", 1.0
 
@@ -51,7 +51,7 @@ $(document).ready ->
 
     # x-pos / max-x - ratio
     seek_factor = xpos / $(this).width()
-    $.post "mpc/seek", factor: seek_factor
+    $.post "mpd/seek", factor: seek_factor
 
 
   $("#nextvotebutton").click ->
@@ -69,59 +69,48 @@ $(document).ready ->
       # fade in
       $("#hypebutton").fadeTo "fast", 1.0
 
-  # setup timer that fetches current song information and updates the page
-  UPDATE_INTERVAL = 500
-  album = undefined
-  artist = undefined
-  title = undefined
-  progress = undefined
+  # mark current section as active in menu
+  if location.pathname is "/" or location.pathname is "/now_playing"
+    $("#songbutton").css opacity: 1.0
 
-  updateSongView = ->
-    # update title
-    $.get "mpc/currentTitle", (response) ->
-      unless response is title
-        title = response
-        $("#title").hide()
-        $("#title").html(response).fadeIn()
 
-    # update artist
-    $.get "mpc/currentArtist", (response) ->
-      unless response is artist
-        artist = response
-        $("#artist").hide()
-        $("#artist").html(response).fadeIn()
 
-    # update album name & cover
-    $.get "mpc/currentAlbum", (response) ->
-      unless response is album
-        album = response
-        $("#album").hide()
-        $("#album").html(response).fadeIn()
+# FIXME
+# define update function for the album art
+album = undefined
+updateAlbumCover = ->
+  unless album is $("#album").html
+    album = $("#album").html
 
-        # create img tag with appropriate src
-        albumimg = document.createElement("img")
-        albumimg.src = "covers/default.png"
-        $("#albumart").html albumimg
+    # create img tag with appropriate src
+    albumimg = document.createElement("img")
+    albumimg.src = "covers/default.png"
+    $("#albumart").html albumimg
 
-        # check if cover exists
-        imgurl = "covers/" + response + ".jpg"
-        $.ajax
-          url: imgurl
-          type: "HEAD"
-          success: ->
-            # cover does exist
-            albumimg.src = imgurl
+    # check if cover exists
+    imgurl = "covers/" + response + ".jpg"
+    $.ajax
+      url: imgurl
+      type: "HEAD"
+      success: ->
+        # cover does exist
+        albumimg.src = imgurl
 
-    # update progress bar
-    $.get "mpc/currentProgress", (response) ->
-      response = parseInt(response)
-      unless response is progress
-        progress = response
-        $("#progressbar").width response + "%"
 
-  # initialize view
-  updateSongView()
-  $("#songbutton").css opacity: 1.0
 
-  # schedule update
-  songview_updater = setInterval(updateSongView, UPDATE_INTERVAL)
+# setup event listeners for MPD notifications
+if location.pathname is "/" or location.pathname is "/now_playing"
+  source = new EventSource("/mpd/events/now_playing")
+  source.addEventListener "song", (e) ->
+    data = JSON.parse(e.data)
+    $("#artist").hide()
+    $("#album").hide()
+    $("#title").hide()
+    $("#artist").html(data["artist"]).fadeIn()
+    $("#album").html(data["album"]).fadeIn()
+    $("#title").html(data["title"]).fadeIn()
+    # TODO: automatically update album cover
+    #updateAlbumCover()
+  source.addEventListener "progress", (e) ->
+    data = JSON.parse(e.data)
+    $("#progressbar").width data["progress"] + "%"

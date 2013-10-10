@@ -1,5 +1,6 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
 class ApplicationController < ActionController::Base
+  include ActionController::Live
   after_filter :close_mpd_connection
   before_filter :open_mpd_connection
 
@@ -12,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def open_mpd_connection
-    @mpc = MPD.new
+    @mpc = MPD.new('localhost', 6600, callbacks: true)
     @mpc.connect
   end
 
