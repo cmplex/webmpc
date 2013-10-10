@@ -30,4 +30,11 @@ Webmpc::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # Allow concurrent requests. This is necessary for SSEs.
+  config.allow_concurrency = true
+
+  # Pre-load necessary frameworks on boot to ensure thread-safety.
+  # see: http://tenderlovemaking.com/2012/06/18/removing-config-threadsafe.html
+  config.preload_frameworks = true
 end

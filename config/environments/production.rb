@@ -81,4 +81,11 @@ Webmpc::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Allow concurrent requests. This is necessary for SSEs.
+  config.allow_concurrency = true
+
+  # Pre-load necessary frameworks on boot to ensure thread-safety.
+  # see: http://tenderlovemaking.com/2012/06/18/removing-config-threadsafe.html
+  config.preload_frameworks = true
 end

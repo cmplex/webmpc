@@ -30,6 +30,12 @@ gem 'cancan'
 # Use ruby-mpd as MPD client library.
 gem 'ruby-mpd'
 
+# Use r4s Server-Sent-Events library.
+gem 'r4s'
+
+# Use puma webserver.
+gem 'puma'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
