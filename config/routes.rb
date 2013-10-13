@@ -1,10 +1,15 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
 Webmpc::Application.routes.draw do
   devise_for :users
-  get     'users',          to: 'users#index',  as: 'users'
-  get     'users/:id/edit', to: 'users#edit',   as: 'edit_user'
-  patch   'users/:id',      to: 'users#update', as: 'user'
-  delete  'users/:id',      to: 'users#destroy'
+  get     'users',                to: 'users#index',                as: 'users'
+  get     'users/:id/edit',       to: 'users#edit',                 as: 'edit_user'
+  patch   'users/:id',            to: 'users#update',               as: 'user'
+  delete  'users/:id',            to: 'users#destroy'
+
+  get     'now_playing',          to: 'now_playing#index'
+  get     'playlist',             to: 'playlist#index'
+  get     'browse',               to: 'browse#index'
+  get     'search',               to: 'search#index'
 
   post    'mpd/prev',                 to: 'now_playing#prev'
   post    'mpd/next',                 to: 'now_playing#next'
@@ -13,6 +18,11 @@ Webmpc::Application.routes.draw do
   post    'mpd/volDown',              to: 'now_playing#volDown'
   post    'mpd/seek',                 to: 'now_playing#seek'
   get     'mpd/events/now_playing',   to: 'now_playing#notifications'
+
+  get     'mpd/listArtists',      to: 'browse#listArtists'
+  get     'mpd/listAlbums',       to: 'browse#listAlbums'
+  get     'mpd/listSongs',        to: 'browse#listSongs'
+  post    'mpd/addSong',          to: 'browse#addSong'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
