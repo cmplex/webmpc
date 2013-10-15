@@ -19,6 +19,10 @@ Webmpc::Application.routes.draw do
   post    'mpd/seek',                 to: 'now_playing#seek'
   get     'mpd/events/now_playing',   to: 'now_playing#notifications'
 
+  get     'mpd/search',               to: 'search#search'
+  post    'mpd/addResult',            to: 'search#addResult'
+  post    'mpd/addAll',               to: 'search#addAll'
+
   get     'mpd/listArtists',      to: 'browse#listArtists'
   get     'mpd/listAlbums',       to: 'browse#listAlbums'
   get     'mpd/listSongs',        to: 'browse#listSongs'
