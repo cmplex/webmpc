@@ -1,3 +1,49 @@
+// vim: tabstop=2 shiftwidth=2 expandtab
 // Place all the styles related to the Playlist controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#playlist {
+  /* layout parameters */
+  width: 80%;
+
+  /* display parameters */
+  border-radius: 5px;
+  display: inline-block;
+
+  /* text parameters */
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.playlist_elem {
+  /* layout parameters */
+  margin: 6px;
+
+  /* display parameters */
+  background-color: #606060;
+  border-radius: 5px;
+  display: block;
+  opacity: 0.6;
+
+  /* text parameters */
+  font-size: 2em;
+  text-align: left;
+
+  /* nested elements */
+  #songdescr {
+   display: inline-block;
+   margin-left: 2px;
+   font-size: 1em;
+   text-align: left;
+  }
+
+  div {
+   font-size: 0.5em;
+  }
+
+  div:first-child {
+   display: inline-block;
+   font-size: 1em;
+  }
+}
