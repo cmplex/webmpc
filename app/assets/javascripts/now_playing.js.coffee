@@ -69,10 +69,6 @@ $(document).ready ->
       # fade in
       $("#hypebutton").fadeTo "fast", 1.0
 
-  # mark current section as active in menu
-  if location.pathname is "/" or location.pathname is "/now_playing"
-    $("#songbutton").css opacity: 1.0
-
 
 
 # FIXME

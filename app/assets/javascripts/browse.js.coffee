@@ -4,9 +4,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  if location.pathname is "/browse"
-    displayArtists()
-    $("#browsebutton").css opacity: 1.0
+  displayArtists() if location.pathname is "/browse"
 
 
 
