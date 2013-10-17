@@ -31,7 +31,7 @@ a:visited {
   color: #FFFFFF;
 }
 
-#modeswitcher {
+nav {
   /* layout parameters */
   left: 1em;
   position: fixed;
@@ -48,6 +48,24 @@ a:visited {
 
   /* text parameters */
   text-align: center;
+
+  div {
+    /* layout parameters */
+    height: 1.5em;
+    width: 6em;
+
+    /* display parameters */
+    background-color: #808080;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 0.05em;
+    opacity: 0.4;
+
+    /* text parameters */
+    color: #FFFFFF;
+    font-size: 2em;
+    text-align: center;
+  }
 }
 
 .controlbar {
@@ -68,24 +86,6 @@ a:visited {
   padding: 0.5em;
 
   /* text parameters */
-  text-align: center;
-}
-
-.modebutton {
-  /* layout parameters */
-  height: 1.5em;
-  width: 6em;
-
-  /* display parameters */
-  background-color: #808080;
-  border-radius: 5px;
-  display: inline-block;
-  margin: 0.05em;
-  opacity: 0.4;
-
-  /* text parameters */
-  color: #FFFFFF;
-  font-size: 2em;
   text-align: center;
 }
 

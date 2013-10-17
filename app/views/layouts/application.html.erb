@@ -14,33 +14,33 @@
     <%= content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String) %>
   <% end %>
 
-  <div id="modeswitcher">
-    <%= link_to(:now_playing) do %>
-      <div id="songbutton" class="modebutton">song</div>
+  <nav>
+    <%= link_to :now_playing do %>
+      <div id="songbutton">song</div>
     <% end %>
 
-    <%= link_to(:playlist) do %>
-      <div id="playlistbutton" class="modebutton">playlist</div>
+    <%= link_to :playlist do %>
+      <div id="playlistbutton">playlist</div>
     <% end %>
 
-    <%= link_to(:search) do %>
-      <div id="searchbutton" class="modebutton">search</div>
+    <%= link_to :search do %>
+      <div id="searchbutton">search</div>
     <% end %>
 
-    <%= link_to(:browse) do %>
-      <div id="browsebutton" class="modebutton">browse</div>
+    <%= link_to :browse do %>
+      <div id="browsebutton">browse</div>
     <% end %>
 
     <% if user_signed_in? %>
-      <%= link_to(destroy_user_session_path, :method => :delete) do %>
-        <div id="logoutbutton" class="modebutton">logout</div>
+      <%= link_to destroy_user_session_path, :method => :delete do %>
+        <div id="logoutbutton">logout</div>
       <% end %>
     <% else %>
-      <%= link_to(new_user_session_path) do %>
-        <div id="loginbutton" class="modebutton">login</div>
+      <%= link_to new_user_session_path do %>
+        <div id="loginbutton">login</div>
       <% end %>
     <% end %>
-  </div>
+  </nav>
 
   <div id="displayarea">
   </div>
