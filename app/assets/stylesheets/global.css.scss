@@ -72,7 +72,7 @@ nav {
   }
 }
 
-.controlbar {
+menu {
   /* layout parameters */
   height: 2.5em;
   left: 0.5em;
@@ -92,7 +92,7 @@ nav {
   /* text parameters */
   text-align: center;
 
-  .controlbutton {
+  a {
     /* layout parameters */
     height: 1.5em;
     margin: 0.05em;

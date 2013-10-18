@@ -4,47 +4,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  OPACITY = 0.4
-
-  $("#prevbutton").click ->
-    # fade out
-    $(this).fadeTo "fast", OPACITY
-    $.post "mpd/prev", ->
-      # fade in
-      $("#prevbutton").fadeTo "fast", 1.0
-
-
-  $("#nextbutton").click ->
-    # fade out
-    $(this).fadeTo "fast", OPACITY
-    $.post "mpd/next", ->
-      # fade in
-      $("#nextbutton").fadeTo "fast", 1.0
-
-
-  $("#togglebutton").click ->
-    # fade out
-    $(this).fadeTo "fast", OPACITY
-    $.post "mpd/toggle", ->
-      # fade in
-      $("#togglebutton").fadeTo "fast", 1.0
-
-  $("#minusbutton").click ->
-      # fade out
-    $(this).fadeTo "fast", OPACITY
-    $.post "mpd/volDown", ->
-        # fade in
-      $("#minusbutton").fadeTo "fast", 1.0
-
-
-  $("#plusbutton").click ->
-    # fade out
-    $(this).fadeTo "fast", OPACITY
-    $.post "mpd/volUp", ->
-      # fade in
-      $("#plusbutton").fadeTo "fast", 1.0
-
-
   $("#progressbar-container").click (e) ->
     # get x-position relative to progressbar-container
     xpos = e.pageX - @offsetLeft
@@ -52,22 +11,6 @@ $(document).ready ->
     # x-pos / max-x - ratio
     seek_factor = xpos / $(this).width()
     $.post "mpd/seek", factor: seek_factor
-
-
-  $("#nextvotebutton").click ->
-    # fade out
-    $("#nextvotebutton").fadeTo "fast", OPACITY
-    $.post "vote/hate", clientid: localStorage.userid , ->
-      # fade in
-      $("#nextvotebutton").fadeTo "fast", 1.0
-
-
-  $("#hypebutton").click ->
-    # fade out
-    $("#hypebutton").fadeTo "fast", OPACITY
-    $.post "vote/hype", clientid: localStorage.userid , ->
-      # fade in
-      $("#hypebutton").fadeTo "fast", 1.0
 
 
 

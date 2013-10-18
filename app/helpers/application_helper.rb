@@ -7,4 +7,8 @@ module ApplicationHelper
   def nav_link(link_text, path)
     link_to link_text, path, class: current?(path), onFocus: "blur();"
   end
+
+  def menu_link(link_text, path, method=:post)
+    link_to link_text, path, method: method, remote: true, onFocus: "blur();"
+  end
 end

@@ -4,20 +4,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 # shared variables
-OPACITY = 0.4
 old_playlist = []
-
-
-
-# define button actions
-$(document).ready ->
-  $('#clearbutton').click ->
-    # fade out
-    $(this).fadeTo 'fast', OPACITY
-
-    $.post 'mpd/clear', ->
-      # fade in
-      $('#clearbutton').fadeTo 'fast', 1.0
 
 
 
@@ -46,7 +33,7 @@ if location.pathname is "/playlist"
   # highlight currently playing song when it changes
   source.addEventListener "currentsong", (e) ->
     data = JSON.parse(e.data)
-    $(".playlist_elem").fadeTo "fast", OPACITY
+    $(".playlist_elem").fadeTo "fast", 0.4
     $("#song" + data["number"]).fadeTo "fast", 1.0
 
   # update the playlist when it changes

@@ -5,14 +5,12 @@
 
 # shared variables
 needle = undefined
-OPACITY = 0.4
 
 
 
 # setup button actions when the page has finished loading
 $(document).ready ->
   $("#submitbutton").click ->
-    $(this).fadeTo "fast", OPACITY
     $("#searchview").empty()
     needle = document.getElementById("searchbox").value
 
@@ -39,16 +37,9 @@ $(document).ready ->
         $("#result" + index).click onSearchResultClick
         index++
 
-      $("#submitbutton").fadeTo "fast", 1.0
-
   $("#addallbutton").click ->
-    # fade out
-    $("#addallbutton").fadeTo "fast", OPACITY
-
     needle = document.getElementById("searchbox").value
-    $.post "mpd/addAll", needle: needle, (response) ->
-      # fade in
-      $("#addallbutton").fadeTo "fast", 1.0
+    $.post "mpd/addAll", needle: needle
 
 
 
@@ -59,7 +50,7 @@ onSearchResultClick = ->
     index = parseInt($(this).data("index"))
     $.post "mpd/addResult", needle: needle, index: index
 
-    $(this).fadeTo "fast", OPACITY
+    $(this).fadeTo "fast", 0.4
     $(this).fadeTo "fast", 0.6
   else
     # remove "clicked" flag from other items, set it on the clicked one
