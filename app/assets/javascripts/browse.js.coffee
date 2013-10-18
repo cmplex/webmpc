@@ -11,11 +11,11 @@ $(document).ready ->
 displayArtists = ->
   $.get "mpd/listArtists", (artists) ->
     # fade out and clear old list
-    $("#browselist").fadeOut "fast"
-    $("#browselist").empty()
+    $("#browseview").fadeOut "fast"
+    $("#browseview").empty()
     index = 0
     while index < artists.length
-      $("#browselist").append "<div id=\"artist" + index + "\" class=\"browselist_elem\">"
+      $("#browseview").append "<div id=\"artist" + index + "\" class=\"browselist_elem\">"
       $("#artist" + index).append "<div>" + artists[index] + "</div>"
 
       # setup onClick event handler
@@ -23,45 +23,45 @@ displayArtists = ->
       index++
 
     # fade in the new list
-    $("#browselist").fadeIn "fast"
+    $("#browseview").fadeIn "fast"
 
 displayAlbums = ->
   $.get "mpd/listAlbums", artist: $(this).find("div").text() , (albums) ->
     # fade out and clear old list
-    $("#browselist").fadeOut "fast"
-    $("#browselist").empty()
+    $("#browseview").fadeOut "fast"
+    $("#browseview").empty()
 
     # add back button
-    $("#browselist").append "<div id=\"back_button\" class=\"browselist_elem\">"
+    $("#browseview").append "<div id=\"back_button\" class=\"browselist_elem\">"
     $("#back_button").append "<div>&larr;</div></div>"
     $("#back_button").mouseup displayArtists
 
     # add albums to the list and setup onClick handlers
     index = 0
     while index < albums.length
-      $("#browselist").append "<div id=\"album" + index + "\" class=\"browselist_elem\">"
+      $("#browseview").append "<div id=\"album" + index + "\" class=\"browselist_elem\">"
       $("#album" + index).append "<div>" + albums[index] + "</div>"
       $("#album" + index).mouseup displaySongs
       index++
 
     # fade in the new list
-    $("#browselist").fadeIn "fast"
+    $("#browseview").fadeIn "fast"
 
 displaySongs = ->
   $.get "mpd/listSongs", album: $(this).find("div").text() , (songs) ->
     # fade out and clear old list
-    $("#browselist").fadeOut "fast"
-    $("#browselist").empty()
+    $("#browseview").fadeOut "fast"
+    $("#browseview").empty()
 
     # add back button
-    $("#browselist").append "<div id=\"back_button\" class=\"browselist_elem\">"
+    $("#browseview").append "<div id=\"back_button\" class=\"browselist_elem\">"
     $("#back_button").append "<div>&larr;</div></div>"
     $("#back_button").mouseup displayArtists
 
     # add songs to the list and setup onClick event handlers
     index = 0
     while index < songs.length
-      $("#browselist").append "<div id=\"browse_song" + index + "\" class=\"browselist_elem\">"
+      $("#browseview").append "<div id=\"browse_song" + index + "\" class=\"browselist_elem\">"
       $("#browse_song" + index).append "<div class=\"songinfo title\">" + songs[index][0] + "</div>"
       $("#browse_song" + index).append "<div class=\"songinfo artist\">" + songs[index][2] + "</div>"
       $("#browse_song" + index).append "<div class=\"songinfo album\">" + songs[index][1] + "</div>"
@@ -75,7 +75,7 @@ displaySongs = ->
       index++
 
     # fade in the new list
-    $("#browselist").fadeIn "fast"
+    $("#browseview").fadeIn "fast"
 
 # onClick event handler for song items
 onSongItemClick = ->

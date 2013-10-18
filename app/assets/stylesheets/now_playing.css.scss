@@ -86,27 +86,6 @@
   display: block;
 }
 
-#songcontrols {
-  /* layout parameters */
-  height: 2.5em;
-  left: 0.5em;
-  margin: 0.5em;
-  position: fixed;
-  right: 0.5em;
-  top: 4.5em;
-  z-index: 1;
-
-  /* display parameters */
-  background-color: #606060;
-  border-radius: 5px;
-  display: block;
-  opacity: 0.8;
-  padding: 0.5em;
-
-  /* text parameters */
-  text-align: center;
-}
-
 #songdisplay {
   position: relative;
 }
@@ -131,23 +110,4 @@
     font-size: 1em;
     text-align: left;
   }
-}
-
-#songviewsection {
-  text-align: left;
-}
-
-.controlbutton {
-  /* layout parameters */
-  height: 1.5em;
-  margin: 0.05em;
-  width: 4em;
-
-  /* display parameters */
-  background-color: #808080;
-  border-radius: 5px;
-  display: inline-block;
-
-  /* text parameters */
-  font-size: 1.5em;
 }

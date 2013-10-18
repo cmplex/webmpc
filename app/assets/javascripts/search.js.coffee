@@ -13,7 +13,7 @@ OPACITY = 0.4
 $(document).ready ->
   $("#submitbutton").click ->
     $(this).fadeTo "fast", OPACITY
-    $("#searchresults").empty()
+    $("#searchview").empty()
     needle = document.getElementById("searchbox").value
 
     # submit query, get search results
@@ -23,7 +23,7 @@ $(document).ready ->
 
       while index < results.length
         # create search result entry
-        $("#searchresults").append "<div id=\"result" + index + "\" class=\"result\">"
+        $("#searchview").append "<div id=\"result" + index + "\" class=\"result\">"
 
         # fill in song information
         $("#result" + index).append "<div class=\"songinfo title\">" + results[index][0] + "</div>"

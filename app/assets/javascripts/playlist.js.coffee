@@ -59,7 +59,7 @@ if location.pathname is "/playlist"
       # add items if the new playlist is longer
       if index >= old_playlist.length
         # create playlist entry
-        $("#playlist").append "<div id=\"song" + index + "\" class=\"playlist_elem\">"
+        $("#playlistview").append "<div id=\"song" + index + "\" class=\"playlist_elem\">"
 
         # fill in song information
         $("#song" + index).append "<div class=\"songinfo title\">" + playlist[index]["title"] + "</div>"
