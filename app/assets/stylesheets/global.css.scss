@@ -49,7 +49,7 @@ nav {
   /* text parameters */
   text-align: center;
 
-  span {
+  a {
     /* layout parameters */
     height: 1.5em;
     margin: 0.05em;
@@ -67,7 +67,7 @@ nav {
     text-align: center;
   }
 
-  .current span {
+  .current {
     opacity: 1.0;
   }
 }

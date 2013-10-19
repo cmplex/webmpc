@@ -15,30 +15,15 @@
   <% end %>
 
   <nav>
-    <%= link_to :now_playing, class: current?(:now_playing) do %>
-      <span>song</span>
-    <% end %>
-
-    <%= link_to :playlist, class: current?(:playlist) do %>
-      <span>playlist</span>
-    <% end %>
-
-    <%= link_to :search, class: current?(:search) do %>
-      <span>search</span>
-    <% end %>
-
-    <%= link_to :browse, class: current?(:browse) do %>
-      <span>browse</span>
-    <% end %>
+    <%= nav_link "song", :now_playing %>
+    <%= nav_link "playlist", :playlist %>
+    <%= nav_link "search", :search %>
+    <%= nav_link "browse", :browse %>
 
     <% if user_signed_in? %>
-      <%= link_to destroy_user_session_path, method: :delete do %>
-        <span>logout</span>
-      <% end %>
+      <%= link_to "logout", destroy_user_session_path, method: :delete %>
     <% else %>
-      <%= link_to new_user_session_path, class: current?(new_user_session_path) do %>
-        <span>login</span>
-      <% end %>
+      <%= link_to "login", new_user_session_path, class: current?(new_user_session_path) %>
     <% end %>
   </nav>
 
