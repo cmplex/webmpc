@@ -3,24 +3,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#searchbox {
-  /* layout parameters */
-  height: 1.5em;
-  vertical-align: bottom;
-  width: 50%;
-
-  /* display parameters */
-  background-color: #404040;
-  border-radius: 5px;
-  border-style: none;
-  display: inline-block;
-
-  /* text parameters */
-  color: #FFFFFF;
-  font-family: Verdana;
-  font-size: 1.5em;
-}
-
 .result {
   /* layout parameters */
   margin: 6px;
