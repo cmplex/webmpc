@@ -30,6 +30,7 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     user ||= User.new
-    can :manage, :all if user.role == 'admin'
+    can :manage, User if user.role == 'admin'
+    can :control_mpd, nil if user.role == 'admin' or user.role == 'priviledged'
   end
 end

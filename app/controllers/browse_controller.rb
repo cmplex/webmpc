@@ -1,5 +1,7 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
-class BrowseController < ApplicationController
+class BrowseController < MpdController
+  before_action :check_permissions, only: :addSong
+
   def index
     @artists = @mpc.artists.sort
   end

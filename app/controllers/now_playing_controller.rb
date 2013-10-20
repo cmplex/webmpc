@@ -1,5 +1,7 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
 class NowPlayingController < MpdController
+  before_action :check_permissions, except: [:index, :notifications]
+
   def index
   end
 

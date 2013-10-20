@@ -1,5 +1,6 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
-class SearchController < ApplicationController
+class SearchController < MpdController
+  before_action :check_permissions, except: [:index, :search]
   before_filter :perform_search, except: :index
 
   def index
