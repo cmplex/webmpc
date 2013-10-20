@@ -15,8 +15,20 @@ Webmpc::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  # Set mailer default URL.
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  # Set mailer options.
+  config.action_mailer.default_url_options = { :host => 'webmpc.example.org' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "mail.provider.com",
+    port: 587,
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["USER_NAME"],
+    password: ENV["PASSWORD"]
+  }
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
