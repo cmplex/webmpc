@@ -4,7 +4,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $("#progressbar-container").click (e) ->
+  $("#progressbar").click (e) ->
     # get x-position relative to progressbar-container
     xpos = e.pageX - @offsetLeft
 
@@ -52,4 +52,4 @@ if location.pathname is "/" or location.pathname is "/now_playing"
     #updateAlbumCover()
   source.addEventListener "progress", (e) ->
     data = JSON.parse(e.data)
-    $("#progressbar").width data["progress"] + "%"
+    $("#progressbar span").width data["progress"] + "%"
