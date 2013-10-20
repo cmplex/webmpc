@@ -1,9 +1,10 @@
 <!--
   vim: tabstop=2 shiftwidth=2 expandtab
 -->
-<menu>
-  <%= render "devise/shared/links" %>
-</menu>
+  <menu>
+    <%= render "devise/shared/links" %>
+  </menu>
+</header>
 <section>
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>

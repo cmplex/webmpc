@@ -31,14 +31,16 @@ a:visited {
   color: #FFFFFF;
 }
 
-nav {
+header {
   /* layout parameters */
   left: 1em;
   position: fixed;
   right: 1em;
   top: 0.5em;
   z-index: 10;
+}
 
+nav {
   /* display parameters */
   background-color: #606060;
   border-radius: 5px;
@@ -75,12 +77,7 @@ nav {
 menu {
   /* layout parameters */
   height: 2.5em;
-  left: 0.5em;
   margin: 0.5em;
-  position: fixed;
-  right: 0.5em;
-  top: 4.5em;
-  z-index: 1;
 
   /* display parameters */
   background-color: #606060;
@@ -125,19 +122,19 @@ section {
 }
 
 input {
-    /* layout parameters */
-    height: 1.5em;
-    vertical-align: bottom;
-    width: 50%;
+  /* layout parameters */
+  height: 1.5em;
+  vertical-align: bottom;
+  width: 50%;
 
-    /* display parameters */
-    background-color: #404040;
-    border-radius: 5px;
-    border-style: none;
-    display: inline-block;
+  /* display parameters */
+  background-color: #404040;
+  border-radius: 5px;
+  border-style: none;
+  display: inline-block;
 
-    /* text parameters */
-    color: #FFFFFF;
-    font-family: Verdana;
-    font-size: 1.5em;
+  /* text parameters */
+  color: #FFFFFF;
+  font-family: Verdana;
+  font-size: 1.5em;
 }
