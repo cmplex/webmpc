@@ -147,6 +147,18 @@ input {
   font-size: 1.5em;
 }
 
+select {
+  /* display parameters */
+  background-color: #404040;
+  border-radius: 5px;
+  border-style: none;
+
+  /* text parameters */
+  color: white;
+  font-family: Verdana;
+  font-size: 1.5em;
+}
+
 form {
   /* display parameters */
   background-color: #606060;
