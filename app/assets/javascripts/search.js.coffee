@@ -11,7 +11,7 @@ needle = undefined
 # setup button actions when the page has finished loading
 $(document).ready ->
   $("#submitbutton").click ->
-    $("#searchview").empty()
+    $("section").empty()
     needle = document.getElementById("searchbox").value
 
     # submit query, get search results
@@ -21,7 +21,7 @@ $(document).ready ->
 
       while index < results.length
         # create search result entry
-        $("#searchview").append "<div id=\"result" + index + "\" class=\"result\">"
+        $("section").append "<div id=\"result" + index + "\" class=\"result\">"
 
         # fill in song information
         $("#result" + index).append "<div class=\"songinfo title\">" + results[index][0] + "</div>"
