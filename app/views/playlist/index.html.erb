@@ -2,7 +2,9 @@
   vim: tabstop=2 shiftwidth=2 expandtab
 -->
   <menu>
-    <%= menu_link "clear", mpd_clear_path %>
+    <% if can? :control_mpd, nil %>
+      <%= menu_link "clear", mpd_clear_path %>
+    <% end %>
   </menu>
 </header>
 <section>

@@ -4,7 +4,9 @@
   <menu>
     <input id="searchbox"></input>
     <a id="submitbutton">submit</a>
-    <a id="addallbutton">add all</a>
+    <% if can? :control_mpd, nil %>
+      <a id="addallbutton">add all</a>
+    <% end %>
   </menu>
 </header>
 <section>
