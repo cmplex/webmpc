@@ -21,9 +21,10 @@
     <%= nav_link "browse", :browse %>
 
     <% if user_signed_in? %>
-      <%= link_to "logout", destroy_user_session_path, method: :delete %>
+      <%= nav_link "user", edit_user_registration_path %>
+      <%= link_to "logout", destroy_user_session_path, method: :delete, onFocus: "blur();" %>
     <% else %>
-      <%= link_to "login", new_user_session_path, class: current?(new_user_session_path) %>
+      <%= nav_link "login", new_user_session_path %>
     <% end %>
   </nav>
 
