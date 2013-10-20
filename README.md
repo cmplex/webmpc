@@ -93,11 +93,12 @@ work as well, but you may have to be ready for some weird behaviour / looks.
 
 
 
-#### Deployment ####
+#### Configuration &amp; Deployment ####
 * Clone the repository:
 
     ```
     git clone https://github.com/cmplex/webmpc.git
+    cd webmpc
     ```
 
 * Install necessary gems (requires root priviledges):
@@ -107,10 +108,16 @@ work as well, but you may have to be ready for some weird behaviour / looks.
     bundle install
     ```
 
+* Configure the mailer:
+
+    * Edit `config.mailer_sender` in `config/initializers/devise.rb`.
+    * Edit `config/environments/development.rb`:
+        * Enter your hostname in `config.action_mailer.default_url_options`.
+        * Adjust the SMTP settings in `config.action_mailer.smtp_settings`.
+
 * Initialize the database and run the server:
 
     ```
-    cd webmpc
     rake db:migrate
     rails server
     ```
