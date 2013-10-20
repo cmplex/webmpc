@@ -1,0 +1,27 @@
+// vim: tabstop=2 shiftwidth=2 expandtab
+// Place all the styles related to the devise controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+form {
+  /* display parameters */
+  background-color: #606060;
+  border-radius: 5px;
+  display: block;
+  opacity: 0.8;
+  padding: 2em;
+
+  /* nested elements */
+  div {
+    margin-top: 1.5em;
+  }
+
+  div:last-child {
+    margin-top: 3em;
+    margin-bottom: 1.5em;
+  }
+
+  label {
+    font-size: 1.5em;
+  }
+}
