@@ -1,5 +1,5 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
-class PlaylistController < ApplicationController
+class PlaylistController < MpdController
   def index
   end
 

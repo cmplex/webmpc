@@ -1,6 +1,5 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
 class ApplicationController < ActionController::Base
-  include ActionController::Live
   after_filter :close_mpd_connection
   before_filter :open_mpd_connection
 
