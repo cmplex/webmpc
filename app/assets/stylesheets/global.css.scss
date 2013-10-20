@@ -146,3 +146,26 @@ input {
   font-family: Verdana;
   font-size: 1.5em;
 }
+
+form {
+  /* display parameters */
+  background-color: #606060;
+  border-radius: 5px;
+  display: block;
+  opacity: 0.8;
+  padding: 2em;
+
+  /* nested elements */
+  div {
+    margin-top: 1.5em;
+  }
+
+  div:last-child {
+    margin-top: 3em;
+    margin-bottom: 1.5em;
+  }
+
+  label {
+    font-size: 1.5em;
+  }
+}
