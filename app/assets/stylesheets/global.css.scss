@@ -40,6 +40,24 @@ header {
   z-index: 10;
 }
 
+mark {
+  /* layout parameters */
+  left: 20%;
+  position: absolute;
+  right: 20%;
+  top: 9.25em;
+  z-index: 20;
+
+  /* display parameters */
+  background-color: #606060;
+  border-radius: 5px;
+  padding: 0.5em;
+
+  /* text parameters */
+  color: #FFFFFF;
+  font-size: 1.5em;
+}
+
 nav {
   /* display parameters */
   background-color: #606060;

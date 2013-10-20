@@ -7,3 +7,5 @@ $(document).ready ->
   $("a").click ->
     $(this).fadeTo "fast", 0.4
     $(this).fadeTo "fast", 1.0
+
+  $("mark").delay(2000).fadeOut 1000

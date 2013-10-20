@@ -10,11 +10,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<header>
   <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String) %>
+    <%= content_tag :mark, msg, id: "flash_#{name}" if msg.is_a?(String) %>
   <% end %>
 
-<header>
   <nav>
     <%= nav_link "song", :now_playing %>
     <%= nav_link "playlist", :playlist %>
