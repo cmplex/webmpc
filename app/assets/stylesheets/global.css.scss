@@ -48,9 +48,6 @@ nav {
   opacity: 0.8;
   padding: 0.5em;
 
-  /* text parameters */
-  text-align: center;
-
   a {
     /* layout parameters */
     height: 1.5em;
@@ -66,7 +63,6 @@ nav {
     /* text parameters */
     color: #FFFFFF;
     font-size: 2em;
-    text-align: center;
   }
 
   .current {
@@ -85,9 +81,6 @@ menu {
   display: block;
   opacity: 0.8;
   padding: 0.5em;
-
-  /* text parameters */
-  text-align: center;
 
   a {
     /* layout parameters */
@@ -116,9 +109,6 @@ section {
   display: block;
   opacity: 0.9;
   padding: 0.5em;
-
-  /* text parameters */
-  text-align: center;
 }
 
 input {
