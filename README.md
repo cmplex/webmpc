@@ -119,5 +119,6 @@ work as well, but you may have to be ready for some weird behaviour / looks.
 
     ```
     rake db:migrate
+    rake db:seed
     rails server
     ```

@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Initialize the settings table
+Setting.delete_all
+Setting.create next_vote_trigger: 1.0, wish_timeout: 1.0
