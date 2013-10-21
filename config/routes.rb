@@ -36,6 +36,9 @@ Webmpc::Application.routes.draw do
   post    'voting/hate'
   post    'voting/reset'
 
+  get     'settings',                 to: 'settings#index'
+  patch   'settings/:id',             to: 'settings#update',        as: 'setting'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
