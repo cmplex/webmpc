@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930230514) do
+ActiveRecord::Schema.define(version: 20131021144654) do
 
   create_table "hate_votes", force: true do |t|
     t.integer  "user_id"
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 20130930230514) do
 
   add_index "hype_votes", ["song_id"], name: "index_hype_votes_on_song_id"
   add_index "hype_votes", ["user_id"], name: "index_hype_votes_on_user_id"
+
+  create_table "settings", force: true do |t|
+    t.float    "next_vote_trigger"
+    t.float    "wish_timeout"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "songs", force: true do |t|
     t.string   "artist"

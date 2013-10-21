@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  next_vote_trigger: 1.5
+  wish_timeout: 1.5
+
+two:
+  next_vote_trigger: 1.5
+  wish_timeout: 1.5
