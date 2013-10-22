@@ -36,6 +36,9 @@ gem 'r4s'
 # Use puma webserver.
 gem 'puma'
 
+# Use rockstar lastfm web service api wrapper
+gem 'rockstar'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 
