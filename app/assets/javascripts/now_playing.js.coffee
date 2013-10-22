@@ -16,24 +16,30 @@ $(document).ready ->
 
 # FIXME
 # define update function for the album art
-album = undefined
-updateAlbumCover = ->
-  unless album is $("#album").html
-    album = $("#album").html
+#album = undefined
+#updateAlbumCover = ->
+#  unless album is $("#album").html
+#    album = $("#album").html
+#
+#    # create img tag with appropriate src
+#    albumimg = document.createElement("img")
+#    albumimg.src = "covers/default.png"
+#    $("#albumart").html albumimg
+#
+#    # check if cover exists
+#    imgurl = "covers/" + response + ".jpg"
+#    $.ajax
+#      url: imgurl
+#      type: "HEAD"
+#      success: ->
+#        # cover does exist
+#        albumimg.src = imgurl
 
-    # create img tag with appropriate src
+updateAlbumCover = (artistname, albumname) ->
+  $.get "mpd/cover", artistname: artistname, albumname: albumname, (url) ->
     albumimg = document.createElement("img")
-    albumimg.src = "covers/default.png"
+    albumimg.src = url
     $("#albumart").html albumimg
-
-    # check if cover exists
-    imgurl = "covers/" + response + ".jpg"
-    $.ajax
-      url: imgurl
-      type: "HEAD"
-      success: ->
-        # cover does exist
-        albumimg.src = imgurl
 
 
 
@@ -49,7 +55,7 @@ if location.pathname is "/" or location.pathname is "/now_playing"
     $("#album").html(data["album"]).fadeIn()
     $("#title").html(data["title"]).fadeIn()
     # TODO: automatically update album cover
-    #updateAlbumCover()
+    updateAlbumCover(data["artist"], data["album"])
   source.addEventListener "progress", (e) ->
     data = JSON.parse(e.data)
     $("#progressbar span").width data["progress"] + "%"

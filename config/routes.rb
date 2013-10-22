@@ -18,6 +18,7 @@ Webmpc::Application.routes.draw do
   post    'mpd/volDown',              to: 'now_playing#volDown'
   post    'mpd/seek',                 to: 'now_playing#seek'
   get     'mpd/events/now_playing',   to: 'now_playing#notifications'
+  get     'mpd/cover',                to: 'now_playing#albumarturl'
 
   post    'mpd/play',                 to: 'playlist#play'
   post    'mpd/clear',                to: 'playlist#clear'

@@ -1,6 +1,6 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
 class NowPlayingController < MpdController
-  before_action :check_permissions, except: [:index, :notifications]
+  before_action :check_permissions, except: [:index, :notifications, :albumarturl]
 
   def index
   end
@@ -60,5 +60,13 @@ class NowPlayingController < MpdController
       R4S.push_data('now_playing', {progress: progress}, event: "progress")
     end
     R4S.add_stream(response, session, "now_playing").start
+  end
+
+  def albumarturl
+    artistname = params[:artistname]
+    albumname = params[:albumname]
+    album = Rockstar::Album.new(artistname, albumname, :include_info => true)
+    url = album.images["extralarge"]
+    render text: url
   end
 end
