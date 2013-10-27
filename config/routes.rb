@@ -17,14 +17,14 @@ Webmpc::Application.routes.draw do
   post    'mpd/volUp',                to: 'now_playing#volUp'
   post    'mpd/volDown',              to: 'now_playing#volDown'
   post    'mpd/seek',                 to: 'now_playing#seek'
-  get     'mpd/events/now_playing',   to: 'now_playing#notifications'
+  get     'mpd/song_info',            to: 'now_playing#songInfo'
   get     'mpd/cover',                to: 'now_playing#albumarturl'
 
   post    'mpd/play',                 to: 'playlist#play'
   post    'mpd/clear',                to: 'playlist#clear'
-  get     'mpd/events/playlist',      to: 'playlist#notifications'
+  get     'mpd/playlist',             to: 'playlist#playlist'
 
-  get     '/playlist/refresh_playlist', to: 'playlist#refresh_playlist'
+  get     'playlist/refresh_playlist', to: 'playlist#refresh_playlist'
 
   get     'mpd/search',               to: 'search#search'
   post    'mpd/search_mobile',        to: 'search#search_mobile'
@@ -36,9 +36,9 @@ Webmpc::Application.routes.draw do
   get     'mpd/listSongs',        to: 'browse#listSongs'
   post    'mpd/addSong',          to: 'browse#addSong'
 
-  post    '/browse/browse_artists',  to: 'browse#browse_artists'
-  post    '/browse/browse_albums',   to: 'browse#browse_albums'
-  post    '/browse/browse_songs',    to: 'browse#browse_songs'
+  post    'browse/browse_artists',  to: 'browse#browse_artists'
+  post    'browse/browse_albums',   to: 'browse#browse_albums'
+  post    'browse/browse_songs',    to: 'browse#browse_songs'
 
   post    'voting/hype'
   post    'voting/hate'

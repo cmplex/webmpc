@@ -3,17 +3,17 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-# setup event listeners for MPD notifications
+# Playlist update procedure
+updatePlaylist = ->
+  $('#section').load 'playlist/refresh_playlist', (r) ->
+    $('#section').listview("refresh")
+
+
+
+# Initialize the view and start periodic updates
 if location.pathname is "/playlist"
-  source = new EventSource("/mpd/events/playlist")
+  # initialize view
+  updatePlaylist()
 
-  # highlight currently playing song when it changes
-  source.addEventListener "currentsong", (e) ->
-    data = JSON.parse(e.data)
-
-  # update the playlist when it changes
-  source.addEventListener "playlist", (e) ->
-
-    # update playlist items
-    $('#section').load '/playlist/refresh_playlist', (r) ->
-      $('#section').listview("refresh")
+  # setup recurring update timer
+  setInterval updatePlaylist, 1000

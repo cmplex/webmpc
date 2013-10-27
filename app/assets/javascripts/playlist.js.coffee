@@ -5,6 +5,7 @@
 
 # shared variables
 old_playlist = []
+old_index = undefined
 
 
 
@@ -26,32 +27,21 @@ onPlaylistItemClick = ->
 
 
 
-# setup event listeners for MPD notifications
-if location.pathname is "/playlist"
-  source = new EventSource("/mpd/events/playlist")
-
-  # highlight currently playing song when it changes
-  source.addEventListener "currentsong", (e) ->
-    data = JSON.parse(e.data)
-    $(".playlist_elem").fadeTo "fast", 0.4
-    $("#song" + data["number"]).fadeTo "fast", 1.0
-
-  # update the playlist when it changes
-  source.addEventListener "playlist", (e) ->
-    playlist = JSON.parse(e.data)
-
+updatePlaylist = ->
+  $.get 'mpd/playlist', (data) ->
     # update playlist items
+    songs = data.songs
     index = -1
-    while ++index < Math.max(playlist.length, old_playlist.length)
+    while ++index < Math.max(songs.length, old_playlist.length)
       # add items if the new playlist is longer
       if index >= old_playlist.length
         # create playlist entry
         $("section").append "<div id=\"song" + index + "\" class=\"playlist_elem\">"
 
         # fill in song information
-        $("#song" + index).append "<div class=\"songinfo title\">" + playlist[index]["title"] + "</div>"
-        $("#song" + index).append "<div class=\"songinfo artist\">" + playlist[index]["artist"] + "</div>"
-        $("#song" + index).append "<div class=\"songinfo album\">" + playlist[index]["album"] + "</div>"
+        $("#song" + index).append "<div class=\"songinfo title\">" + songs[index].title + "</div>"
+        $("#song" + index).append "<div class=\"songinfo artist\">" + songs[index].artist + "</div>"
+        $("#song" + index).append "<div class=\"songinfo album\">" + songs[index].album + "</div>"
         $("#song" + index).append "<div class=\"songid\">" + index + "</div>"
 
         # show only the song title
@@ -63,16 +53,33 @@ if location.pathname is "/playlist"
         continue
 
       # remove items if the new playlist is shorter
-      if index >= playlist.length
+      if index >= songs.length
         $("#song" + index).remove()
         continue
 
       # update song information
-      if playlist[index]["title"] isnt old_playlist[index]["title"] or playlist[index]["artist"] isnt old_playlist[index]["artist"] or playlist[index]["album"] isnt old_playlist[index]["album"]
-        $("#song" + index + " .title").contents().replaceWith playlist[index]["title"]
-        $("#song" + index + " .artist").contents().replaceWith playlist[index]["artist"]
-        $("#song" + index + " .album").contents().replaceWith playlist[index]["album"]
+      if songs[index].title isnt old_playlist[index].title or songs[index].artist isnt old_playlist[index].artist or songs[index].album isnt old_playlist[index].album
+        $("#song" + index + " .title").contents().replaceWith playlist[index].title
+        $("#song" + index + " .artist").contents().replaceWith playlist[index].artist
+        $("#song" + index + " .album").contents().replaceWith playlist[index].album
         $("#song" + index + " .songid").contents().replaceWith "" + index
 
     # update playlist state variable
-    old_playlist = playlist
+    old_playlist = songs
+
+    # highlight currently playing song when it changes
+    if old_index isnt data.index
+      $(".playlist_elem").fadeTo "fast", 0.4
+      $("#song" + data.index).fadeTo "fast", 1.0
+
+      # update index state variable
+      old_index = data.index
+
+
+
+if location.pathname is "/playlist"
+  # initialize view
+  updatePlaylist()
+
+  # setup recurring update timer
+  setInterval updatePlaylist, 1000

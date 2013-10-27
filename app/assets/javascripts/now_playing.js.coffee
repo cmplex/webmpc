@@ -3,6 +3,13 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+# shared variables
+artist = undefined
+album = undefined
+title = undefined
+
+
+
 $(document).ready ->
   $("#progressbar").click (e) ->
     # get x-position relative to progressbar-container
@@ -14,27 +21,6 @@ $(document).ready ->
 
 
 
-# FIXME
-# define update function for the album art
-#album = undefined
-#updateAlbumCover = ->
-#  unless album is $("#album").html
-#    album = $("#album").html
-#
-#    # create img tag with appropriate src
-#    albumimg = document.createElement("img")
-#    albumimg.src = "covers/default.png"
-#    $("#albumart").html albumimg
-#
-#    # check if cover exists
-#    imgurl = "covers/" + response + ".jpg"
-#    $.ajax
-#      url: imgurl
-#      type: "HEAD"
-#      success: ->
-#        # cover does exist
-#        albumimg.src = imgurl
-
 updateAlbumCover = (artistname, albumname) ->
   $.get "mpd/cover", artistname: artistname, albumname: albumname, size: "extralarge", (url) ->
     albumimg = document.createElement("img")
@@ -43,19 +29,30 @@ updateAlbumCover = (artistname, albumname) ->
 
 
 
-# setup event listeners for MPD notifications
+updateSongInfo = ->
+  $.get "mpd/song_info", (song) ->
+    # update progress bar
+    $("#progressbar span").width song.progress + "%"
+
+    # if the song info changed, update the view
+    if artist != song.artist or album != song.album or title != song.title
+      # update the album art if necessary
+      if artist != song.artist or album != song.album
+        artist = song.artist
+        album = song.album
+        updateAlbumCover()
+
+      # update the song information
+      title = song.title
+      $("#artist").html(artist).fadeIn()
+      $("#album").html(album).fadeIn()
+      $("#title").html(title).fadeIn()
+
+
+
 if location.pathname is "/" or location.pathname is "/now_playing"
-  source = new EventSource("/mpd/events/now_playing")
-  source.addEventListener "song", (e) ->
-    data = JSON.parse(e.data)
-    $("#artist").hide()
-    $("#album").hide()
-    $("#title").hide()
-    $("#artist").html(data["artist"]).fadeIn()
-    $("#album").html(data["album"]).fadeIn()
-    $("#title").html(data["title"]).fadeIn()
-    # TODO: automatically update album cover
-    updateAlbumCover(data["artist"], data["album"])
-  source.addEventListener "progress", (e) ->
-    data = JSON.parse(e.data)
-    $("#progressbar span").width data["progress"] + "%"
+  # initialize the view
+  updateSongInfo()
+
+  # set recurring update timer
+  setInterval updateSongInfo, 1000

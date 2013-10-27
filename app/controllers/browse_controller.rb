@@ -3,28 +3,28 @@ class BrowseController < MpdController
   before_action :check_permissions, only: :addSong
 
   def index
-    @artists = @mpc.artists.sort
+    @artists = @@mpc.artists.sort
   end
 
   def listArtists
     # omit the empty string
-    render json: @mpc.artists.sort[1..-1]
+    render json: @@mpc.artists.sort[1..-1]
   end
 
   def listAlbums
-    render json: @mpc.albums(params[:artist]).sort
+    render json: @@mpc.albums(params[:artist]).sort
   end
 
   def listSongs
-    songs = @mpc.search("album", params[:album], {case_sensitive: true})
+    songs = @@mpc.search("album", params[:album], {case_sensitive: true})
     render json: songs.map{ |song| [song.title, song.album, song.artist] }
   end
 
   def addSong
-    songs = @mpc.songs_by_artist(params[:artist])
+    songs = @@mpc.songs_by_artist(params[:artist])
     songs.each do |song|
       if song.album == params[:album] and song.title == params[:title]
-        @mpc.add(song)
+        @@mpc.add(song)
         render text: "song #{params[:title]} of the album #{params[:album]} by #{params[:artist]} was added"
         return
       end
@@ -33,17 +33,20 @@ class BrowseController < MpdController
   end
 
   def browse_artists
-    render :partial => "browse_artists"
+    artists = @@mpc.artists.sort[1..-1]
+    render partial: "browse_artists", locals: { artists: artists }
     return
   end
 
   def browse_albums
-    render :partial => "browse_albums", :locals => { :artist => params[:artist] }
+    albums = @@mpc.albums(params[:artist]).sort
+    render partial: "browse_albums", locals: { albums: albums }
     return
   end
 
   def browse_songs
-    render :partial => "browse_songs", :locals => { :album => params[:album] }
+    songs = @@mpc.search("album", params[:album])
+    render partial: "browse_songs", locals: { songs: songs }
     return
   end
 
