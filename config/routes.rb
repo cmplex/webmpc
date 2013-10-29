@@ -20,9 +20,10 @@ Webmpc::Application.routes.draw do
   get     'mpd/song_info',            to: 'now_playing#songInfo'
   get     'mpd/cover',                to: 'now_playing#albumarturl'
 
-  post    'mpd/play',                 to: 'playlist#play'
   post    'mpd/clear',                to: 'playlist#clear'
+  post    'mpd/play',                 to: 'playlist#play'
   get     'mpd/playlist',             to: 'playlist#playlist'
+  post    'mpd/remove/:number',        to: 'playlist#remove'
 
   get     'playlist/refresh_playlist', to: 'playlist#refresh_playlist'
 

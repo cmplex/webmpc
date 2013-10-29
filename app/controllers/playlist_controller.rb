@@ -25,4 +25,8 @@ class PlaylistController < MpdController
     return
   end
 
+  def remove
+    @@mpc.delete(params[:number])
+    render text: "Deleted song number #{params[:number]} from the playlist."
+  end
 end
