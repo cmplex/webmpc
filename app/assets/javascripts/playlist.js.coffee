@@ -29,7 +29,16 @@ onPlaylistItemClick = ->
     $(this).children(".songinfo").fadeIn()
 
 
+# helper procedure for adding a remove button
+addRemoveButton = (index) ->
+  # add remove button only when the control menu has content
+  # so we can assume the user is allowed to manage the MPD
+  if $("menu a").text()
+    $("#song" + index + " .title").append '<span>x</span>'
+    $("#song" + index + " .title span").click onRemoveButtonClick
 
+
+# main update procedure
 updatePlaylist = ->
   $.get 'mpd/playlist', (data) ->
     # update playlist items
@@ -52,8 +61,7 @@ updatePlaylist = ->
         $("#song" + index + " .title").show()
 
         # add remove button
-        $("#song" + index + " .title").append '<span>x</span>'
-        $("#song" + index + " .title span").click onRemoveButtonClick
+        addRemoveButton index
 
         # set onClick event handler
         $("#song" + index).mouseup onPlaylistItemClick
@@ -70,11 +78,13 @@ updatePlaylist = ->
 
       # update entries that have changed
       if songs[index].title isnt old_playlist[index].title or songs[index].artist isnt old_playlist[index].artist or songs[index].album isnt old_playlist[index].album
+        # update song info
         $("#song" + index + " .title").text songs[index].title
-        $("#song" + index + " .title").append '<span>x</span>'
-        $("#song" + index + " .title span").click onRemoveButtonClick
         $("#song" + index + " .artist").text songs[index].artist
         $("#song" + index + " .album").text songs[index].album
+
+        # add remove button
+        addRemoveButton index
 
     # update playlist state variable
     old_playlist = songs
