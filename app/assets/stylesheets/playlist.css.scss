@@ -18,19 +18,18 @@
   text-align: left;
 
   /* nested elements */
-  #songdescr {
-   display: inline-block;
-   margin-left: 2px;
-   font-size: 1em;
-   text-align: left;
-  }
-
   div {
-   font-size: 0.5em;
+    font-size: 0.5em;
+    width: 100%;
+
+    span {
+      float: right;
+      margin-right: 0.5em;
+    }
   }
 
   div:first-child {
-   display: inline-block;
-   font-size: 1em;
+    display: inline-block;
+    font-size: 1em;
   }
 }
