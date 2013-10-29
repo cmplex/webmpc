@@ -31,7 +31,11 @@ class MpdController < ApplicationController
         @@index  = song.pos
       end
 
-      @@mpc.on :playlist do |playlist|
+      @@mpc.on :playlistlength do
+        @@index = @@mpc.status[:song]
+      end
+
+      @@mpc.on :playlist do
         @@playlist = @@mpc.queue.map { |song| {artist: song.artist, album: song.album, title: song.title} }
       end
     end
