@@ -1,6 +1,6 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
 class BrowseController < MpdController
-  before_action :check_permissions, only: :addSong
+  before_action :check_permissions, only: [:addSong, :updateDatabase]
 
   def index
     @artists = @@mpc.artists.sort
@@ -50,4 +50,11 @@ class BrowseController < MpdController
     return
   end
 
+  def updateDatabase
+    if @@mpc.update
+      render text: "Database update started"
+    else
+      render text: "Database update could not be started"
+    end
+  end
 end
