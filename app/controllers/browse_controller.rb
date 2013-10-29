@@ -1,6 +1,6 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
 class BrowseController < MpdController
-  before_action :check_permissions, only: [:addSong, :updateDatabase]
+  before_action :check_permissions, only: [:addSong, :addAlbum, :updateDatabase]
 
   def index
     @artists = @@mpc.artists.sort
@@ -48,6 +48,14 @@ class BrowseController < MpdController
     songs = @@mpc.search("album", params[:album])
     render partial: "browse_songs", locals: { songs: songs }
     return
+  end
+
+  def addAlbum
+      @songs = @@mpc.search(:album, params[:album])
+      @songs.each do |song|
+        @@mpc.add song
+      end
+      render text: "Added album #{params[:album]} to the playlist"
   end
 
   def updateDatabase
