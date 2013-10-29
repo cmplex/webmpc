@@ -3,11 +3,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
+# Show the list of artists on page load
 $(document).ready ->
   displayArtists() if location.pathname is "/browse"
 
 
 
+# Helper procedure to render a list of all artists and set up onClick listeners
 displayArtists = ->
   $.get "mpd/listArtists", (artists) ->
     # fade out and clear old list
@@ -25,6 +28,8 @@ displayArtists = ->
     # fade in the new list
     $("section").fadeIn "fast"
 
+
+# Helper procedure to render a list of all albums by an artist and set up onClick listeners
 displayAlbums = ->
   $.get "mpd/listAlbums", artist: $(this).find("div").text() , (albums) ->
     # fade out and clear old list
@@ -47,6 +52,9 @@ displayAlbums = ->
     # fade in the new list
     $("section").fadeIn "fast"
 
+
+
+# Helper procedure to render a list of songs on an album and set up onClick listeners
 displaySongs = ->
   $.get "mpd/listSongs", album: $(this).find("div").text() , (songs) ->
     # fade out and clear old list
@@ -76,6 +84,8 @@ displaySongs = ->
 
     # fade in the new list
     $("section").fadeIn "fast"
+
+
 
 # onClick event handler for song items
 onSongItemClick = ->
