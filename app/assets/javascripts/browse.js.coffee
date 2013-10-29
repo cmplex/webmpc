@@ -24,20 +24,36 @@ addEnqueueAlbumButton = (element) ->
 
 
 
+# Helper procedure for adding an enqueue button to an artist entry
+addEnqueueArtistButton = (element) ->
+  # Add enqueue button only when the control menu has content
+  # so we can assume the user is allowed to manage the MPD
+  if $("menu a").text()
+    button = $('<span>+</span>')
+    button.click ->
+      artist = $(this).parent().text()
+      artist = artist.substring 0, artist.length - 1
+      $.post 'mpd/addArtist', artist: artist
+    element.append button
+
+
+
 # Helper procedure to render a list of all artists and set up onClick listeners
 displayArtists = ->
   $.get "mpd/listArtists", (artists) ->
     # fade out and clear old list
     $("section").fadeOut "fast"
     $("section").empty()
-    index = 0
-    while index < artists.length
+    index = -1
+    while ++index < artists.length
       $("section").append "<div id=\"artist" + index + "\" class=\"browselist_elem\">"
       $("#artist" + index).append "<div>" + artists[index] + "</div>"
 
       # setup onClick event handler
       $("#artist" + index).mouseup displayAlbums
-      index++
+
+      # Add enqueue button
+      addEnqueueArtistButton $("#artist" + index + " div")
 
     # fade in the new list
     $("section").fadeIn "fast"
@@ -45,7 +61,12 @@ displayArtists = ->
 
 # Helper procedure to render a list of all albums by an artist and set up onClick listeners
 displayAlbums = ->
-  $.get "mpd/listAlbums", artist: $(this).find("div").text() , (albums) ->
+  # Remove the button text from the artist name if it exists
+  artist = $(this).find("div").text()
+  if $("menu a").text()
+    artist = artist.substring 0, artist.length - 1
+
+  $.get "mpd/listAlbums", artist: artist, (albums) ->
     # fade out and clear old list
     $("section").fadeOut "fast"
     $("section").empty()

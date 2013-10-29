@@ -36,6 +36,7 @@ Webmpc::Application.routes.draw do
   get     'mpd/listSongs',        to: 'browse#listSongs'
   post    'mpd/addSong',          to: 'browse#addSong'
   post    'mpd/addAlbum',         to: 'browse#addAlbum'
+  post    'mpd/addArtist',        to: 'browse#addArtist'
   post    'mpd/updateDatabase',   to: 'browse#updateDatabase'
 
   post    'browse/browse_artists',  to: 'browse#browse_artists'
