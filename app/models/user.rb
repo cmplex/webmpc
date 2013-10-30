@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   has_many :hyped_songs, through: :hype_votes, source: :song
   has_many :hate_votes
   has_many :hated_songs, through: :hate_votes, source: :song
+
+	def online?
+		updated_at > 10.minutes.ago
+	end
 end

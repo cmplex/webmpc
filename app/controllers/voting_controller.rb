@@ -31,4 +31,35 @@ class VotingController < MpdController
             # otherwise create and return it
             @song = Song.find_or_create_by artist: artist, album: album, title: title
         end
+
+        def count_users
+          users = User.all
+          count = 0
+
+          users.each do |user|
+            if user.online?
+              count = count + 1
+            end
+          end
+
+          return count
+        end
+
+
+        def vote_threshold
+          clients_connected = count_users
+          rel_threshold = 0
+
+          # scale relative vote threshold according to number of connected clients
+          if clients_connected > 1
+            rel_threshold = 1 / Math::log(clients_connected, 2)
+          else
+            rel_threshold = 1
+          end
+
+          # compute absolute vote threshold
+          abs_threshold = (rel_threshold * clients_connected).round
+
+          return abs_threshold
+        end
 end
