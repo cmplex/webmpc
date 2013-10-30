@@ -18,6 +18,7 @@ class VotingController < MpdController
     def hate
         # Create HateVote if it doesn't yet exist
         HateVote.find_or_create_by user_id: current_user.id, song_id: @song.id
+        check_hate_threshold
         render nothing: true
     end
 
@@ -61,5 +62,13 @@ class VotingController < MpdController
           abs_threshold = (rel_threshold * clients_connected).round
 
           return abs_threshold
+        end
+
+
+        def check_hate_threshold
+            votecount = HateVote.where(:song_id => @song.id).count
+            if votecount >= vote_threshold
+              render text: @mpc.next
+            end
         end
 end
