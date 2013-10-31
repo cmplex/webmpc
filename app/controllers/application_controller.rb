@@ -1,7 +1,7 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
 class ApplicationController < ActionController::Base
   after_filter :close_mpd_connection
-  before_filter :open_mpd_connection, :user_activity
+  before_filter :open_mpd_connection
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -19,10 +19,4 @@ class ApplicationController < ActionController::Base
   def close_mpd_connection
     @mpc.disconnect
   end
-
-	private
-
-	def user_activity
-		current_user.try :touch
-	end
 end
