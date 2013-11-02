@@ -11,31 +11,35 @@ old_index = undefined
 
 # onClick event handler for remove buttons
 onRemoveButtonClick = ->
-  $.post 'mpd/remove/' + $(this).parent().parent().data 'number'
+  $(this).fadeTo 'fast', 0.4
+  $(this).fadeTo 'fast', 1.0
+  $.post 'mpd/remove/' + $(this).parents('.playlist_elem').data 'number'
+
 
 # onClick event handler for playlist items
 onPlaylistItemClick = ->
-  if $(this).data("clicked") is "true"
+  container = $(this).parents '.playlist_elem'
+  if container.data("clicked") is "true"
     # read songid from attached data and start playback
-    $.post "mpd/play", number: $(this).data 'number'
+    $.post "mpd/play", number: container.data 'number'
   else
     # remove "clicked" flag of other items, set it on the clicked one
     $(".playlist_elem").removeData "clicked"
-    $(this).data "clicked", "true"
+    container.data "clicked", "true"
 
     # hide other song descriptions, show specific song description
     $(".playlist_elem div").hide()
-    $(".playlist_elem div:first-child").show()
-    $(this).children(".songinfo").fadeIn()
+    container.children(".songinfo").fadeIn()
 
 
 # helper procedure for adding a remove button
-addRemoveButton = (index) ->
+addRemoveButtonTo = (element) ->
   # add remove button only when the control menu has content
   # so we can assume the user is allowed to manage the MPD
   if $("menu a").text()
-    $("#song" + index + " .title").append '<span>x</span>'
-    $("#song" + index + " .title span").click onRemoveButtonClick
+    button = $('<td>x</td>')
+    button.click onRemoveButtonClick
+    element.append button
 
 
 # main update procedure
@@ -52,19 +56,19 @@ updatePlaylist = ->
         $("section").append '<div id="song' + index + '" class="playlist_elem">'
 
         # fill in song information
-        $("#song" + index).append '<div class="songinfo title">' + songs[index].title + '</div>'
+        $("#song" + index).append '<table><tr><td class="songinfo title">' + songs[index].title + '</td></tr></table>'
         $("#song" + index).append '<div class="songinfo artist">' + songs[index].artist + '</div>'
         $("#song" + index).append '<div class="songinfo album">' + songs[index].album + '</div>'
 
         # show only the song title
         $("#song" + index + " div").hide()
-        $("#song" + index + " .title").show()
 
         # add remove button
-        addRemoveButton index
+        addRemoveButtonTo $("#song" + index + " table tr")
 
         # set onClick event handler
-        $("#song" + index).mouseup onPlaylistItemClick
+        $("#song" + index + " .title").mouseup onPlaylistItemClick
+        $("#song" + index + " div").mouseup onPlaylistItemClick
 
         # attach song index
         $("#song" + index).data 'number', index
@@ -82,9 +86,6 @@ updatePlaylist = ->
         $("#song" + index + " .title").text songs[index].title
         $("#song" + index + " .artist").text songs[index].artist
         $("#song" + index + " .album").text songs[index].album
-
-        # add remove button
-        addRemoveButton index
 
     # update playlist state variable
     old_playlist = songs
