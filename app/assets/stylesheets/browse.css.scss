@@ -14,22 +14,35 @@
   opacity: 0.6;
 
   /* text parameters */
-  font-size: 2em;
   text-align: left;
 
   /* nested elements */
-  div {
-    font-size: 0.5em;
-    width: 100%;
+  table {
+    font-size: 2em;
+    padding: 0em;
 
-    span {
-      float: right;
-      margin-right: 0.5em;
+    td {
+      padding: 0em;
+    }
+
+    td:first-child {
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    td:last-child {
+      background-color: transparent;
+      cursor: pointer;
+      text-align: right;
+      width: 1em;
     }
   }
 
-  div:first-child {
+  div {
     font-size: 1em;
-    display: inline-block;
+  }
+
+  div:first-child {
+    font-size: 2em;
   }
 }
