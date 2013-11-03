@@ -50,6 +50,7 @@ Webmpc::Application.routes.draw do
 
   get     'settings',                 to: 'settings#index'
   patch   'settings/:id',             to: 'settings#update',        as: 'setting'
+  post    'mpd/settings',             to: 'settings#apply'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
