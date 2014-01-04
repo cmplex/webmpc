@@ -79,5 +79,7 @@ class VotingController < MpdController
             if votecount >= vote_threshold
               render text: @mpc.next
             end
+
+            return
         end
 end
