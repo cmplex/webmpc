@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
   has_many :hated_songs, through: :hate_votes, source: :song
 
 	def online?
-		last_sign_in_at < 2.hours.ago
+		current_sign_in_at < 2.hours.ago
 	end
 end
