@@ -71,7 +71,7 @@ class VotingController < MpdController
 						votecount = 0
 						votes.each do |vote|
               user = User.where(:id => vote.user_id).first
-							if user.current_sign_in_at < 2.hours.ago and vote.updated_at < 2.hours.ago
+							if vote.updated_at > 2.hours.ago
 								votecount = votecount + 1
 							end
 						end
