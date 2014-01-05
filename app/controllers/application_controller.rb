@@ -19,4 +19,10 @@ class ApplicationController < ActionController::Base
   def close_mpd_connection
     @mpc.disconnect
   end
+
+  def mobile?
+    return request.user_agent =~ /Mobile|webOS/
+  end
+
+  helper_method :mobile?
 end
