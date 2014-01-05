@@ -66,20 +66,16 @@ class NowPlayingController < MpdController
     artistname = params[:artistname]
     albumname = params[:albumname]
 
-    album = Rockstar::Album.new(artistname, albumname, :include_info => true)
+    url = 'assets/default.png'
 
-    # TODO: clean up
-    rescue SocketError => se
-      puts se
-
-    if not album.nil? and not album.images.nil?
-        url = album.images["extralarge"]
-    else
-        url = 'assets/default.png'
+    begin
+      album = Rockstar::Album.new(artistname, albumname, :include_info => true)
+      url = album.images["extralarge"]
+    rescue
+      url = 'assets/default.png'
     end
 
     render text: url
-
     return
   end
 end
