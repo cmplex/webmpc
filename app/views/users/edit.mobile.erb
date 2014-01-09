@@ -1,0 +1,36 @@
+<!--
+  vim: tabstop=2 shiftwidth=2 expandtab
+-->
+  <menu>
+  </menu>
+</header>
+<section>
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+      <div>
+        <label><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</label>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :email %>
+      <br />
+      <%= f.text_field :email %>
+    </div>
+
+    <div>
+      <%= f.label :role %>
+      <br />
+      <%= f.select :role, [['Normal User',:user],['Priviledged User',:priviledged],['Administrator',:admin]] %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</section>

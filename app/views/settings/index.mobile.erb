@@ -1,0 +1,43 @@
+<!--
+  # vim: tabstop=2 shiftwidth=2 expandtab
+-->
+  <menu>
+  </menu>
+</header>
+<section>
+  <%= form_for(@settings) do |f| %>
+    <% if @settings.errors.any? %>
+      <div id="error_explanation">
+        <label><%= pluralize(@settings.errors.count, "error") %> prohibited settings from being saved:</label>
+        <ul>
+          <% @settings.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :next_vote_trigger %>
+      <br />
+      <%= f.text_field :next_vote_trigger %>
+    </div>
+    <div>
+      <%= f.label :wish_timeout %>
+      <br />
+      <%= f.text_field :wish_timeout %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Save Settings" %>
+    </div>
+  <% end %>
+
+  <%= form_for :Voting, url: voting_reset_path do |f| %>
+    <div>
+      <%= f.label "Voting system" %>
+      <br />
+      <%= f.submit "Reset" %>
+    </div>
+  <% end %>
+</section>

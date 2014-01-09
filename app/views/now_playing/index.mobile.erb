@@ -1,0 +1,50 @@
+<!--
+  vim: tabstop=2 shiftwidth=2 expandtab
+-->
+  <menu>
+    <% if user_signed_in? %>
+      <%= menu_link "hype", voting_hype_path %>
+      <%= menu_link "hate", voting_hate_path %>
+      <% if can? :control_mpd, nil %>
+        <%= menu_link "prev",   mpd_prev_path %>
+        <%= menu_link "toggle", mpd_toggle_path %>
+        <%= menu_link "next",   mpd_next_path %>
+        <%= menu_link "-",      mpd_volDown_path %>
+        <%= menu_link "+",      mpd_volUp_path %>
+      <% end %>
+    <% end %>
+  </menu>
+</header>
+<section>
+  <div id="progressbar">
+    <span></span>
+  </div>
+  <div id="songdisplay">
+    <p id="albumart"></p>
+    <div id="albumart-overlay"></div>
+    <div id="songinfo">
+      <p id="title">
+      </p>
+      <p id="artist">
+      </p>
+      <p id="album">
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <% if mobile? %>
+    mobile
+  <% else %>
+    desktop
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= link_to "logout", destroy_user_session_path, method: :delete, onFocus: "blur();" %>
+  <% else %>
+    <%= link_to "login", new_user_session_path %>
+  <% end %>
+</footer>
+
