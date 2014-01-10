@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require global.js.coffee
+//= require playlist.js.coffee
+//= require settings.js.coffee
+//= require browse.js.coffee
+//= require now_playing.js.coffee
+//= require search.js.coffee
