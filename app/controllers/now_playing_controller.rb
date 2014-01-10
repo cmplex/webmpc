@@ -67,12 +67,26 @@ class NowPlayingController < MpdController
     albumname = params[:albumname]
 
     url = 'assets/default.png'
+    filename = (Digest::SHA1.hexdigest artistname+albumname)+".png"
+
 
     begin
+      File.open("app/assets/images/"+filename, 'r')
+      url = "assets/"+filename
+    rescue StandardError => e
       album = Rockstar::Album.new(artistname, albumname, :include_info => true)
-      url = album.images["extralarge"]
-    rescue
-      url = 'assets/default.png'
+    end
+
+    
+    if(not album.nil?)
+      begin
+        url = album.images["extralarge"]
+        if not(system("wget "+url+" -O "+"app/assets/images/"+filename))
+          raise IOError
+        end
+      rescue StandardError => e
+        url = 'assets/default.png'
+      end
     end
 
     render text: url
