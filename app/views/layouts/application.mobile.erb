@@ -1,59 +1,51 @@
-<!--
-  vim: tabstop=2 shiftwidth=2 expandtab
--->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Webmpc</title>
-  <%= stylesheet_link_tag "/jqm/jquery.mobile-1.4.0.css" %>
-  <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "/jqm/jquery.mobile-1.4.0.min.js" %>
-  <%= javascript_include_tag "application" %>
+  <title>WebMPC</title>
+  <%= stylesheet_link_tag "http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" %>
+  <%= stylesheet_link_tag    "mobile", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "http://code.jquery.com/jquery-1.8.2.min.js" %>
+  <%= javascript_include_tag "http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js" %>
+  <%= javascript_include_tag "mobile", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0" >
 </head>
 <body>
-<header>
-  <% flash.each do |name, msg| %>
-    <%= content_tag :mark, msg, id: "flash_#{name}" if msg.is_a?(String) %>
-  <% end %>
 
-  <nav data-role="header">
-    <%= nav_link "song", :now_playing %>
-    <%= nav_link "playlist", :playlist %>
-    <%= nav_link "search", :search %>
-    <%= nav_link "browse", :browse %>
+<div data-role="page">
+  <div data-role="panel" data-display="overlay" id="globalmenu">
+    <a href="#globalheader" data-rel="close">Close panel</a>
+    <ul data-role="listview">
+      <li data-role="list-divider">views</li>
+      <li><%= nav_link "song", :now_playing %></li>
+      <li><%= nav_link "playlist", :playlist %></li>
+      <li><%= nav_link "search", :search %></li>
+      <li><%= nav_link "browse", :browse %></li>
 
-    <% if user_signed_in? %>
-      <%= nav_link "user", edit_user_registration_path %>
-      <%= link_to "logout", destroy_user_session_path, method: :delete, onFocus: "blur();" %>
-    <% else %>
-      <%= nav_link "login", new_user_session_path %>
-    <% end %>
-  </nav>
+      <% if can? :manage, Setting %>
+        <li data-role="list-divider">admin</li>
+        <li><%= nav_link "settings", settings_path %></li>
+      <% end %>
 
-  <%= yield %>
-
-  <footer data-role="footer" data-position="fixed">
-    <div data-role="navbar">
-    <ul>
-    <li data-icon="gear">
-    <% if mobile? %>
-      mobile
-    <% else %>
-      desktop
-    <% end %>
-    </li>
-
-    <li data-icon="home">
-    <% if user_signed_in? %>
-      <%= link_to "logout", destroy_user_session_path, method: :delete, onFocus: "blur();" %>
-    <% else %>
-      <%= link_to "login", new_user_session_path %>
-    <% end %>
-    </li>
+      <li data-role="list-divider">account</li>
+      <% if user_signed_in? %>
+        <li><%= nav_link "settings", edit_user_registration_path %></li>
+        <li><%= link_to "logout", destroy_user_session_path, method: :delete, onFocus: "blur();" %></li>
+      <% else %>
+        <li><%= nav_link "login", new_user_session_path %></li>
+      <% end %>
     </ul>
-    </div>
-  </footer>
+  </div>
+
+  <div data-role="header" id="globalheader">
+    <h1>WebMPC</h1>
+    <a href="#globalmenu" data-role="button" data-icon="grid">menu</a>
+
+    <%= yield %>
+
+  <div data-role="footer" data-position="fixed">
+  </div>
+</div>
 
 </body>
 </html>
