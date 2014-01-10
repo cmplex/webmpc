@@ -11,5 +11,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require global.css.scss
+ *= require playlist.css.scss
+ *= require settings.css.scss
+ *= require browse.css.scss
+ *= require now_playing.css.scss
+ *= require search.css.scss
+ *= require users.css.scss
  */
