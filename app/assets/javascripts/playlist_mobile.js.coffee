@@ -15,4 +15,5 @@ if location.pathname is "/playlist"
   source.addEventListener "playlist", (e) ->
 
     # update playlist items
-    $('#section').load('/playlist/refresh_playlist')
+    $('#section').load '/playlist/refresh_playlist', (r) ->
+      $('#section').listview("refresh")
