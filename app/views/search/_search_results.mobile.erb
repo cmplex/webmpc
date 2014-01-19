@@ -1,0 +1,20 @@
+<% puts @songs %>
+<% unless @songs.nil? %>
+  <% results = @songs.map { |song| {artist: song.artist, album: song.album, title: song.title} } %>
+  <% i = 0 %>
+  <ul data-role="listview">
+    <% results.each do |song| %>
+      <li>
+        <a href="#">
+          <h1><%= song[:title] %></h1>
+          <p><%= song[:artist] %></p>
+          <p><%= song[:album] %></p>
+        </a>
+        <%= menu_link "add", mpd_addResult_path(:index => i) %>
+        <% i = i + 1 %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h1>No matches</h1>
+<% end %>

@@ -1,6 +1,6 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
 class SearchController < MpdController
-  before_action :check_permissions, except: [:index, :search]
+  before_action :check_permissions, except: [:index, :search, :search_mobile]
   before_filter :perform_search, except: :index
 
   def index
@@ -21,6 +21,10 @@ class SearchController < MpdController
 
   def search
     render json: @songs.map{ |song| [song.title, song.album, song.artist] }
+  end
+
+  def search_mobile
+    render :partial => "search_results"
   end
 
   private

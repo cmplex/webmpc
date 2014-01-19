@@ -1,13 +1,19 @@
 <!--
   vim: tabstop=2 shiftwidth=2 expandtab
 -->
-  <menu>
-    <input id="searchbox"></input>
-    <a id="submitbutton">submit</a>
-    <% if can? :control_mpd, nil %>
-      <a id="addallbutton">add all</a>
-    <% end %>
-  </menu>
-</header>
-<section>
-</section>
+ 
+  <% if can? :control_mpd, nil %>
+  <div data-role="navbar">
+    <ul>
+      <li><%= menu_link "add all", mpd_addAll_path %></li>
+    </ul>
+  </div>
+  <% end %>
+</div>
+
+<div data-role="content">
+  <%= form_tag(mpd_search_mobile_path, remote: true) do %>
+    <%= text_field_tag(:needle) %>
+  <% end %>
+  <%= render "search_results" %>
+</div>

@@ -23,9 +23,11 @@ Webmpc::Application.routes.draw do
   post    'mpd/play',                 to: 'playlist#play'
   post    'mpd/clear',                to: 'playlist#clear'
   get     'mpd/events/playlist',      to: 'playlist#notifications'
+
   get     '/playlist/refresh_playlist', to: 'playlist#refresh_playlist'
 
   get     'mpd/search',               to: 'search#search'
+  post    'mpd/search_mobile',        to: 'search#search_mobile'
   post    'mpd/addResult',            to: 'search#addResult'
   post    'mpd/addAll',               to: 'search#addAll'
 
