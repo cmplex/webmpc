@@ -20,15 +20,16 @@ class SearchController < MpdController
   end
 
   def search
-    render json: @songs.map{ |song| [song.title, song.album, song.artist] }
-  end
-
-  def search_mobile
-    render :partial => "search_results"
+    unless mobile?
+      render json: @songs.map{ |song| [song.title, song.album, song.artist] }
+    else
+      render action: "index"
+    end
   end
 
   private
     def perform_search
       @songs = @mpc.search(:any, params[:needle])
+      @query = params[:needle]
     end
 end

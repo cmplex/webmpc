@@ -1,4 +1,3 @@
-<% puts @songs %>
 <% unless @songs.nil? %>
   <% results = @songs.map { |song| {artist: song.artist, album: song.album, title: song.title} } %>
   <% i = 0 %>
@@ -10,7 +9,7 @@
           <p><%= song[:artist] %></p>
           <p><%= song[:album] %></p>
         </a>
-        <%= menu_link "add", mpd_addResult_path(:index => i) %>
+        <%= menu_link "add", mpd_addResult_path(:index => i, :needle => @query) %>
         <% i = i + 1 %>
       </li>
     <% end %>

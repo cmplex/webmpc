@@ -12,8 +12,9 @@
 </div>
 
 <div data-role="content">
-  <%= form_tag(mpd_search_mobile_path, remote: true) do %>
+  <%= form_tag(mpd_search_path, method: "get") do %>
     <%= text_field_tag(:needle) %>
+    <%= submit_tag("go") %>
   <% end %>
   <%= render "search_results" %>
 </div>
