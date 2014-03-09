@@ -5,15 +5,15 @@
   <% if user_signed_in? %>
     <div data-role="navbar">
       <ul>
-       <li><%= menu_link "hype", voting_hype_path %></li>
-       <li><%= menu_link "hate", voting_hate_path %></li>
+       <li><%= menu_link "hype", voting_hype_path(:authenticity_token => form_authenticity_token) %></li>
+       <li><%= menu_link "hate", voting_hate_path(:authenticity_token => form_authenticity_token) %></li>
 
        <% if can? :control_mpd, nil %>
-        <li><%= menu_link "prev",   mpd_prev_path %></li>
-        <li><%= menu_link "toggle", mpd_toggle_path %></li>
-        <li><%= menu_link "next",   mpd_next_path %></li>
-        <li><%= menu_link "-",      mpd_volDown_path %></li>
-        <li><%= menu_link "+",      mpd_volUp_path %></li>
+        <li><%= menu_link "prev",   mpd_prev_path(:authenticity_token => form_authenticity_token)  %></li>
+        <li><%= menu_link "toggle", mpd_toggle_path(:authenticity_token => form_authenticity_token)  %></li>
+        <li><%= menu_link "next",   mpd_next_path(:authenticity_token => form_authenticity_token)  %></li>
+        <li><%= menu_link "-",      mpd_volDown_path(:authenticity_token => form_authenticity_token)  %></li>
+        <li><%= menu_link "+",      mpd_volUp_path(:authenticity_token => form_authenticity_token)  %></li>
        <% end %>
       </ul>
     </div>
