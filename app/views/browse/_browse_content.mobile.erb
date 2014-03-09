@@ -1,0 +1,26 @@
+<ul data-role="listview" data-autodividers="true" data-filter="true">
+  <% artists = @mpc.artists.sort[1..-1] %>
+  <% artists.each do |artist| %>
+    <li data-role="collapsible">
+      <h3><%= artist %></h3>
+
+      <ul data-role="listview">
+        <% albums = @mpc.albums(artist).sort %>
+        <% albums.each do |album| %>
+          <li data-role="collapsible">
+            <h3><%= album %></h3>
+
+            <ul data-role="listview">
+              <% songs = @mpc.search("album", album, {case_sensitive: true}).map{ |song| [song.title, song.album, song.artist]} %>
+              <% songs.each do |song| %>
+              <li>
+                <%= menu_link song[0], mpd_addSong_path(params.merge(:title => song[0], :album => album, :artist => artist, :authenticity_token => form_authenticity_token)) %>
+              </li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
