@@ -65,12 +65,14 @@ class NowPlayingController < MpdController
   def albumarturl
     artistname = params[:artistname]
     albumname = params[:albumname]
+    size = params[:size]
+
     album = Rockstar::Album.new(artistname, albumname, :include_info => true)
 
     if album.images.nil?
         url = 'assets/default.png'
     else
-        url = album.images["extralarge"]
+        url = album.images[size]
     end
 
     render text: url

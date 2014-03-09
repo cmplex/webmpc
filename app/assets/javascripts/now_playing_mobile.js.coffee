@@ -37,7 +37,7 @@ $(document).ready ->
 #        albumimg.src = imgurl
 
 updateAlbumCover = (artistname, albumname) ->
-  $.get "mpd/cover", artistname: artistname, albumname: albumname, (url) ->
+  $.get "mpd/cover", artistname: artistname, albumname: albumname, size: "extralarge", (url) ->
     albumimg = document.createElement("img")
     albumimg.src = url
     $("#albumart").html albumimg
