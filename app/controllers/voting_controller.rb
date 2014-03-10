@@ -26,12 +26,13 @@ class VotingController < MpdController
     private
         def find_or_create_song
             artist = @mpc.current_song.artist
-            album = @mpc.current_song.album
+            album_title = @mpc.current_song.album
             title = @mpc.current_song.title
 
             # Just return the song if already exists in the database,
             # otherwise create and return it
-            @song = Song.find_or_create_by artist: artist, album: album, title: title
+            album = Album.find_or_create_by title: album_title
+            @song = Song.find_or_create_by artist: artist, album_id: album.id, title: title
         end
 
         def count_users
