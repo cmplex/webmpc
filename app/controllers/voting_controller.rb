@@ -31,7 +31,7 @@ class VotingController < MpdController
 
             # Just return the song if already exists in the database,
             # otherwise create and return it
-            album = Album.find_or_create_by title: album_title
+            album = Album.find_or_create_by title: album_title, artist: artist
             @song = Song.find_or_create_by artist: artist, album_id: album.id, title: title
         end
 
