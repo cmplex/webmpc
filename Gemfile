@@ -39,6 +39,9 @@ gem 'puma'
 # Use rockstar lastfm web service api wrapper
 gem 'rockstar'
 
+# Use paperclip file attachment manangement
+gem 'paperclip', '~> 4.1'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 
