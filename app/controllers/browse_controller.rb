@@ -31,4 +31,20 @@ class BrowseController < MpdController
     end
     render text: "song #{params[:title]} of the album #{params[:album]} by #{params[:artist]} not found"
   end
+
+  def browse_artists
+    render :partial => "browse_artists"
+    return
+  end
+
+  def browse_albums
+    render :partial => "browse_albums", :locals => { :artist => params[:artist] }
+    return
+  end
+
+  def browse_songs
+    render :partial => "browse_songs", :locals => { :album => params[:album] }
+    return
+  end
+
 end

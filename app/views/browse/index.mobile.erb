@@ -3,13 +3,16 @@
 -->
 
   <div data-role="navbar">
-    <ul>
-      <li><a href="#">artists</a></li>
-      <li><a href="#">albums</a></li>
+    <ul id="nav">
+      <a id="navroot" data-role="button">/</a>
+      <a id="navartist" data-role="button">artist</a>
+      <a id="navalbum" data-role="button">album</a>
     </ul>
   </div>
 </div>
 
 <div data-role="content">
-    <%= render "browse_content" %>
+  <ul id="section" data-role="listview" data-filter="true">
+    <%= render "browse_artists" %>
+  </ul>
 </div>

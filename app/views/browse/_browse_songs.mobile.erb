@@ -1,0 +1,8 @@
+<% songs = @mpc.search("album", album) %>
+
+<% songs.each do |song| %>
+  <li>
+    <%= menu_link song.title, mpd_addSong_path(:title => song.title, :artist => song.artist, :album => song.album, :authenticity_token => form_authenticity_token) %>
+    <% puts song.title %>
+  </li>
+<% end %>
