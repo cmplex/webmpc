@@ -29,6 +29,7 @@ loadAlbums = (artist) ->
   $("#navartist").click (e) ->
     e.preventDefault()
     loadAlbums $("#navartist").text()
+    return false
 
   $("#section").load "/browse/browse_albums", data, (e) ->
     $("#section").listview "refresh"
@@ -59,7 +60,7 @@ addClickHandlers = ->
  $("a[data-browsestage='artist']").click (e) ->
     e.preventDefault()
     loadAlbums $(this).text()
-    return
+    return false
 
   $("a[data-browsestage='album']").click (e) ->
     e.preventDefault()
@@ -67,16 +68,16 @@ addClickHandlers = ->
       loadArtists()
     else
       loadSongs $(this).text()
-    return
+    return false
 
   $("#navroot").click (e) ->
     e.preventDefault()
     loadArtists()
-    return
+    return false
 
   return
 
 
 if location.pathname is "/browse"
-  $(document).ready ->
+  $(document).bind "pageinit", ->
     addClickHandlers()
