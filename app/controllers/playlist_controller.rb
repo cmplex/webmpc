@@ -1,6 +1,6 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
 class PlaylistController < MpdController
-  before_action :check_permissions, except: [:index, :notifications]
+  before_action :check_permissions, except: [:index, :notifications, :refresh_playlist]
 
   def index
   end
@@ -25,4 +25,9 @@ class PlaylistController < MpdController
     end
     R4S.add_stream(response, session, "playlist").start
   end
+
+  def refresh_playlist
+    render :partial => "playlist_content"
+  end
+
 end

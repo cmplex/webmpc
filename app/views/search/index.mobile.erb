@@ -1,0 +1,20 @@
+<!--
+  vim: tabstop=2 shiftwidth=2 expandtab
+-->
+ 
+  <% if can? :control_mpd, nil %>
+  <div data-role="navbar">
+    <ul>
+      <li><%= menu_link "add all", mpd_addAll_path %></li>
+    </ul>
+  </div>
+  <% end %>
+</div>
+
+<div data-role="content">
+  <%= form_tag(mpd_search_path, method: "get") do %>
+    <%= text_field_tag(:needle) %>
+    <%= submit_tag("go") %>
+  <% end %>
+  <%= render "search_results" %>
+</div>

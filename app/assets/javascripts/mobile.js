@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require global.js.coffee
-//= require playlist.js.coffee
-//= require settings.js.coffee
-//= require browse.js.coffee
-//= require now_playing.js.coffee
-//= require search.js.coffee
+//= require jquery.mobile-1.4.0.min.js
+//= require global_mobile.js.coffee
+//= require playlist_mobile.js.coffee
+//= require settings_mobile.js.coffee
+//= require browse_mobile.js.coffee
+//= require now_playing_mobile.js.coffee
+//= require search_mobile.js.coffee

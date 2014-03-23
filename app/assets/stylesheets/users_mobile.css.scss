@@ -1,0 +1,26 @@
+// vim: tabstop=2 shiftwidth=2 expandtab
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+  /* layout parameters */
+  margin: auto;
+  width: 100%;
+
+  /* display parameters */
+  background-color: #606060;
+  border-radius: 5px;
+  opacity: 0.8;
+  padding: 2em;
+
+  /* text parameters */
+  font-size: 1.5em;
+
+  /* nested elements */
+  td {
+    background-color: #404040;
+    border-radius: 5px;
+    padding: 0.5em;
+  }
+}

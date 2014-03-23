@@ -1,0 +1,16 @@
+<!--
+  vim: tabstop=2 shiftwidth=2 expandtab
+-->
+    <% if can? :control_mpd, nil %>
+      <div data-role="navbar">
+        <ul>
+          <li><%= menu_link "clear", mpd_clear_path %></li>
+        </ul>
+      </div>
+    <% end %>
+</div>
+<div data-role="content">
+  <ul data-role="listview" id="section">
+    <%= render "playlist_content" %>
+  </ul>
+</div>

@@ -18,9 +18,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to :users, notice: 'User was successfully updated.' }
+        format.mobile { redirect_to :users, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
+        format.mobile { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -32,6 +34,7 @@ class UsersController < ApplicationController
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }
+      format.mobile { redirect_to users_url }
       format.json { head :no_content }
     end
   end

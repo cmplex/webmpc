@@ -4,6 +4,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
+
   $("#progressbar").click (e) ->
     # get x-position relative to progressbar-container
     xpos = e.pageX - @offsetLeft

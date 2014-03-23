@@ -1,0 +1,43 @@
+<!--
+  vim: tabstop=2 shiftwidth=2 expandtab
+-->
+
+  <% if user_signed_in? %>
+    <div data-role="navbar">
+      <ul>
+       <li><%= menu_link "hype", voting_hype_path(:authenticity_token => form_authenticity_token) %></li>
+       <li><%= menu_link "hate", voting_hate_path(:authenticity_token => form_authenticity_token) %></li>
+
+       <% if can? :control_mpd, nil %>
+        <li><%= menu_link "prev",   mpd_prev_path(:authenticity_token => form_authenticity_token)  %></li>
+        <li><%= menu_link "toggle", mpd_toggle_path(:authenticity_token => form_authenticity_token)  %></li>
+        <li><%= menu_link "next",   mpd_next_path(:authenticity_token => form_authenticity_token)  %></li>
+        <li><%= menu_link "-",      mpd_volDown_path(:authenticity_token => form_authenticity_token)  %></li>
+        <li><%= menu_link "+",      mpd_volUp_path(:authenticity_token => form_authenticity_token)  %></li>
+       <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div data-role="content">
+
+  <section>
+    <div id="songdisplay">
+      <p id="albumart"></p>
+      <!--<div id="albumart-overlay"></div>-->
+      <div id="songinfo">
+        <p id="title">
+        </p>
+        <p id="artist">
+        </p>
+        <p id="album">
+        </p>
+      </div>
+    </div>
+    <div id="progressbar">
+      <span></span>
+    </div>
+  </section>
+
+</div>

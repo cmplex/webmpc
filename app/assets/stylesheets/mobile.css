@@ -10,12 +10,13 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require jquery.mobile-1.4.0.min.css
  *= require_self
- *= require global.css.scss
- *= require playlist.css.scss
- *= require settings.css.scss
- *= require browse.css.scss
- *= require now_playing.css.scss
- *= require search.css.scss
- *= require users.css.scss
+ *= require global_mobile.css.scss
+ *= require playlist_mobile.css.scss
+ *= require settings_mobile.css.scss
+ *= require browse_mobile.css.scss
+ *= require now_playing_mobile.css.scss
+ *= require search_mobile.css.scss
+ *= require users_mobile.css.scss
  */

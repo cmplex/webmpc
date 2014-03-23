@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebMPC</title>
+  <%= stylesheet_link_tag    "mobile", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "mobile", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0" >
+</head>
+<body>
+
+<div data-role="page">
+  <div data-role="panel" data-display="overlay" id="globalmenu">
+    <a href="#globalheader" data-rel="close">Close panel</a>
+    <ul data-role="listview">
+      <li data-role="list-divider">views</li>
+      <li><%= nav_link "song", :now_playing %></li>
+      <li><%= nav_link "playlist", :playlist %></li>
+      <li><%= nav_link "search", :search %></li>
+      <li><%= nav_link "browse", :browse %></li>
+
+      <% if can? :manage, Setting %>
+        <li data-role="list-divider">admin</li>
+        <li><%= nav_link "settings", settings_path %></li>
+      <% end %>
+
+      <li data-role="list-divider">account</li>
+      <% if user_signed_in? %>
+        <li><%= nav_link "settings", edit_user_registration_path %></li>
+        <li><%= link_to "logout", destroy_user_session_path, method: :delete, onFocus: "blur();" %></li>
+      <% else %>
+        <li><%= nav_link "login", new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div data-role="header" id="globalheader">
+    <h1>WebMPC</h1>
+    <a href="#globalmenu" data-role="button" data-icon="grid">menu</a>
+
+    <%= yield %>
+
+  <div data-role="footer" data-position="fixed">
+  </div>
+</div>
+
+</body>
+</html>

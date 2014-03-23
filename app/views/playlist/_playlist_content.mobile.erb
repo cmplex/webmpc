@@ -1,0 +1,14 @@
+<% songs = @mpc.queue.map { |song| {artist: song.artist, album: song.album, title: song.title} } %>
+
+<% i = 0 %>
+<% songs.each do |song| %>
+  <li>
+    <a href="#">
+      <h1><%= song[:title] %></h1>
+      <p><%= song[:artist] %></p>
+      <p><%= song[:album] %></p>
+    </a>
+    <%= menu_link "play", mpd_play_path(:number => i, :authenticity_token => form_authenticity_token) %>
+    <% i = i + 1 %>
+  </li>
+<% end %>

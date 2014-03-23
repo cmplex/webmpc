@@ -1,0 +1,28 @@
+// vim: tabstop=2 shiftwidth=2 expandtab
+// Place all the styles related to the Search controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.result {
+  /* layout parameters */
+  margin: 6px;
+
+  /* display parameters */
+  background-color: #606060;
+  border-radius: 5px;
+  display: block;
+  opacity: 0.6;
+
+  /* text parameters */
+  font-size: 1.5em;
+  text-align: left;
+
+  /* nested elements */
+  div {
+    font-size: 1em;
+  }
+
+  div:first-child {
+    font-size: 1.5em;
+  }
+}

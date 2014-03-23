@@ -24,7 +24,10 @@ Webmpc::Application.routes.draw do
   post    'mpd/clear',                to: 'playlist#clear'
   get     'mpd/events/playlist',      to: 'playlist#notifications'
 
+  get     '/playlist/refresh_playlist', to: 'playlist#refresh_playlist'
+
   get     'mpd/search',               to: 'search#search'
+  post    'mpd/search_mobile',        to: 'search#search_mobile'
   post    'mpd/addResult',            to: 'search#addResult'
   post    'mpd/addAll',               to: 'search#addAll'
 
@@ -32,6 +35,10 @@ Webmpc::Application.routes.draw do
   get     'mpd/listAlbums',       to: 'browse#listAlbums'
   get     'mpd/listSongs',        to: 'browse#listSongs'
   post    'mpd/addSong',          to: 'browse#addSong'
+
+  post    '/browse/browse_artists',  to: 'browse#browse_artists'
+  post    '/browse/browse_albums',   to: 'browse#browse_albums'
+  post    '/browse/browse_songs',    to: 'browse#browse_songs'
 
   post    'voting/hype'
   post    'voting/hate'
