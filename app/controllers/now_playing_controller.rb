@@ -65,31 +65,17 @@ class NowPlayingController < MpdController
   def albumarturl
     artistname = params[:artistname]
     albumname = params[:albumname]
-
-    url = 'assets/default.png'
-    filename = (Digest::SHA1.hexdigest artistname+albumname)+".png"
-
-
-    begin
-      File.open("app/assets/images/"+filename, 'r')
-      url = "assets/"+filename
-    rescue StandardError => e
-      album = Rockstar::Album.new(artistname, albumname, :include_info => true)
-    end
-
     
-    if(not album.nil?)
-      begin
-        url = album.images["extralarge"]
-        if not(system("wget "+url+" -O "+"app/assets/images/"+filename))
-          raise IOError
-        end
-      rescue StandardError => e
-        url = 'assets/default.png'
-      end
+    album = Album.find_or_create_by title: albumname, artist: artistname
+
+    if not album.cover.exists?
+      albuminfo = Rockstar::Album.new(artistname, albumname, :include_info => true)
+      album.cover = albuminfo.images["extralarge"]
+      album.save
     end
 
-    render text: url
+    render text: album.cover.url
     return
   end
+
 end
