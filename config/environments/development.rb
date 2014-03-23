@@ -46,4 +46,5 @@ Webmpc::Application.configure do
   # Pre-load necessary frameworks on boot to ensure thread-safety.
   # see: http://tenderlovemaking.com/2012/06/18/removing-config-threadsafe.html
   config.preload_frameworks = true
+
 end

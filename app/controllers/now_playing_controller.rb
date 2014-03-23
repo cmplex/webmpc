@@ -65,16 +65,32 @@ class NowPlayingController < MpdController
   def albumarturl
     artistname = params[:artistname]
     albumname = params[:albumname]
-    
-    album = Album.find_or_create_by title: albumname, artist: artistname
 
-    if not album.cover.exists?
-      albuminfo = Rockstar::Album.new(artistname, albumname, :include_info => true)
-      album.cover = albuminfo.images["extralarge"]
-      album.save
+    album = Album.find_or_create_by title: albumname, artist: artistname
+    begin
+      if not album.cover.exists?
+        albuminfo = Rockstar::Album.new(artistname, albumname, :include_info => true)
+        remote_url = albuminfo.images["extralarge"]
+
+        # if album cover available remotely
+        if !remote_url.nil? || remote_url.length > 0
+          album.cover = remote_url
+          album.save
+        end
+      end
+
+    rescue SocketError
+      p "No internet connection!"
+
     end
 
-    render text: album.cover.url
+
+    if not album.cover.exists?
+      render text: ActionController::Base.helpers.asset_path(album.cover.url)
+    else
+      render text: album.cover.url
+    end
+
     return
   end
 
