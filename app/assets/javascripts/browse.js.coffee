@@ -23,6 +23,7 @@ addEnqueueAlbumButtonTo = (element) ->
       album = album.substring 0, album.length - 1
       $.post 'mpd/addAlbum', album: album
     element.append button
+  else element.append $('<td></td>')
 
 
 
@@ -39,6 +40,7 @@ addEnqueueArtistButtonTo = (element) ->
       artist = artist.substring 0, artist.length - 1
       $.post 'mpd/addArtist', artist: artist
     element.append button
+  else element.append $('<td></td>')
 
 
 
