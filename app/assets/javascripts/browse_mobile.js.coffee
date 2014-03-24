@@ -6,13 +6,10 @@
 
 # load artists
 loadArtists = ->
-  # TODO: implement POST usage differently
-  data = none: 'none'
-
   $("#navartist").text "artist"
   $("#navalbum").text "album"
 
-  $("#section").load "/browse/browse_artists", data, (e) ->
+  $("#section").post "/browse/browse_artists", (e) ->
     $("#section").listview "refresh"
     addClickHandlers()
     return
@@ -72,7 +69,7 @@ addClickHandlers = ->
 
   $("#navroot").click (e) ->
     e.preventDefault()
-    loadArtists()
+    location.reload()
     return false
 
   return
@@ -80,6 +77,4 @@ addClickHandlers = ->
 
 if location.pathname is "/browse"
   $(document).bind "pageinit", ->
-    setTimeout ->
       addClickHandlers()
-    , 500
