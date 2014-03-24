@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Webmpc</title>
+  <title>WebMPC</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -15,25 +15,26 @@
     <%= content_tag :mark, msg, id: "flash_#{name}" if msg.is_a?(String) %>
   <% end %>
 
-  <nav>
-    <%= nav_link "song", :now_playing %>
-    <%= nav_link "playlist", :playlist %>
-    <%= nav_link "search", :search %>
-    <%= nav_link "browse", :browse %>
+  
+  <div id="global_navbar" class="ui-widget-header ui-corner-all">
+    <button id="nav_song_button">song</button>
+    <button id="nav_playlist_button">playlist</button>
+    <button id="nav_search_button">search</button>
+    <button id="nav_browse_button">browse</button>
 
     <% if user_signed_in? %>
       <% if can? :manage, User %>
-        <%= nav_link "users", users_path %>
+        <button id="nav_users_button">users</button>
       <% end %>
       <% if can? :manage, Setting %>
-        <%= nav_link "settings", settings_path %>
+        <button id="nav_settings_button">settings</button>
       <% end %>
-      <%= nav_link "user", edit_user_registration_path %>
-      <%= link_to "logout", destroy_user_session_path, method: :delete, onFocus: "blur();" %>
+      <button id="nav_user_button">user</button>
+      <button id="nav_logout_button">logout</button>
     <% else %>
-      <%= nav_link "login", new_user_session_path %>
+      <button id="nav_login_button">login</button>
     <% end %>
-  </nav>
+  </div>
 
   <%= yield %>
 </body>
