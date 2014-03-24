@@ -19,12 +19,26 @@ class SearchController < MpdController
     render text: "Added #{song.title} by #{song.artist} to the playlist."
   end
 
+  def addSelection
+    params[:selection].each do |index|
+      song = @songs[index.to_i]
+      @mpc.add song
+    end
+    render text: "Added selected songs to the playlist."
+    return
+  end
+
   def search
     unless mobile?
       render json: @songs.map{ |song| [song.title, song.album, song.artist] }
     else
       render action: "index"
     end
+  end
+
+  def show_results
+    render :partial => "search_results", :locals => { :needle => params[:needle] }
+    return
   end
 
   private

@@ -3,61 +3,31 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-# shared variables
-needle = undefined
-
-
-
-# setup button actions when the page has finished loading
 $(document).ready ->
-  $("#submitbutton").click ->
-    $("section").empty()
-    needle = document.getElementById("searchbox").value
 
-    # submit query, get search results
-    $.get "mpd/search", needle: needle, (response) ->
-      results = response
-      index = 0
-
-      while index < results.length
-        # create search result entry
-        $("section").append "<div id=\"result" + index + "\" class=\"result\">"
-
-        # fill in song information
-        $("#result" + index).append "<div class=\"songinfo title\">" + results[index][0] + "</div>"
-        $("#result" + index).append "<div class=\"songinfo artist\">" + results[index][2] + "</div>"
-        $("#result" + index).append "<div class=\"songinfo album\">" + results[index][1] + "</div>"
-        $("#result" + index).data "index", index
-
-        # show only the song title
-        $("#result" + index + " div").hide()
-        $("#result" + index + " div:first-child").fadeTo "slow", 1.0
-
-        # set onClick event handler
-        $("#result" + index).click onSearchResultClick
-        index++
-
-  $("#addallbutton").click ->
-    needle = document.getElementById("searchbox").value
-    $.post "mpd/addAll", needle: needle
+  $("input:text, input:password").button().css
+    font: "inherit"
+    color: "inherit"
+    "text-align": "left"
+    outline: "none"
+    cursor: "text"
 
 
+  $("#search_submit_button").button(
+  ).click (e) ->
+    data = needle: $("#searchbox").val()
 
-# onClick() event handler for search results
-onSearchResultClick = ->
-  if $(this).data("clicked") is "true"
-    # read song's search result index from the hidden element and add it to the playlist
-    index = parseInt($(this).data("index"))
-    $.post "mpd/addResult", needle: needle, index: index
+    $("section").load "/search/results", data, (e) ->
+      $("#search_results").selectable filter: $("#search_results").children("li")
 
-    $(this).fadeTo "fast", 0.4
-    $(this).fadeTo "fast", 0.6
-  else
-    # remove "clicked" flag from other items, set it on the clicked one
-    $(".result").removeData "clicked"
-    $(this).data "clicked", "true"
 
-    # hide other song descriptions, show clicked song's description
-    $(".result div").hide()
-    $(".result div:first-child").show()
-    $(this).children(".songinfo").fadeIn()
+  $("#search_add_button").button(
+  ).click (e) ->
+
+    selection = new Array()
+    $(".ui-selected").each (index) ->
+      selection.push $(".search_result").index(this)
+
+    data = selection: selection, needle: $("#searchbox").val()
+
+    $.post "/mpd/addSelection", data

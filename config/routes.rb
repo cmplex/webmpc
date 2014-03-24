@@ -30,8 +30,9 @@ Webmpc::Application.routes.draw do
   get     'playlist/refresh_playlist', to: 'playlist#refresh_playlist'
 
   get     'mpd/search',               to: 'search#search'
-  post    'mpd/search_mobile',        to: 'search#search_mobile'
+  post    'search/results',           to: 'search#show_results'
   post    'mpd/addResult',            to: 'search#addResult'
+  post    'mpd/addSelection',         to: 'search#addSelection'
   post    'mpd/addAll',               to: 'search#addAll'
 
   get     'mpd/listArtists',      to: 'browse#listArtists'

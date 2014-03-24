@@ -1,0 +1,14 @@
+<% unless @songs.nil? %>
+  <% results = @songs.map { |song| {artist: song.artist, album: song.album, title: song.title} } %>
+  <% i = 0 %>
+  <ol id="search_results" class="ui-corner-all ui-widget">
+    <% results.each do |song| %>
+      <li class="search_result ui-corner-all ui-state-default ui-widget-content">
+        <h3><%= song[:title] %></h3>
+        <p><%= song[:artist] %></p>
+        <p><%= song[:album] %></p>
+        <% i = i + 1 %>
+      </li>
+    <% end %>
+  </ol>
+<% end %>

@@ -1,13 +1,12 @@
 <!--
   vim: tabstop=2 shiftwidth=2 expandtab
 -->
-  <menu>
-    <input id="searchbox"></input>
-    <a id="submitbutton">submit</a>
-    <% if can? :control_mpd, nil %>
-      <a id="addallbutton">add all</a>
-    <% end %>
-  </menu>
+  <div id="toolbar" class="ui-widget-header ui-corner-all">
+    <input type="text" id="searchbox"></input>
+    <button id="search_submit_button">submit</button>
+    <button id="search_add_button">add selection</button>
+  </div>
 </header>
 <section>
+  <%= render "search_results" %>
 </section>
