@@ -1,19 +1,19 @@
 <!--
   vim: tabstop=2 shiftwidth=2 expandtab
 -->
-  <menu>
-    <% if user_signed_in? %>
-      <%= menu_link "hype", voting_hype_path %>
-      <%= menu_link "hate", voting_hate_path %>
-      <% if can? :control_mpd, nil %>
-        <%= menu_link "prev",   mpd_prev_path %>
-        <%= menu_link "toggle", mpd_toggle_path %>
-        <%= menu_link "next",   mpd_next_path %>
-        <%= menu_link "-",      mpd_volDown_path %>
-        <%= menu_link "+",      mpd_volUp_path %>
-      <% end %>
+  <div id="toolbar" class="ui-widget-header ui-corner-all">
+  <% if user_signed_in? %>
+    <button id="hype_button">hype</button>
+    <button id="hate_button">hate</button>
+    <% if can? :control_mpd, nil %>
+      <button id="prev_button">prev</button>
+      <button id="toggle_button">play</button>
+      <button id="next_button">next</button>
+      <button id="voldown_button">volume down</button>
+      <button id="volup_button">volume up</button>
     <% end %>
-  </menu>
+  <% end %>
+  </div>
 </header>
 <section>
   <div id="progressbar">

@@ -14,6 +14,8 @@ Webmpc::Application.routes.draw do
   post    'mpd/prev',                 to: 'now_playing#prev'
   post    'mpd/next',                 to: 'now_playing#next'
   post    'mpd/toggle',               to: 'now_playing#toggle'
+  post    'mpd/resume',               to: 'now_playing#resume'
+  post    'mpd/pause',                to: 'now_playing#pause'
   post    'mpd/volUp',                to: 'now_playing#volUp'
   post    'mpd/volDown',              to: 'now_playing#volDown'
   post    'mpd/seek',                 to: 'now_playing#seek'
