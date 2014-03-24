@@ -1,11 +1,11 @@
 <!--
   vim: tabstop=2 shiftwidth=2 expandtab
 -->
-  <menu>
-    <% if can? :control_mpd, nil %>
-      <%= menu_link "update", mpd_updateDatabase_path %>
-    <% end %>
-  </menu>
+  <div id="toolbar" class="ui-widget-header ui-corner-all">
+    <button id="navroot"></button>
+    <button id="navartist"></button>
+    <button id="navalbum"></button>
+  </div>
 </header>
 <section>
 </section>
