@@ -80,4 +80,6 @@ addClickHandlers = ->
 
 if location.pathname is "/browse"
   $(document).bind "pageinit", ->
-    addClickHandlers()
+    setTimeout ->
+      addClickHandlers()
+    , 500
