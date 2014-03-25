@@ -41,7 +41,7 @@ $(document).ready ->
     icons:
       primary: "ui-icon-person"
   ).click (e) ->
-    window.location.href = "/users/edit"
+    window.location.href = "/users"
 
   $("#nav_settings_button").button(
     icons:
