@@ -20,8 +20,8 @@ $(document).ready ->
     $.post "mpd/seek", factor: seek_factor
 
 
-  
-  
+
+
   # style buttons and add click handlers
   $("#prev_button").button(
     text: false
@@ -36,7 +36,7 @@ $(document).ready ->
       primary: "ui-icon-play"
   ).click (e) ->
     options = undefined
-    
+
     if $(this).text() is "play"
       $.post "mpd/play", (e) ->
         options =
