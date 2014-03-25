@@ -5,10 +5,10 @@ class SettingsController < MpdController
   # GET /settings
   def index
     @settings = Setting.first
-    @crossfade = @mpc.crossfade
-    @repeat = @mpc.repeat?
-    @random = @mpc.random?
-    @consume = @mpc.consume?
+    @crossfade = @@mpc.crossfade
+    @repeat = @@mpc.repeat?
+    @random = @@mpc.random?
+    @consume = @@mpc.consume?
   end
 
   # PATCH /settings/1
@@ -20,24 +20,24 @@ class SettingsController < MpdController
 
   # POST
   def apply
-    @mpc.crossfade = params[:crossfade]
+    @@mpc.crossfade = params[:crossfade]
 
     if params[:repeat]
-      @mpc.repeat = true
+      @@mpc.repeat = true
     else
-      @mpc.repeat = false
+      @@mpc.repeat = false
     end
 
     if params[:random]
-      @mpc.random = true
+      @@mpc.random = true
     else
-      @mpc.random = false
+      @@mpc.random = false
     end
 
     if params[:consume]
-      @mpc.consume = true
+      @@mpc.consume = true
     else
-      @mpc.consume = false
+      @@mpc.consume = false
     end
 
     redirect_to :back, notice: 'Successfully applied MPD settings.'
