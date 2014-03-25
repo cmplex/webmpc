@@ -2,6 +2,9 @@
   vim: tabstop=2 shiftwidth=2 expandtab
 -->
   <menu>
+    <% if can? :control_mpd, nil %>
+      <%= menu_link "update", mpd_updateDatabase_path %>
+    <% end %>
   </menu>
 </header>
 <section>

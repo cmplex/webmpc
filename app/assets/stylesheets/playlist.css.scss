@@ -14,23 +14,34 @@
   opacity: 0.6;
 
   /* text parameters */
-  font-size: 2em;
   text-align: left;
 
   /* nested elements */
-  #songdescr {
-   display: inline-block;
-   margin-left: 2px;
-   font-size: 1em;
-   text-align: left;
+  table {
+    font-size: 2em;
+    padding: 0em;
+
+    td {
+      padding: 0em;
+    }
+
+    td:first-child {
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    td:last-child {
+      background-color: transparent;
+      cursor: pointer;
+      padding-bottom: 0.15em;
+      padding-right: 0.3em;
+      text-align: right;
+      width: 1em;
+    }
   }
 
   div {
-   font-size: 0.5em;
-  }
-
-  div:first-child {
-   display: inline-block;
-   font-size: 1em;
+    cursor: pointer;
+    font-size: 1em;
   }
 }

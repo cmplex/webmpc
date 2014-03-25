@@ -5,6 +5,29 @@
   </menu>
 </header>
 <section>
+  <%= form_tag mpd_settings_path, method: :post do %>
+    <div>
+      <%= label_tag :crossfade %>
+      <br />
+      <%= text_field_tag :crossfade, @crossfade %>
+    </div>
+    <div>
+      <%= check_box_tag :repeat, true, @repeat %>
+      <%= label_tag :repeat %>
+    </div>
+    <div>
+      <%= check_box_tag :random, true, @random %>
+      <%= label_tag :random %>
+    </div>
+    <div>
+      <%= check_box_tag :consume, true, @consume %>
+      <%= label_tag :consume %>
+    </div>
+    <div>
+      <%= submit_tag 'Apply MPD settings' %>
+    </div>
+  <% end %>
+
   <%= form_for(@settings) do |f| %>
     <% if @settings.errors.any? %>
       <div id="error_explanation">
