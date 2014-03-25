@@ -40,6 +40,8 @@ addRemoveButtonTo = (element) ->
     button = $('<td>x</td>')
     button.click onRemoveButtonClick
     element.append button
+  else
+    element.append $('<td></td>')
 
 
 # main update procedure
