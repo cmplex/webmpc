@@ -30,12 +30,6 @@ gem 'cancan'
 # Use ruby-mpd as MPD client library.
 gem 'ruby-mpd'
 
-# Use r4s Server-Sent-Events library.
-gem 'r4s'
-
-# Use puma webserver.
-gem 'puma'
-
 # Use rockstar lastfm web service api wrapper
 gem 'rockstar'
 

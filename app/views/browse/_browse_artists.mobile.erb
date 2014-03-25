@@ -1,5 +1,3 @@
-<% artists = @mpc.artists.sort[1..-1] %>
-
 <% artists.each do |artist| %>
   <li>
     <%= link_to artist, '/', :'data-browsestage' => 'artist' %>

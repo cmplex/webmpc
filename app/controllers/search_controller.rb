@@ -8,14 +8,14 @@ class SearchController < MpdController
 
   def addAll
     @songs.each do |song|
-      @mpc.add song
+      @@mpc.add song
     end
     render text: "Added all songs matching #{params[:needle]} to the playlist."
   end
 
   def addResult
     song = @songs[params[:index].to_i]
-    @mpc.add song
+    @@mpc.add song
     render text: "Added #{song.title} by #{song.artist} to the playlist."
   end
 
@@ -29,7 +29,7 @@ class SearchController < MpdController
 
   private
     def perform_search
-      @songs = @mpc.search(:any, params[:needle])
+      @songs = @@mpc.search(:any, params[:needle])
       @query = params[:needle]
     end
 end

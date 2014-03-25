@@ -1,7 +1,5 @@
-<% albums = @mpc.albums(artist).sort %>
-
-  <% albums.each do |album| %>
+<% albums.each do |album| %>
   <li>
     <%= link_to album, '/', :'data-browsestage' => 'album' %>
   </li>
-  <% end %>
+<% end %>
