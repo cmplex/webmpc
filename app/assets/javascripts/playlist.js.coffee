@@ -146,8 +146,9 @@ selectMode = ->
   $("#playlist_remove_button").button(
   ).click (e) ->
 
-    selection = new Array()
+    selection = []
     $(".ui-selected").each (index) ->
+      alert $(".playlist_item").index(this)
       selection.push $(".playlist_item").index(this)
 
     data = selection: selection
@@ -202,21 +203,27 @@ $(document).ready ->
     # setup recurring update timer
     setInterval updatePlaylist, 1000
 
-  # apply click handler to mode switcher button
-  $("#playlist_mode_button").button(
-  ).click (e) ->
-    options = undefined
+    # apply click handler to mode switcher button
+    $("#playlist_mode_button").button(
+    ).click (e) ->
+      options = undefined
 
-    if $(this).text() is "select"
-      selectMode()
-      options =
-        label: "move"
-    else
-      moveMode()
-      options =
-        label: "select"
+      if $(this).text() is "select"
+        selectMode()
+        options =
+          label: "move"
+      else
+        moveMode()
+        options =
+          label: "select"
 
-    $("#playlist_mode_button").button "option", options
-    applyMode()
+      $("#playlist_mode_button").button "option", options
+      applyMode()
 
+    # apply click handler to play button
+    $("#playlist_play_button").button(
+    ).click (e) ->
+      if $(".ui-selected").length == 1
+        data = number: $(".playlist_item").index $(".ui-selected").first()
 
+        $.post "mpd/play", data
