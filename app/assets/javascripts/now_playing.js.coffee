@@ -21,8 +21,8 @@ $(document).ready ->
 
 
 
-updateAlbumCover = (artistname, albumname) ->
-  $.get "mpd/cover", artistname: artistname, albumname: albumname, size: "extralarge", (url) ->
+updateAlbumCover = ->
+  $.get "mpd/cover", artistname: artist, albumname: album, (url) ->
     albumimg = document.createElement("img")
     albumimg.src = url
     $("#albumart").html albumimg
