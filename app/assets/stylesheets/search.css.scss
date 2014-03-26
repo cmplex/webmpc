@@ -2,10 +2,3 @@
 // Place all the styles related to the Search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-#search_results .ui-selecting { background: #FECA40; }
-#search_results .ui-selected { background: #F39814; color: white; }
-#search_results { list-style-type: none; margin: 0; padding: 0; width: 100%; }
-#search_results li { margin: 3px; text-align: left; }
-#search_results li h3 { font-size: 1em; }
-#search_results li p { font-size: 0.8em; }

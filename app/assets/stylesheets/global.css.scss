@@ -2,6 +2,13 @@
  * vim: tabstop=2 shiftwidth=2 expandtab
  */
 
+.songlist .ui-selecting { background: #FECA40; }
+.songlist .ui-selected { background: #F39814; color: white; }
+.songlist { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+.songlist li { margin: 3px; text-align: left; }
+.songlist li h3 { font-size: 1em; }
+.songlist li p { font-size: 0.8em; }
+
 body {
   background: #757575; /* Old browsers */
   background: -moz-linear-gradient(left, #757575 0%, #b5b5b5 32%, #cacaca 52%, #b5b5b5 72%, #757575 100%); /* FF3.6+ */
