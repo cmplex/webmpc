@@ -1,0 +1,9 @@
+<ol id="playlist" class="songlist ui-corner-all ui-widget">
+  <% songs.each do |song| %>
+    <li class="playlist_item ui-corner-all ui-state-default ui-widget-content">
+      <h3><%= song[:title] %></h1>
+      <p><%= song[:artist] %></p>
+      <p><%= song[:album] %></p>
+    </li>
+  <% end %>
+</ol>

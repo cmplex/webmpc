@@ -7,29 +7,73 @@
 old_playlist = []
 old_index = undefined
 
+sort_start_index = undefined
 
 
-# onClick event handler for remove buttons
-onRemoveButtonClick = ->
-  $(this).fadeTo 'fast', 0.4
-  $(this).fadeTo 'fast', 1.0
-  $.post 'mpd/remove/' + $(this).parents('.playlist_elem').data 'number'
+# .equals method for object prototype
+objects_equal = (object1, object2) ->
+
+  # check for inherited methods and properties
+  for propName of object1
+    unless object1.hasOwnProperty(propName) is object2.hasOwnProperty(propName)
+      return false
+
+    # false if properties differ
+    else return false  unless typeof object1[propName] is typeof object2[propName]
+
+  # check property names
+  for propName of object2
+    unless object1.hasOwnProperty(propName) is object2.hasOwnProperty(propName)
+      return false
+    else return false  unless typeof object1[propName] is typeof object2[propName]
+
+    # if the property is inherited, do not check any more
+    continue  unless object1.hasOwnProperty(propName)
 
 
-# onClick event handler for playlist items
-onPlaylistItemClick = ->
-  container = $(this).parents '.playlist_elem'
-  if container.data("clicked") is "true"
-    # read songid from attached data and start playback
-    $.post "mpd/play", number: container.data 'number'
-  else
-    # remove "clicked" flag of other items, set it on the clicked one
-    $(".playlist_elem").removeData "clicked"
-    container.data "clicked", "true"
+    # recurse into other objects and nested arrays
+    if object1[propName] instanceof Array and object2[propName] instanceof Array
+      return false  unless arrays_equal(object1[propName], object2[propName])
+    else if object1[propName] instanceof Object and object2[propName] instanceof Object
+      return false  unless objects_equal(object1[propName], object2[propName])
+    # string and number comparison
+    else return false  unless object1[propName] is object2[propName]
 
-    # hide other song descriptions, show specific song description
-    $(".playlist_elem div").hide()
-    container.children(".songinfo").fadeIn()
+  # all checks passed
+  true
+
+
+
+
+# .equals method for array prototype
+arrays_equal = (array1, array2) ->
+
+  # if the other array is a falsy value, return
+  return false unless array2
+
+  # compare lengths
+  return false unless array1.length is array2.length
+  i = 0
+  l = array1.length
+
+  while i < l
+    # check for nested arrays
+    if array1[i] instanceof Array and array2[i] instanceof Array
+
+      # recurse into nested arrays
+      return false unless arrays_equal(array1[i], array2[i])
+
+    # object comparison
+    else if array1[i] instanceof Object and array2[i] instanceof Object
+      return false unless arrays_equal(array1[i], array2[i])
+
+    # check for different object instances with same values
+    else return false unless array1[i] is array2[i]
+    i++
+
+  # all checks passed
+  true
+
 
 
 # helper procedure for adding a remove button
@@ -45,66 +89,134 @@ addRemoveButtonTo = (element) ->
 
 
 # main update procedure
+# TODO: DRY up
 updatePlaylist = ->
   $.get 'mpd/playlist', (data) ->
     # update playlist items
     songs = data.songs
-    index = -1
-    console.log 'index: ' + data.index
-    while ++index < Math.max(songs.length, old_playlist.length)
-      # add items if the new playlist is longer
-      if index >= old_playlist.length
-        # create playlist entry
-        $("section").append '<div id="song' + index + '" class="playlist_elem">'
 
-        # fill in song information
-        $("#song" + index).append '<table><tr><td class="songinfo title">' + songs[index].title + '</td></tr></table>'
-        $("#song" + index).append '<div class="songinfo artist">' + songs[index].artist + '</div>'
-        $("#song" + index).append '<div class="songinfo album">' + songs[index].album + '</div>'
+    if !arrays_equal(old_playlist, songs) or old_playlist is undefined
+      $("section").load "playlist/refresh_playlist", ->
 
-        # show only the song title
-        $("#song" + index + " div").hide()
+        # update playlist state variable
+        old_playlist = songs
 
-        # add remove button
-        addRemoveButtonTo $("#song" + index + " table tr")
+        # apply mode to playlist
+        applyMode()
 
-        # set onClick event handler
-        $("#song" + index + " .title").mouseup onPlaylistItemClick
-        $("#song" + index + " div").mouseup onPlaylistItemClick
+        # highlight currently playing song
+        # waiting for callback
+        $(".playlist_item").fadeTo "fast", 0.6
+        $(".playlist_item").each (i) ->
+          if $(".playlist_item").index(this) is data.index
+            $(this).fadeTo "fast", 1.0
 
-        # attach song index
-        $("#song" + index).data 'number', index
-
-        continue
-
-      # remove items if the new playlist is shorter
-      if index >= songs.length
-        $("#song" + index).remove()
-        continue
-
-      # update entries that have changed
-      if songs[index].title isnt old_playlist[index].title or songs[index].artist isnt old_playlist[index].artist or songs[index].album isnt old_playlist[index].album
-        # update song info
-        $("#song" + index + " .title").text songs[index].title
-        $("#song" + index + " .artist").text songs[index].artist
-        $("#song" + index + " .album").text songs[index].album
-
-    # update playlist state variable
-    old_playlist = songs
+          # update index state variable
+        old_index = data.index
 
     # highlight currently playing song when it changes
-    if old_index isnt data.index
-      $(".playlist_elem").fadeTo "fast", 0.4
-      $("#song" + data.index).fadeTo "fast", 1.0
+    # not waiting for playlist load callback here
+    if old_index isnt data.index and old_index isnt undefined
+
+      $(".playlist_item").fadeTo "fast", 0.6
+      $(".playlist_item").each (i) ->
+        if $(".playlist_item").index(this) is data.index
+          $(this).fadeTo "fast", 1.0
 
       # update index state variable
       old_index = data.index
 
 
+# switch playlist view to "select mode"
+selectMode = ->
+  $("#playlist_clear_button").show()
+  $("#playlist_remove_button").show()
 
-if location.pathname is "/playlist"
-  # initialize view
-  updatePlaylist()
+  # return playlist to pre-init state
+  if $("#playlist").hasClass "ui-sortable"
+    $("#playlist").sortable "destroy"
 
-  # setup recurring update timer
-  setInterval updatePlaylist, 1000
+  # initialize playlist as selectable
+  $("#playlist").selectable filter: $("#playlist").children("li")
+
+  $("#playlist_clear_button").button(
+  ).click (e) ->
+    $.post "mpd/clear"
+
+  $("#playlist_remove_button").button(
+  ).click (e) ->
+
+    selection = new Array()
+    $(".ui-selected").each (index) ->
+      selection.push $(".playlist_item").index(this)
+
+    data = selection: selection
+
+    $.post "/mpd/removeSelection", data
+
+
+# switch playlist view to "move mode"
+moveMode = ->
+  $("#playlist_clear_button").hide()
+  $("#playlist_remove_button").hide()
+
+  # return playlist to pre-init state
+  if $("#playlist").hasClass "ui-selectable"
+    $("#playlist").selectable "destroy"
+
+  # initialize playlist as sortable
+  $("#playlist").sortable
+
+    # sorting starts
+    start: (e, ui) ->
+      sort_start_index = $(".playlist_item").index(ui.item)
+
+    # sorting ends
+    stop: (e, ui) ->
+      sort_end_index = $(".playlist_item").index(ui.item)
+
+      # set off move command if start and end indexes differ
+      if sort_start_index isnt sort_end_index
+        data =
+          from: sort_start_index
+          to: sort_end_index
+        $.post "mpd/move", data
+
+    filter: $("#playlist").children("li")
+
+
+# apply matching mode
+applyMode = ->
+    if $("#playlist_mode_button").text() is "move"
+      selectMode()
+    else
+      moveMode()
+
+
+$(document).ready ->
+  if location.pathname is "/playlist"
+
+    # initialize view
+    updatePlaylist()
+
+    # setup recurring update timer
+    setInterval updatePlaylist, 1000
+
+  # apply click handler to mode switcher button
+  $("#playlist_mode_button").button(
+  ).click (e) ->
+    options = undefined
+
+    if $(this).text() is "select"
+      selectMode()
+      options =
+        label: "move"
+    else
+      moveMode()
+      options =
+        label: "select"
+
+    $("#playlist_mode_button").button "option", options
+    applyMode()
+
+

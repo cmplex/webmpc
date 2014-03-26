@@ -25,7 +25,9 @@ Webmpc::Application.routes.draw do
   post    'mpd/clear',                to: 'playlist#clear'
   post    'mpd/play',                 to: 'playlist#play'
   get     'mpd/playlist',             to: 'playlist#playlist'
-  post    'mpd/remove/:number',        to: 'playlist#remove'
+  post    'mpd/remove/:number',       to: 'playlist#remove'
+  post    'mpd/removeSelection',      to: 'playlist#removeSelection'
+  post    'mpd/move',                 to: 'playlist#move'
 
   get     'playlist/refresh_playlist', to: 'playlist#refresh_playlist'
 

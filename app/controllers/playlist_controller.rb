@@ -25,6 +25,19 @@ class PlaylistController < MpdController
     return
   end
 
+  def move
+    render text: @@mpc.move(params[:from], params[:to])
+  end
+
+  def removeSelection
+    params[:selection].each do |index|
+      @@mpc.delete(index)
+    end
+
+    render text: "Removed selected songs from the playlist."
+    return
+  end
+
   def remove
     @@mpc.delete(params[:number])
     render text: "Deleted song number #{params[:number]} from the playlist."
