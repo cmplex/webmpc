@@ -9,7 +9,7 @@ loadArtists = ->
   $("#navartist").text "artist"
   $("#navalbum").text "album"
 
-   $.post "/browse/browse_artists", (content) ->
+  $.post "/browse/browse_artists", (content) ->
     $("#section").html content
     $("#section").listview "refresh"
     addClickHandlers()
