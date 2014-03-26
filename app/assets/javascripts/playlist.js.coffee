@@ -5,74 +5,106 @@
 
 # shared variables
 old_playlist = []
+old_index = undefined
 
+
+
+# onClick event handler for remove buttons
+onRemoveButtonClick = ->
+  $(this).fadeTo 'fast', 0.4
+  $(this).fadeTo 'fast', 1.0
+  $.post 'mpd/remove/' + $(this).parents('.playlist_elem').data 'number'
 
 
 # onClick event handler for playlist items
 onPlaylistItemClick = ->
-  if $(this).data("clicked") is "true"
-    # read songid from the hidden element and start playback
-    songid = parseInt($(this).find(".songid").text())
-    $.post "mpd/play", number: songid
+  container = $(this).parents '.playlist_elem'
+  if container.data("clicked") is "true"
+    # read songid from attached data and start playback
+    $.post "mpd/play", number: container.data 'number'
   else
     # remove "clicked" flag of other items, set it on the clicked one
     $(".playlist_elem").removeData "clicked"
-    $(this).data "clicked", "true"
+    container.data "clicked", "true"
 
     # hide other song descriptions, show specific song description
     $(".playlist_elem div").hide()
-    $(".playlist_elem div:first-child").show()
-    $(this).children(".songinfo").fadeIn()
+    container.children(".songinfo").fadeIn()
 
 
+# helper procedure for adding a remove button
+addRemoveButtonTo = (element) ->
+  # add remove button only when the control menu has content
+  # so we can assume the user is allowed to manage the MPD
+  if $("menu a").text()
+    button = $('<td>x</td>')
+    button.click onRemoveButtonClick
+    element.append button
+  else
+    element.append $('<td></td>')
 
-# setup event listeners for MPD notifications
-if location.pathname is "/playlist"
-  source = new EventSource("/mpd/events/playlist")
 
-  # highlight currently playing song when it changes
-  source.addEventListener "currentsong", (e) ->
-    data = JSON.parse(e.data)
-    $(".playlist_elem").fadeTo "fast", 0.4
-    $("#song" + data["number"]).fadeTo "fast", 1.0
-
-  # update the playlist when it changes
-  source.addEventListener "playlist", (e) ->
-    playlist = JSON.parse(e.data)
-
+# main update procedure
+updatePlaylist = ->
+  $.get 'mpd/playlist', (data) ->
     # update playlist items
+    songs = data.songs
     index = -1
-    while ++index < Math.max(playlist.length, old_playlist.length)
+    console.log 'index: ' + data.index
+    while ++index < Math.max(songs.length, old_playlist.length)
       # add items if the new playlist is longer
       if index >= old_playlist.length
         # create playlist entry
-        $("section").append "<div id=\"song" + index + "\" class=\"playlist_elem\">"
+        $("section").append '<div id="song' + index + '" class="playlist_elem">'
 
         # fill in song information
-        $("#song" + index).append "<div class=\"songinfo title\">" + playlist[index]["title"] + "</div>"
-        $("#song" + index).append "<div class=\"songinfo artist\">" + playlist[index]["artist"] + "</div>"
-        $("#song" + index).append "<div class=\"songinfo album\">" + playlist[index]["album"] + "</div>"
-        $("#song" + index).append "<div class=\"songid\">" + index + "</div>"
+        $("#song" + index).append '<table><tr><td class="songinfo title">' + songs[index].title + '</td></tr></table>'
+        $("#song" + index).append '<div class="songinfo artist">' + songs[index].artist + '</div>'
+        $("#song" + index).append '<div class="songinfo album">' + songs[index].album + '</div>'
 
         # show only the song title
         $("#song" + index + " div").hide()
-        $("#song" + index + " div:first-child").show()
+
+        # add remove button
+        addRemoveButtonTo $("#song" + index + " table tr")
 
         # set onClick event handler
-        $("#song" + index).mouseup onPlaylistItemClick
+        $("#song" + index + " .title").mouseup onPlaylistItemClick
+        $("#song" + index + " div").mouseup onPlaylistItemClick
+
+        # attach song index
+        $("#song" + index).data 'number', index
+
         continue
 
       # remove items if the new playlist is shorter
-      if index >= playlist.length
+      if index >= songs.length
         $("#song" + index).remove()
         continue
 
-      # update song information
-      if playlist[index]["title"] isnt old_playlist[index]["title"] or playlist[index]["artist"] isnt old_playlist[index]["artist"] or playlist[index]["album"] isnt old_playlist[index]["album"]
-        $("#song" + index + " .title").contents().replaceWith playlist[index]["title"]
-        $("#song" + index + " .artist").contents().replaceWith playlist[index]["artist"]
-        $("#song" + index + " .album").contents().replaceWith playlist[index]["album"]
-        $("#song" + index + " .songid").contents().replaceWith "" + index
+      # update entries that have changed
+      if songs[index].title isnt old_playlist[index].title or songs[index].artist isnt old_playlist[index].artist or songs[index].album isnt old_playlist[index].album
+        # update song info
+        $("#song" + index + " .title").text songs[index].title
+        $("#song" + index + " .artist").text songs[index].artist
+        $("#song" + index + " .album").text songs[index].album
 
     # update playlist state variable
-    old_playlist = playlist
+    old_playlist = songs
+
+    # highlight currently playing song when it changes
+    if old_index isnt data.index
+      $(".playlist_elem").fadeTo "fast", 0.4
+      $("#song" + data.index).fadeTo "fast", 1.0
+
+      # update index state variable
+      old_index = data.index
+
+
+
+if location.pathname is "/playlist"
+  # initialize view
+  updatePlaylist()
+
+  # setup recurring update timer
+  setInterval updatePlaylist, 1000
