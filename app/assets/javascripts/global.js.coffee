@@ -4,13 +4,40 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $("a").click ->
-    $(this).fadeTo "fast", 0.4
-    $(this).fadeTo "fast", 1.0
+
+  # define pseudo-selector :textall for HTML5 text input types
+  (($) ->
+    types = "text search email password".split(" ")
+    len = types.length
+    $.expr[":"]["textall"] = (elem) ->
+      type = elem.getAttribute("type")
+      i = 0
+
+      while i < len
+        return true if type is types[i]
+        i++
+      false
+
+    return
+  ) jQuery
+
+  # apply styles to all text-type inputs
+  $(":textall").button().css
+    font: "inherit"
+    color: "inherit"
+    "text-align": "left"
+    outline: "none"
+    cursor: "text"
+
+  # apply generic styles to all button-type inputs
+  $(":button").button()
+  $(":submit").button()
+
 
   $("mark").delay(2000).fadeOut 1000
 
 
+  # apply specific styles and click handlers to nav buttons
   $("#nav_song_button").button(
     icons:
       primary: "ui-icon-play"
