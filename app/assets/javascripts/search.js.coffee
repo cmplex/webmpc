@@ -5,14 +5,6 @@
 
 $(document).ready ->
 
-  $("input:text, input:password").button().css
-    font: "inherit"
-    color: "inherit"
-    "text-align": "left"
-    outline: "none"
-    cursor: "text"
-
-
   $("#search_submit_button").button(
   ).click (e) ->
     data = needle: $("#searchbox").val()
