@@ -22,11 +22,11 @@ class NowPlayingController < MpdController
   end
 
   def resume
-    render text: @mpc.play
+    render text: @@mpc.play
   end
 
   def pause
-    render text: @mpc.pause = true
+    render text: @@mpc.pause = true
   end
 
   def volDown
@@ -48,7 +48,7 @@ class NowPlayingController < MpdController
   end
 
   def setVol
-    render text: @mpc.volume = params[:volume]
+    render text: @@mpc.volume = params[:volume]
   end
 
   def seek
