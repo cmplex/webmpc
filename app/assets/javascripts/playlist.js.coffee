@@ -139,20 +139,28 @@ selectMode = ->
   # initialize playlist as selectable
   $("#playlist").selectable filter: $("#playlist").children("li")
 
+  # remove and re-apply clear button click handler
+  $("#playlist_clear_button").off("click")
   $("#playlist_clear_button").button(
+    icons:
+      primary: "ui-icon-trash"
   ).click (e) ->
     $.post "mpd/clear"
 
+  # remove and re-apply remove button click handler
+  $("#playlist_remove_button").off("click")
   $("#playlist_remove_button").button(
+    icons:
+      primary: "ui-icon-trash"
   ).click (e) ->
 
+    # initialize and clear selection
     selection = []
+    selection.length = 0
     $(".ui-selected").each (index) ->
-      alert $(".playlist_item").index(this)
       selection.push $(".playlist_item").index(this)
 
     data = selection: selection
-
     $.post "/mpd/removeSelection", data
 
 
@@ -205,6 +213,8 @@ $(document).ready ->
 
     # apply click handler to mode switcher button
     $("#playlist_mode_button").button(
+      icons:
+        primary: "ui-icon-arrow-2-n-s"
     ).click (e) ->
       options = undefined
 
@@ -212,16 +222,22 @@ $(document).ready ->
         selectMode()
         options =
           label: "move"
+          icons:
+            primary: "ui-icon-arrow-2-n-s"
       else
         moveMode()
         options =
           label: "select"
+          icons:
+            primary: "ui-icon-plus"
 
       $("#playlist_mode_button").button "option", options
       applyMode()
 
     # apply click handler to play button
     $("#playlist_play_button").button(
+      icons:
+        primary: "ui-icon-play"
     ).click (e) ->
       if $(".ui-selected").length == 1
         data = number: $(".playlist_item").index $(".ui-selected").first()
