@@ -9,3 +9,23 @@ $(document).ready ->
     $(this).fadeTo "fast", 1.0
 
   $("mark").delay(2000).fadeOut 1000
+
+  $("#nav_song_button").click (e) ->
+    e.preventDefault()
+    window.location.href = "/now_playing"
+    return false
+
+  $("#nav_playlist_button").click (e) ->
+    e.preventDefault()
+    window.location.href = "/playlist"
+    return false
+
+  $("#nav_search_button").click (e) ->
+    e.preventDefault()
+    window.location.href = "/search"
+    return false
+
+  $("#nav_browse_button").click (e) ->
+    e.preventDefault()
+    window.location.href = "/browse"
+    return false

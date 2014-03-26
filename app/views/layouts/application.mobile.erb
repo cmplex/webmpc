@@ -13,11 +13,11 @@
   <div data-role="panel" data-display="overlay" id="globalmenu">
     <a href="#globalheader" data-rel="close">Close panel</a>
     <ul data-role="listview">
-      <li data-role="list-divider">views</li>
-      <li><%= nav_link "song", :now_playing %></li>
-      <li><%= nav_link "playlist", :playlist %></li>
-      <li><%= nav_link "search", :search %></li>
-      <li><%= nav_link "browse", :browse %></li>
+     <li data-role="list-divider">views</li>
+      <li><a id="nav_song_button" href="/">song</a></li>
+      <li><a id="nav_playlist_button" href="/">playlist</a></li>
+      <li><a id="nav_search_button" href="/">search</a></li>
+      <li><a id="nav_browse_button" href="/">browse</a></li>
 
       <% if can? :manage, Setting %>
         <li data-role="list-divider">admin</li>
