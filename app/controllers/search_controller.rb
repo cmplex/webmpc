@@ -22,7 +22,7 @@ class SearchController < MpdController
   def addSelection
     params[:selection].each do |index|
       song = @songs[index.to_i]
-      @mpc.add song
+      @@mpc.add song
     end
     render text: "Added selected songs to the playlist."
     return
