@@ -5,62 +5,74 @@
   </div>
 </header>
 <section>
-  <%= form_tag mpd_settings_path, method: :post do %>
-    <div>
-      <%= label_tag :crossfade %>
-      <br />
-      <%= text_field_tag :crossfade, @crossfade %>
-    </div>
-    <div>
-      <%= check_box_tag :repeat, true, @repeat %>
-      <%= label_tag :repeat %>
-    </div>
-    <div>
-      <%= check_box_tag :random, true, @random %>
-      <%= label_tag :random %>
-    </div>
-    <div>
-      <%= check_box_tag :consume, true, @consume %>
-      <%= label_tag :consume %>
-    </div>
-    <div>
-      <%= submit_tag 'Apply MPD settings' %>
-    </div>
-  <% end %>
+  <div id="settings">
+    <ul>
+      <li><a href="#mpd-settings">MPD Settings</a></li>
+      <li><a href="#vote-settings">Vote System Settings</a></li>
+    </ul>
 
-  <%= form_for(@settings) do |f| %>
-    <% if @settings.errors.any? %>
-      <div id="error_explanation">
-        <label><%= pluralize(@settings.errors.count, "error") %> prohibited settings from being saved:</label>
-        <ul>
-          <% @settings.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div>
-      <%= f.label :next_vote_trigger %>
-      <br />
-      <%= f.text_field :next_vote_trigger %>
-    </div>
-    <div>
-      <%= f.label :wish_timeout %>
-      <br />
-      <%= f.text_field :wish_timeout %>
+    <div id="mpd-settings">
+      <%= form_tag mpd_settings_path, method: :post do %>
+        <div>
+          <%= label_tag :crossfade %>
+          <br />
+          <%= text_field_tag :crossfade, @crossfade %>
+        </div>
+        <div>
+          <%= check_box_tag :repeat, true, @repeat %>
+          <%= label_tag :repeat %>
+        </div>
+        <div>
+          <%= check_box_tag :random, true, @random %>
+          <%= label_tag :random %>
+        </div>
+        <div>
+          <%= check_box_tag :consume, true, @consume %>
+          <%= label_tag :consume %>
+        </div>
+        <div>
+          <%= submit_tag 'Apply MPD settings' %>
+        </div>
+      <% end %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Save Settings" %>
-    </div>
-  <% end %>
+    <div id="vote-settings">
+      <%= form_for(@settings) do |f| %>
+        <% if @settings.errors.any? %>
+          <div id="error_explanation">
+            <label><%= pluralize(@settings.errors.count, "error") %> prohibited settings from being saved:</label>
+            <ul>
+              <% @settings.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-  <%= form_for :Voting, url: voting_reset_path do |f| %>
-    <div>
-      <%= f.label "Voting system" %>
-      <br />
-      <%= f.submit "Reset" %>
+        <div>
+          <%= f.label :next_vote_trigger %>
+          <br />
+          <%= f.text_field :next_vote_trigger %>
+        </div>
+        <div>
+          <%= f.label :wish_timeout %>
+          <br />
+          <%= f.text_field :wish_timeout %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Save Settings" %>
+        </div>
+      <% end %>
+
+      <%= form_for :Voting, url: voting_reset_path do |f| %>
+        <div>
+          <%= f.label "Voting system" %>
+          <br />
+          <%= f.submit "Reset" %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    
+  </div>
 </section>
