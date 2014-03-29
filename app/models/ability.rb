@@ -32,6 +32,7 @@ class Ability
     user ||= User.new
     can :manage, User if user.role == 'admin'
     can :manage, Setting if user.role == 'admin'
+    can :manage, Album if user.role == 'admin'
     can :control_mpd, nil if user.role == 'admin' or user.role == 'priviledged'
   end
 end

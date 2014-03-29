@@ -1,5 +1,7 @@
 # vim: tabstop=2 shiftwidth=2 expandtab
 Webmpc::Application.routes.draw do
+  resources :albums
+
   devise_for :users
   get     'users',                to: 'users#index',                as: 'users'
   get     'users/:id/edit',       to: 'users#edit',                 as: 'edit_user'
