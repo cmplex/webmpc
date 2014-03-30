@@ -24,9 +24,6 @@
     <button id="nav_browse_button">browse</button>
 
     <% if user_signed_in? %>
-      <% if can? :manage, User %>
-        <button id="nav_users_button">users</button>
-      <% end %>
       <% if can? :manage, Setting %>
         <button id="nav_settings_button">settings</button>
       <% end %>
@@ -36,6 +33,14 @@
       <button id="nav_login_button">login</button>
     <% end %>
   </div>
+
+  <% if user_signed_in? %>
+    <ul id="settings-menu">
+      <li><%= nav_link "General Settings", settings_path %></li>
+      <li><%= nav_link "Users", users_path %></li>
+      <li><%= nav_link "Albums", albums_path %></li>
+    </ul>
+  <% end %>
 
   <%= yield %>
 </body>

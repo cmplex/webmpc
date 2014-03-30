@@ -9,6 +9,8 @@
 .songlist li h3 { font-size: 1em; }
 .songlist li p { font-size: 0.8em; }
 
+.ui-menu { width: 200px; z-index: 10; position: absolute; }
+
 body {
   background: #757575; /* Old browsers */
   background: -moz-linear-gradient(left, #757575 0%, #b5b5b5 32%, #cacaca 52%, #b5b5b5 72%, #757575 100%); /* FF3.6+ */
@@ -20,10 +22,6 @@ body {
   color: #FFFFFF;
   font-family: Verdana;
   text-align: center;
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
 
 a {
@@ -127,13 +125,12 @@ section {
   /* layout parameters */
   margin: auto;
   margin-top: 8.75em;
-  width: 80%;
+  width: 90%;
 
   /* display parameters */
   border-radius: 5px;
   display: block;
   opacity: 0.9;
-  padding: 0.5em;
 }
 
 select {

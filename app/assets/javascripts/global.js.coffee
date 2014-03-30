@@ -33,9 +33,14 @@ $(document).ready ->
   $(":button").button()
   $(":submit").button()
 
+  # hide all menus on click anywhere on the page
+  $(document).click (e) ->
+    $(".ui-menu").hide()
+
 
   $("mark").delay(2000).fadeOut 1000
 
+  $("#settings-menu").menu().hide()
 
   # apply specific styles and click handlers to nav buttons
   $("#nav_song_button").button(
@@ -70,11 +75,17 @@ $(document).ready ->
   ).click (e) ->
     window.location.href = "/users"
 
+
   $("#nav_settings_button").button(
     icons:
       primary: "ui-icon-gear"
   ).click (e) ->
-    window.location.href = "/settings"
+    e.stopPropagation()
+    $("#settings-menu").css(
+      left: e.pageX
+      top: e.pageY
+    )
+    $("#settings-menu").show()
 
   $("#nav_user_button").button(
     icons:
