@@ -59,6 +59,9 @@ Webmpc::Application.routes.draw do
   patch   'settings/:id',             to: 'settings#update',        as: 'setting'
   post    'mpd/settings',             to: 'settings#apply'
 
+  post    'albums/retrieve',          to: 'albums#retrieve_covers'
+  post    'albums/reset',             to: 'albums#reset'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

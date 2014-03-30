@@ -1,6 +1,11 @@
-<h1>Editing album</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @album %> |
-<%= link_to 'Back', albums_path %>
+  <div id="toolbar" class="ui-widget-header ui-corner-all">
+</header>
+<section>
+  <h2>Choose cover for</h2>
+  <h3><%= @album.artist %> - <%= @album.title %></h3>
+  <%= image_tag @album.cover.url, size: "300x300" %>
+  <%= form_for(@album) do |f| %>
+    <%= f.file_field :cover %>
+    <%= f.submit "Update" %>
+  <% end %>
+</section>

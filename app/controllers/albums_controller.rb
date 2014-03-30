@@ -1,4 +1,4 @@
-class AlbumsController < ApplicationController
+class AlbumsController < MpdController
   load_and_authorize_resource
   before_action :set_album, only: [:show, :edit, :update, :destroy]
 
@@ -62,6 +62,40 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def retrieve_covers
+    albums = @@mpc.search(:any, " ").map{ |album| [album.album, album.artist]}.uniq
+
+    albums.each do |mpc_album|
+      album = Album.find_or_create_by title: mpc_album[0], artist: mpc_album[1]
+      begin
+        if not album.cover.exists?
+          albuminfo = Rockstar::Album.new(mpc_album[1], mpc_album[0], :include_info => true)
+          remote_url = albuminfo.images["extralarge"]
+
+          # if album cover available remotely
+          if !remote_url.nil? || remote_url.length == 0
+            album.cover = remote_url
+            album.save
+          end
+        end
+
+      rescue SocketError
+        p "No internet connection!"
+
+      end
+    end
+
+    render text: "Done."
+  end
+
+  def reset
+    @albums.each do |album|
+      album.destroy
+    end
+
+    render text: "Done."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_album
@@ -70,6 +104,6 @@ class AlbumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params[:album]
+      params.require(:album).permit(:cover)
     end
 end
