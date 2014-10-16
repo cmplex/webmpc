@@ -11,8 +11,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require jquery.ui.all
  *= require global.css.scss
+ *= require jquery-ui
  *= require playlist.css.scss
  *= require settings.css.scss
  *= require browse.css.scss

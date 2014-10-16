@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
 //= require global.js.coffee
+//= require jquery-ui
 //= require playlist.js.coffee
 //= require settings.js.coffee
 //= require browse.js.coffee
