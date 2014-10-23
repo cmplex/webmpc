@@ -33,7 +33,7 @@ class BrowseController < MpdController
   end
 
   def browse_artists
-    artists = @@mpc.artists.sort[1..-1]
+    artists = @@mpc.artists.sort
     render partial: "browse_artists", locals: { artists: artists }
     return
   end
