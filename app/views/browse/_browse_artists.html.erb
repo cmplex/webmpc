@@ -1,0 +1,7 @@
+<ol id="artistlist" class="songlist ui-corner-all ui-widget">
+    <% artists.each do |artist| %>
+      <li class="browselist_item ui-corner-all ui-state-default ui-widget-content">
+        <%= link_to artist, '/', :'data-browsestage' => 'artist' %>
+      </li>
+    <% end %>
+</ol>

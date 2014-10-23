@@ -1,0 +1,8 @@
+<ol id="albumlist" class="songlist ui-corner-all ui-widget">
+  <% albums.each do |album| %>
+      <li class="browselist_item albumlist_item ui-corner-all ui-state-default ui-widget-content">
+        <%= link_to album, '/', :'data-browsestage' => 'album' %>
+        <button class="browse_addalbum_button browse_add_button"></button>
+      </li>
+  <% end %>
+</ol>

@@ -1,0 +1,8 @@
+<ol id="songlist" class="songlist ui-corner-all ui-widget">
+  <% songs.each do |song| %>
+      <li class="browselist_item songlist_item ui-corner-all ui-state-default ui-widget-content">
+        <%= song.title %>
+        <button class="browse_addsong_button browse_add_button"></button>
+      </li>
+  <% end %>
+</ol>

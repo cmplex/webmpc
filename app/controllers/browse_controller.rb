@@ -21,15 +21,19 @@ class BrowseController < MpdController
   end
 
   def addSong
-    songs = @@mpc.songs_by_artist(params[:artist])
+    artist = params[:artist].strip
+    album = params[:album].strip
+    title = params[:title].strip
+
+    songs = @@mpc.songs_by_artist(artist)
     songs.each do |song|
-      if song.album == params[:album] and song.title == params[:title]
+      if song.album == album and song.title == title
         @@mpc.add(song)
-        render text: "song #{params[:title]} of the album #{params[:album]} by #{params[:artist]} was added"
+        render text: "song #{title} of the album #{album} by #{artist} was added"
         return
       end
     end
-    render text: "song #{params[:title]} of the album #{params[:album]} by #{params[:artist]} not found"
+    render text: "song #{title} of the album #{album} by #{artist} not found"
   end
 
   def browse_artists
@@ -51,7 +55,8 @@ class BrowseController < MpdController
   end
 
   def addAlbum
-      @songs = @@mpc.search(:album, params[:album])
+      album_name = params[:album].strip
+      @songs = @@mpc.search(:album, album_name)
       @songs.each do |song|
         @@mpc.add song
       end

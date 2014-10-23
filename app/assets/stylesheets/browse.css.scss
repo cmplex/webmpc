@@ -3,6 +3,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+button.browse_navbutton {
+  height: 38px;
+  width: 250px;
+}
+
+button.browse_add_button {
+  float: right;
+  height: 22px;
+  width: 33px;
+}
+
 .browselist_elem {
   /* layout parameters */
   margin: 6px;
