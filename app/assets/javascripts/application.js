@@ -20,3 +20,5 @@
 //= require now_playing.js.coffee
 //= require search.js.coffee
 //= require albums.js.coffee
+//= require websocket_rails/main
+

@@ -64,3 +64,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Use websockets
+gem 'websocket-rails'
