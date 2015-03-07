@@ -9,7 +9,8 @@ class MpdController < ApplicationController
   @@artist = 'none'
   @@album = 'none'
   @@title = 'none'
-  @@progress = 0
+  @@elapsed = 0
+  @@duration = 0
   @@playlist = []
   @@index = 0
 
@@ -24,7 +25,8 @@ class MpdController < ApplicationController
       end
 
       @@mpc.on :time do |elapsed, total|
-        @@progress = elapsed.to_f / total.to_f * 100
+        @@elapsed = elapsed.to_f
+        @@duration = total.to_f
       end
 
       @@mpc.on :song do |song|

@@ -7,7 +7,8 @@
 artist = undefined
 album = undefined
 title = undefined
-
+duration = undefined
+elapsed = undefined
 
 
 $(document).ready ->
@@ -28,13 +29,20 @@ updateAlbumCover = (artistname, albumname) ->
     albumimg.src = url
     $("#albumart").html albumimg
 
-
+# define progressbar update function
+updateProgress = ->
+  $("#progressbar span").width (elapsed / duration * 100) + "%"
+  elapsed++
 
 # define update function for the complete song information
 updateSongInfo = ->
   $.get "mpd/song_info", (song) ->
     # update progress bar
-    $("#progressbar span").width song.progress + "%"
+    $("#progressbar span").width song.elapsed / song.duration * 100 + "%"
+
+    # update global progress variables
+    duration = song.duration
+    elapsed = song.elapsed
 
     # if the song info changed, update the view
     if artist != song.artist or album != song.album or title != song.title
@@ -59,4 +67,5 @@ if location.pathname is "/" or location.pathname is "/now_playing"
   updateSongInfo()
 
   # set recurring update timer
-  setInterval updateSongInfo, 1000
+  setInterval updateSongInfo, 5000
+  setInterval updateProgress, 1000

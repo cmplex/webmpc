@@ -64,7 +64,7 @@ class NowPlayingController < MpdController
   end
 
   def songInfo
-    render json: {artist: @@artist, album: @@album, title: @@title, progress: @@progress}
+    render json: {artist: @@artist, album: @@album, title: @@title, duration: @@duration, elapsed: @@elapsed}
   end
 
   def albumarturl
